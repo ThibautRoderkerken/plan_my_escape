@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/custom_action_button.dart';
 import '../widgets/custom_outlined_button.dart';
 import '../widgets/custom_text_field.dart';
-import 'dashboard_screen.dart';
+import 'dashboard/dashboard_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class LoginScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const DashboardScreen()),
+                MaterialPageRoute(builder: (context) => const DashboardMainScreen()),
               );
             },
           ),
