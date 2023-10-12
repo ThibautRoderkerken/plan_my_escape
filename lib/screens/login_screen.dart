@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import '../widgets/custom_action_button.dart';
+import '../widgets/custom_outlined_button.dart';
+import '../widgets/custom_text_field.dart';
 import 'dashboard_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -16,38 +18,23 @@ class LoginScreen extends StatelessWidget {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 32),
-          const TextField(
-            decoration: InputDecoration(labelText: 'Email'),
-          ),
+          const CustomTextField(label: 'Email'),
           const SizedBox(height: 16),
-          const TextField(
-            decoration: InputDecoration(labelText: 'Password'),
-            obscureText: true,
-          ),
+          const CustomTextField(label: 'Password', isObscure: true),
           const SizedBox(height: 16),
-          ElevatedButton(
+          CustomActionButton(
+            label: 'Connexion',
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const DashboardScreen()), // DashboardPage doit être défini quelque part
+                MaterialPageRoute(builder: (context) => const DashboardScreen()),
               );
             },
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.blue,
-              minimumSize: const Size(double.infinity, 50),
-            ),
-            child: const Text('Connexion'),
           ),
           const SizedBox(height: 16),
-          OutlinedButton(
+          CustomOutlinedButton(
+            label: 'S\'authentifier via OAuth2',
             onPressed: () {},
-            style: OutlinedButton.styleFrom(
-              foregroundColor: Colors.blue,
-              side: const BorderSide(color: Colors.blue),
-              minimumSize: const Size(double.infinity, 50),
-            ),
-            child: const Text('S\'authentifier via OAuth2'),
           ),
           const SizedBox(height: 16),
           TextButton(

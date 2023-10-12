@@ -11,26 +11,25 @@ class DashboardScreen extends StatelessWidget {
         title: const Text('Tableau de bord'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),  // Ajout des marges horizontales
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
               'Ajouter une nouvelle période de vacances',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 32),
             TextField(
               decoration: const InputDecoration(
                 labelText: 'Destination',
-                border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 16),
             TextField(
               decoration: const InputDecoration(
                 labelText: 'Date de début',
-                border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.datetime,
             ),
@@ -38,7 +37,6 @@ class DashboardScreen extends StatelessWidget {
             TextField(
               decoration: const InputDecoration(
                 labelText: 'Date de fin',
-                border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.datetime,
             ),
@@ -47,6 +45,11 @@ class DashboardScreen extends StatelessWidget {
               onPressed: () {
                 // Logique pour ajouter la période de vacances
               },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blue,
+                minimumSize: const Size(double.infinity, 50),
+              ),
               child: const Text('Ajouter'),
             ),
           ],
