@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_action_button.dart';
 import '../widgets/custom_text_field.dart';
+import '../widgets/custom_date_selector.dart';
 import 'navigation_drawer.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -13,7 +14,7 @@ class DashboardScreen extends StatelessWidget {
         title: const Text('Tableau de bord'),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),  // Marges horizontales
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -25,9 +26,9 @@ class DashboardScreen extends StatelessWidget {
             const SizedBox(height: 32),
             const CustomTextField(label: 'Destination'),
             const SizedBox(height: 16),
-            const CustomTextField(label: 'Date de début', keyboardType: TextInputType.datetime),
+            const CustomDateSelector(label: 'Date de début'), // Utilisation du nouveau widget
             const SizedBox(height: 16),
-            const CustomTextField(label: 'Date de fin', keyboardType: TextInputType.datetime),
+            const CustomDateSelector(label: 'Date de fin'), // Utilisation du nouveau widget
             const SizedBox(height: 16),
             CustomActionButton(
               label: 'Ajouter',
