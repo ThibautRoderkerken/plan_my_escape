@@ -28,24 +28,55 @@ class DisplayVacationsScreen extends StatelessWidget {
               return Card(
                 margin: const EdgeInsets.all(10),
                 elevation: 5,
-                child: ListTile(
-                  leading: const Icon(Icons.beach_access),
-                  title: Text(vacation.destination),
-                  subtitle: Text(
-                      "${vacation.startDate.toLocal().toString().split(' ')[0]} - ${vacation.endDate.toLocal().toString().split(' ')[0]}\n"
-                          "${vacation.weatherInfo.description}, ${vacation.weatherInfo.temperature}°C"
-                  ),
-                  trailing: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Icon(Icons.group),
-                      Text(vacation.members.length.toString()), // Nombre de membres
-                      const SizedBox(height: 4),
-                      const Icon(Icons.event),
-                      Text(vacation.activities.length.toString()), // Nombre d'activités
+                      Text(vacation.destination),
+                      Text(
+                        "${vacation.startDate.toLocal().toString().split(' ')[0]} - ${vacation.endDate.toLocal().toString().split(' ')[0]}\n"
+                            "${vacation.weatherInfo.description}, ${vacation.weatherInfo.temperature}°C",
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                      SizedBox(height: 8),
+                      Text('Membres:'),
+                      for (var member in vacation.members)
+                        ListTile(
+                          title: Text(member.name),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () {
+                              // Logique pour supprimer le membre
+                            },
+                          ),
+                        ),
+                      SizedBox(height: 8),
+                      Text('Activités:'),
+                      for (var activity in vacation.activities)
+                        ListTile(
+                          title: Text(activity.name),
+                          subtitle: Text(activity.address),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.map),
+                                onPressed: () {
+                                  // Logique pour ouvrir dans Maps
+                                },
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.delete),
+                                onPressed: () {
+                                  // Logique pour supprimer l'activité
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
                     ],
                   ),
-                  // onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => VacationDetailScreen(vacation: vacation))), // Pour une future page de détails
                 ),
               );
             },
