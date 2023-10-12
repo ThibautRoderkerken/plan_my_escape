@@ -12,14 +12,17 @@ class DashboardMainScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Tableau de bord'),
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AddVacationScreen(), // Utilisez le widget pour ajouter une période de vacances
-            DisplayVacationsScreen(), // Utilisez le widget pour afficher les périodes de vacances
+            const AddVacationScreen(),
+            const SizedBox(height: 16),
+            Expanded( // Ajout du widget Expanded ici
+              child: DisplayVacationsScreen(),
+            ),
           ],
         ),
       ),
@@ -27,3 +30,4 @@ class DashboardMainScreen extends StatelessWidget {
     );
   }
 }
+
