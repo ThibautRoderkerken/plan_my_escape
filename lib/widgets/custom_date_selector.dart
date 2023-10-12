@@ -8,20 +8,19 @@ class CustomDateSelector extends StatefulWidget {
   CustomDateSelectorState createState() => CustomDateSelectorState();
 }
 
-class CustomDateSelectorState extends State<CustomDateSelector> { // Retirez le tiret bas
-  DateTime? _selectedDate;
+class CustomDateSelectorState extends State<CustomDateSelector> {
+  DateTimeRange? _selectedDateRange;
 
-  Future<void> _selectDate(BuildContext context) async {
-    DateTime? picked = await showDatePicker(
+  Future<void> _selectDateRange(BuildContext context) async {
+    DateTimeRange? pickedRange = await showDateRangePicker(
       context: context,
-      initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2101),
     );
 
-    if (picked != null && picked != _selectedDate) {
+    if (pickedRange != null) {
       setState(() {
-        _selectedDate = picked;
+        _selectedDateRange = pickedRange;
       });
     }
   }
@@ -31,10 +30,12 @@ class CustomDateSelectorState extends State<CustomDateSelector> { // Retirez le 
     return ListTile(
       title: Text(widget.label),
       subtitle: Text(
-        _selectedDate == null ? '' : "${_selectedDate!.toLocal()}".split(' ')[0],
+        _selectedDateRange == null
+            ? ''
+            : "${_selectedDateRange!.start.toLocal()} - ${_selectedDateRange!.end.toLocal()}", // Affichage de la période
       ),
       onTap: () {
-        _selectDate(context);
+        _selectDateRange(context);
       },
     );
   }

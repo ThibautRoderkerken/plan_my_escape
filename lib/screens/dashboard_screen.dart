@@ -26,9 +26,7 @@ class DashboardScreen extends StatelessWidget {
             const SizedBox(height: 32),
             const CustomTextField(label: 'Destination'),
             const SizedBox(height: 16),
-            const CustomDateSelector(label: 'Date de début'), // Utilisation du nouveau widget
-            const SizedBox(height: 16),
-            const CustomDateSelector(label: 'Date de fin'), // Utilisation du nouveau widget
+            const CustomDateSelector(label: 'Sélectionnez la période'), // Utilisation d'un seul sélecteur pour les dates de début et de fin
             const SizedBox(height: 16),
             CustomActionButton(
               label: 'Ajouter',
