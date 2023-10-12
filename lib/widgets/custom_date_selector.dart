@@ -32,7 +32,7 @@ class CustomDateSelectorState extends State<CustomDateSelector> {
       subtitle: Text(
         _selectedDateRange == null
             ? ''
-            : "${_selectedDateRange!.start.toLocal()} - ${_selectedDateRange!.end.toLocal()}", // Affichage de la période
+            : "${_selectedDateRange!.start.toLocal().toString().split(' ')[0]} - ${_selectedDateRange!.end.toLocal().toString().split(' ')[0]}",
       ),
       onTap: () {
         _selectDateRange(context);
