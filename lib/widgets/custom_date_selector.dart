@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 
 class CustomDateSelector extends StatefulWidget {
   final String label;
-  const CustomDateSelector({Key? key, required this.label}) : super(key: key);
+  final Function(DateTimeRange) onDateSelected;  // Ajout de la fonction de rappel
+
+  const CustomDateSelector({
+    Key? key,
+    required this.label,
+    required this.onDateSelected,  // Ajout du paramètre dans le constructeur
+  }) : super(key: key);
 
   @override
   CustomDateSelectorState createState() => CustomDateSelectorState();
@@ -22,6 +28,7 @@ class CustomDateSelectorState extends State<CustomDateSelector> {
       setState(() {
         _selectedDateRange = pickedRange;
       });
+      widget.onDateSelected(pickedRange);  // Appel du callback avec la plage de dates sélectionnée
     }
   }
 
