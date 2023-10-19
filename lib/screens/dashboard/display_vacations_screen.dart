@@ -8,20 +8,19 @@ class DisplayVacationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Text(
-            'Vos périodes de vacances planifiées',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+    return SingleChildScrollView( // Ajouté un SingleChildScrollView ici
+      child: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Vos périodes de vacances planifiées',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
-        ),
-        Expanded(
-          child: ListView.builder(
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             itemCount: dashboardViewModel.vacationPeriods.length,
             itemBuilder: (context, index) {
               final vacation = dashboardViewModel.vacationPeriods[index];
@@ -37,10 +36,10 @@ class DisplayVacationsScreen extends StatelessWidget {
                       Text(
                         "${vacation.startDate.toLocal().toString().split(' ')[0]} - ${vacation.endDate.toLocal().toString().split(' ')[0]}\n"
                             "${vacation.weatherInfo.description}, ${vacation.weatherInfo.temperature}°C",
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                        style: const TextStyle(fontSize: 12, color: Colors.grey),
                       ),
-                      SizedBox(height: 8),
-                      Text('Membres:'),
+                      const SizedBox(height: 8),
+                      const Text('Membres:'),
                       for (var member in vacation.members)
                         ListTile(
                           title: Text(member.name),
@@ -51,8 +50,8 @@ class DisplayVacationsScreen extends StatelessWidget {
                             },
                           ),
                         ),
-                      SizedBox(height: 8),
-                      Text('Activités:'),
+                      const SizedBox(height: 8),
+                      const Text('Activités:'),
                       for (var activity in vacation.activities)
                         ListTile(
                           title: Text(activity.name),
@@ -81,8 +80,8 @@ class DisplayVacationsScreen extends StatelessWidget {
               );
             },
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
