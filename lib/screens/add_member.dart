@@ -51,7 +51,11 @@ class AddParticipantScreen extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Expanded(
-              child: ListView.builder(
+              child: dashboardViewModel.vacationPeriods[vacationIndex].members.isEmpty
+                  ? const Center(
+                child: Text('Aucun participant ajouté'),
+              )
+                  : ListView.builder(
                 itemCount: dashboardViewModel.vacationPeriods[vacationIndex].members.length,
                 itemBuilder: (context, index) {
                   final member = dashboardViewModel.vacationPeriods[vacationIndex].members[index];
