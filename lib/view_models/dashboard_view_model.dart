@@ -89,4 +89,15 @@ class DashboardViewModel extends ChangeNotifier {
     _vacationPeriods.removeWhere((period) => period.destination == id);
     notifyListeners();
   }
+
+  void removeMember(int vacationIndex, int memberIndex) {
+    _vacationPeriods[vacationIndex].members.removeAt(memberIndex);
+    notifyListeners();
+  }
+
+  void addMember(int vacationIndex, String name, String text) {
+    String newId = "m${_vacationPeriods[vacationIndex].members.length + 1}";  // Générer un nouvel ID pour le membre
+    _vacationPeriods[vacationIndex].members.add(Member(id: newId, name: name));
+    notifyListeners();
+  }
 }

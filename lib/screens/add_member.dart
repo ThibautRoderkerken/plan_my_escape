@@ -5,9 +5,11 @@ import '../../widgets/custom_action_button.dart';
 import '../../widgets/custom_text_field.dart';
 
 class AddParticipantScreen extends StatelessWidget {
-  final int vacationIndex;  // Ajout du paramètre vacationIndex
+  final int vacationIndex;
+  final TextEditingController nameController = TextEditingController();  // Contrôleur pour le nom
+  final TextEditingController emailController = TextEditingController();  // Contrôleur pour l'email
 
-  const AddParticipantScreen({super.key, required this.vacationIndex});  // Modification du constructeur pour inclure vacationIndex
+  AddParticipantScreen({Key? key, required this.vacationIndex}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +31,18 @@ class AddParticipantScreen extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 32),
-            const CustomTextField(label: 'Nom'),
+            CustomTextField(controller: nameController, label: 'Nom'),  // Ajout du contrôleur
             const SizedBox(height: 16),
-            const CustomTextField(label: 'Email'),
+            CustomTextField(controller: emailController, label: 'Email'),  // Ajout du contrôleur
             const SizedBox(height: 16),
             CustomActionButton(
               label: 'Ajouter',
               onPressed: () {
-                // Logique pour ajouter le participant
-                // Utilisez dashboardViewModel pour ajouter un membre
-                // Utilisez également vacationIndex pour cibler la période de vacances spécifique
+                dashboardViewModel.addMember(
+                    vacationIndex,
+                    nameController.text,
+                    emailController.text
+                );
               },
             ),
             const SizedBox(height: 32),
@@ -48,17 +52,15 @@ class AddParticipantScreen extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: dashboardViewModel.vacationPeriods[vacationIndex].members.length, // Utilisez le bon nombre d'éléments
+                itemCount: dashboardViewModel.vacationPeriods[vacationIndex].members.length,
                 itemBuilder: (context, index) {
-                  final member = dashboardViewModel.vacationPeriods[vacationIndex].members[index];  // Utilisez vacationIndex pour cibler la période de vacances spécifique
+                  final member = dashboardViewModel.vacationPeriods[vacationIndex].members[index];
                   return ListTile(
                     title: Text(member.name),
                     trailing: IconButton(
                       icon: const Icon(Icons.delete),
                       onPressed: () {
-                        // Logique pour supprimer le participant
-                        // Utilisez dashboardViewModel pour supprimer un membre
-                        // Utilisez également vacationIndex pour cibler la période de vacances spécifique
+                        dashboardViewModel.removeMember(vacationIndex, index);
                       },
                     ),
                   );
