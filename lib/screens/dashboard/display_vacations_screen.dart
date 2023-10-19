@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:plan_my_escape/screens/add_member.dart';
+import 'package:provider/provider.dart';
 import '../../view_models/dashboard_view_model.dart';
 
 class DisplayVacationsScreen extends StatelessWidget {
-  final dashboardViewModel = DashboardViewModel();
 
-  DisplayVacationsScreen({Key? key}) : super(key: key);
+  const DisplayVacationsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final dashboardViewModel = Provider.of<DashboardViewModel>(context); // Ici, nous obtenons l'instance du ViewModel depuis le Provider.
+
     return SingleChildScrollView( // Ajouté un SingleChildScrollView ici
       child: Column(
         children: [
@@ -79,9 +82,13 @@ class DisplayVacationsScreen extends StatelessWidget {
                           IconButton(
                             icon: const Icon(Icons.add),
                             onPressed: () {
-                              // Logique pour ajouter un membre
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => AddParticipantScreen(vacationIndex: vacation.vacationIndex)),
+                              );
                             },
                           ),
+
                         ],
                       ),
                       for (var member in vacation.members)

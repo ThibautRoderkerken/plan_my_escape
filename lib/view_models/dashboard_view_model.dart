@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class Member {
   final String id;
   final String name;
@@ -28,6 +30,7 @@ class VacationPeriod {
   final List<Member> members;
   final List<Activity> activities;
   final WeatherInfo weatherInfo;
+  final int vacationIndex;  // Ajout de vacationIndex
 
   VacationPeriod({
     required this.startDate,
@@ -36,12 +39,15 @@ class VacationPeriod {
     required this.members,
     required this.activities,
     required this.weatherInfo,
+    required this.vacationIndex, // Ajout de vacationIndex
   });
 }
 
-class DashboardViewModel {
-  List<VacationPeriod> vacationPeriods = [
+class DashboardViewModel extends ChangeNotifier {
+  final List<VacationPeriod> _vacationPeriods = [
     VacationPeriod(
+      // Ajouter un champs vacationIndex
+      vacationIndex: 0,
       startDate: DateTime.now().subtract(const Duration(days: 5)),
       endDate: DateTime.now().add(const Duration(days: 10)),
       destination: 'Barcelone',
@@ -51,11 +57,12 @@ class DashboardViewModel {
       ],
       activities: [
         Activity(id: 'a1', name: 'Visite du Parc Güell', address: "Carrer d'Olot, Barcelone, Espagne"),
-            Activity(id: 'a2', name: 'Dîner à El Nacional', address: 'Passeig de Gràcia, Barcelone, Espagne'),
+        Activity(id: 'a2', name: 'Dîner à El Nacional', address: 'Passeig de Gràcia, Barcelone, Espagne'),
       ],
       weatherInfo: WeatherInfo(description: 'Ensoleillé', temperature: 26.5),
     ),
     VacationPeriod(
+      vacationIndex: 1,
       startDate: DateTime.now().add(const Duration(days: 20)),
       endDate: DateTime.now().add(const Duration(days: 30)),
       destination: 'Rome',
@@ -70,5 +77,16 @@ class DashboardViewModel {
       weatherInfo: WeatherInfo(description: 'Légèrement nuageux', temperature: 23.0),
     ),
   ];
-}
 
+  List<VacationPeriod> get vacationPeriods => _vacationPeriods;
+
+  void addVacationPeriod(VacationPeriod period) {
+    _vacationPeriods.add(period);
+    notifyListeners();
+  }
+
+  void removeVacationPeriod(String id) {
+    _vacationPeriods.removeWhere((period) => period.destination == id);
+    notifyListeners();
+  }
+}

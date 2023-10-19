@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'view_models/dashboard_view_model.dart';
 import 'screens/login_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => DashboardViewModel(),
+      child: const MyApp(),
+    ),
+  );
 }
-// tet
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
