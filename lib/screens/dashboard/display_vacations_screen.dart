@@ -91,13 +91,13 @@ class DisplayVacationsScreen extends StatelessWidget {
 
                         ],
                       ),
-                      for (var member in vacation.members)
+                      for (var memberIndex = 0; memberIndex < vacation.members.length; memberIndex++)
                         ListTile(
-                          title: Text(member.name),
+                          title: Text(vacation.members[memberIndex].name),
                           trailing: IconButton(
                             icon: const Icon(Icons.delete),
                             onPressed: () {
-                              // Logique pour supprimer le membre
+                              dashboardViewModel.removeMember(index, memberIndex);
                             },
                           ),
                         ),

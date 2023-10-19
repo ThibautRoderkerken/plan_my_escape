@@ -12,15 +12,15 @@ class DashboardMainScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Tableau de bord'),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const AddVacationScreen(),
-              const SizedBox(height: 16),
+              AddVacationScreen(),
+              SizedBox(height: 16),
               DisplayVacationsScreen(), // Removed Expanded
             ],
           ),
