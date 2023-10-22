@@ -11,6 +11,7 @@ class DashboardMainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tableau de bord'),
+        key: const Key('dashboard_screen_title'),
       ),
       body: SingleChildScrollView(
         child: Padding(

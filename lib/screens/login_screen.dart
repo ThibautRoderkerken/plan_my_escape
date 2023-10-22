@@ -15,15 +15,24 @@ class LoginScreen extends StatelessWidget {
         children: [
           const Text(
             'Connexion',
+            key: Key('login_screen_title'),
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 32),
-          const CustomTextField(label: 'Email'),
+          const CustomTextField(
+              label: 'Email',
+              key: Key('login_screen_email_field'),
+          ),
           const SizedBox(height: 16),
-          const CustomTextField(label: 'Password', isObscure: true),
+          const CustomTextField(
+              label: 'Password',
+              isObscure: true,
+              key: Key('login_screen_password_field'),
+          ),
           const SizedBox(height: 16),
           CustomActionButton(
             label: 'Connexion',
+            key: const Key('login_screen_login_button'),
             onPressed: () {
               Navigator.push(
                 context,
