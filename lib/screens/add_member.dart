@@ -31,9 +31,9 @@ class AddParticipantScreen extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 32),
-            CustomTextField(controller: nameController, label: 'Nom'),  // Ajout du contrôleur
+            CustomTextField(controller: nameController, label: 'Nom'),
             const SizedBox(height: 16),
-            CustomTextField(controller: emailController, label: 'Email'),  // Ajout du contrôleur
+            CustomTextField(controller: emailController, label: 'Email'),
             const SizedBox(height: 16),
             CustomActionButton(
               label: 'Ajouter',
