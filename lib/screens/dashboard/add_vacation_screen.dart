@@ -6,16 +6,17 @@ import '../../widgets/custom_date_selector.dart';
 import '../../widgets/custom_text_field.dart';
 
 class AddVacationScreen extends StatefulWidget {
-  AddVacationScreen({Key? key}) : super(key: key);
+  final Function onVacationAdded;
+  const AddVacationScreen({Key? key, required this.onVacationAdded}) : super(key: key);
 
   @override
-  _AddVacationScreenState createState() => _AddVacationScreenState();
+  AddVacationScreenState createState() => AddVacationScreenState();
 }
 
-class _AddVacationScreenState extends State<AddVacationScreen> {
+class AddVacationScreenState extends State<AddVacationScreen> {
   final TextEditingController destinationController = TextEditingController();
-  DateTime? startDate;  // Date de début sélectionnée
-  DateTime? endDate;  // Date de fin sélectionnée
+  DateTime? startDate;
+  DateTime? endDate;
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +34,12 @@ class _AddVacationScreenState extends State<AddVacationScreen> {
         const SizedBox(height: 32),
         CustomTextField(
           label: 'Destination',
-          controller: destinationController,  // Ajout du contrôleur ici
+          controller: destinationController,
         ),
         const SizedBox(height: 16),
         CustomDateSelector(
           label: 'Sélectionnez la période',
-          onDateSelected: (range) { // Ajout de la fonction de rappel
+          onDateSelected: (range) {
             setState(() {
               startDate = range.start;
               endDate = range.end;
@@ -62,17 +63,20 @@ class _AddVacationScreenState extends State<AddVacationScreen> {
                   weatherInfo: WeatherInfo(description: 'Inconnu', temperature: 0.0),
                 ),
               );
+
+              // Appel à la fonction de rappel pour faire défiler la vue
+              widget.onVacationAdded();
             } else {
               // Afficher une alerte indiquant que les dates sont nécessaires
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: Text("Erreur"),
-                  content: Text("Veuillez sélectionner des dates de début et de fin."),
+                  title: const Text("Erreur"),
+                  content: const Text("Veuillez sélectionner des dates de début et de fin."),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: Text("OK"),
+                      child: const Text("OK"),
                     ),
                   ],
                 ),

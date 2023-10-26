@@ -4,7 +4,8 @@ import 'display_vacations_screen.dart';
 import '../navigation_drawer.dart';
 
 class DashboardMainScreen extends StatelessWidget {
-  const DashboardMainScreen({Key? key}) : super(key: key);
+  DashboardMainScreen({Key? key}) : super(key: key);
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +15,22 @@ class DashboardMainScreen extends StatelessWidget {
         key: const Key('dashboard_screen_title'),
       ),
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AddVacationScreen(),
+              AddVacationScreen(
+                onVacationAdded: () {
+                  _scrollController.animateTo(
+                    _scrollController.position.maxScrollExtent,
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.fastOutSlowIn,
+                  );
+                },
+              ),
               const SizedBox(height: 16),
               const DisplayVacationsScreen(), // Removed Expanded
             ],
@@ -31,3 +41,4 @@ class DashboardMainScreen extends StatelessWidget {
     );
   }
 }
+

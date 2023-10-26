@@ -6,7 +6,7 @@ import 'package:plan_my_escape/main.dart' as app;
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  group("Test d'intégration", () {
+  group("Page de connexion", () {
 
     testWidgets("Vérifier que l'application démarre sur la page de connexion", (WidgetTester tester) async {
       // Lance l'application
