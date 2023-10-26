@@ -11,8 +11,9 @@ class Activity {
   final String id;
   final String name;
   final String address;
+  final String description;
 
-  Activity({required this.id, required this.name, required this.address});
+  Activity({required this.id, required this.name, required this.address, required this.description});
 }
 
 class WeatherInfo {
@@ -56,8 +57,8 @@ class DashboardViewModel extends ChangeNotifier {
         Member(id: 'm2', name: 'Bob Martin'),
       ],
       activities: [
-        Activity(id: 'a1', name: 'Visite du Parc Güell', address: "Carrer d'Olot, Barcelone, Espagne"),
-        Activity(id: 'a2', name: 'Dîner à El Nacional', address: 'Passeig de Gràcia, Barcelone, Espagne'),
+        Activity(id: 'a1', name: 'Visite du Parc Güell', address: "Carrer d'Olot, Barcelone, Espagne", description: 'Visite du parc et de la maison de Gaudi'),
+        Activity(id: 'a2', name: 'Dîner à El Nacional', address: 'Passeig de Gràcia, Barcelone, Espagne', description: 'Dîner dans un restaurant typique'),
       ],
       weatherInfo: WeatherInfo(description: 'Ensoleillé', temperature: 26.5),
     ),
@@ -71,8 +72,8 @@ class DashboardViewModel extends ChangeNotifier {
         Member(id: 'm4', name: 'David Bernard'),
       ],
       activities: [
-        Activity(id: 'a3', name: 'Visite du Colisée', address: 'Piazza del Colosseo, Rome, Italie'),
-        Activity(id: 'a4', name: 'Déjeuner à la Pergola', address: 'Via Alberto Cadlolo, Rome, Italie'),
+        Activity(id: 'a3', name: 'Visite du Colisée', address: 'Piazza del Colosseo, Rome, Italie', description: 'Visite du Colisée et du Forum Romain'),
+        Activity(id: 'a4', name: 'Déjeuner à la Pergola', address: 'Via Alberto Cadlolo, Rome, Italie', description: 'Déjeuner dans un restaurant étoilé'),
       ],
       weatherInfo: WeatherInfo(description: 'Légèrement nuageux', temperature: 23.0),
     ),
@@ -98,6 +99,17 @@ class DashboardViewModel extends ChangeNotifier {
   void addMember(int vacationIndex, String name, String text) {
     String newId = "m${_vacationPeriods[vacationIndex].members.length + 1}";  // Générer un nouvel ID pour le membre
     _vacationPeriods[vacationIndex].members.add(Member(id: newId, name: name));
+    notifyListeners();
+  }
+
+  void addActivity(int vacationIndex, String name, String address, String description) {
+    String newId = "a${_vacationPeriods[vacationIndex].activities.length + 1}";
+    _vacationPeriods[vacationIndex].activities.add(Activity(id: newId, name: name, address: address, description: description));
+    notifyListeners();
+  }
+
+  void removeActivity(int vacationIndex, int activityIndex) {
+    _vacationPeriods[vacationIndex].activities.removeAt(activityIndex);
     notifyListeners();
   }
 }

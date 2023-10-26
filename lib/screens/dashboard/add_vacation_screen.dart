@@ -51,7 +51,7 @@ class AddVacationScreenState extends State<AddVacationScreen> {
               });
             },
             errorMessage: _buttonPressed && (startDate == null || endDate == null)
-                ? 'Les dates de début et de fin sont nécessaires'
+                ? 'Les dates de début et de fin ne peuvent pas être vides'
                 : null,
           ),
           const SizedBox(height: 16),

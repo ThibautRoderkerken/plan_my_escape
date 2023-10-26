@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plan_my_escape/screens/add_member.dart';
 import 'package:provider/provider.dart';
 import '../../view_models/dashboard_view_model.dart';
+import '../add_activity_screen.dart';
 
 class DisplayVacationsScreen extends StatelessWidget {
 
@@ -109,15 +110,18 @@ class DisplayVacationsScreen extends StatelessWidget {
                           IconButton(
                             icon: const Icon(Icons.add),
                             onPressed: () {
-                              // Logique pour ajouter une activité
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => AddActivityScreen(vacationIndex: vacation.vacationIndex)),
+                              );
                             },
                           ),
                         ],
                       ),
-                      for (var activity in vacation.activities)
+                      for (var activityIndex = 0; activityIndex < vacation.activities.length; activityIndex++)
                         ListTile(
-                          title: Text(activity.name),
-                          subtitle: Text(activity.address),
+                          title: Text(vacation.activities[activityIndex].name),
+                          subtitle: Text(vacation.activities[activityIndex].address),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -130,7 +134,7 @@ class DisplayVacationsScreen extends StatelessWidget {
                               IconButton(
                                 icon: const Icon(Icons.delete),
                                 onPressed: () {
-                                  // Logique pour supprimer l'activité
+                                  dashboardViewModel.removeActivity(index, activityIndex);
                                 },
                               ),
                             ],
