@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class CustomDateSelector extends StatefulWidget {
   final String label;
-  final Function(DateTimeRange) onDateSelected;  // Ajout de la fonction de rappel
+  final Function(DateTimeRange) onDateSelected;
+  final String? errorMessage;
 
   const CustomDateSelector({
     Key? key,
     required this.label,
-    required this.onDateSelected,  // Ajout du paramètre dans le constructeur
+    required this.onDateSelected,
+    this.errorMessage,
   }) : super(key: key);
 
   @override
@@ -28,22 +30,34 @@ class CustomDateSelectorState extends State<CustomDateSelector> {
       setState(() {
         _selectedDateRange = pickedRange;
       });
-      widget.onDateSelected(pickedRange);  // Appel du callback avec la plage de dates sélectionnée
+      widget.onDateSelected(pickedRange);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(widget.label),
-      subtitle: Text(
-        _selectedDateRange == null
-            ? ''
-            : "${_selectedDateRange!.start.toLocal().toString().split(' ')[0]} - ${_selectedDateRange!.end.toLocal().toString().split(' ')[0]}",
-      ),
-      onTap: () {
-        _selectDateRange(context);
-      },
+    return Column(
+      children: [
+        ListTile(
+          title: Text(widget.label),
+          subtitle: Text(
+            _selectedDateRange == null
+                ? ''
+                : "${_selectedDateRange!.start.toLocal().toString().split(' ')[0]} - ${_selectedDateRange!.end.toLocal().toString().split(' ')[0]}",
+          ),
+          onTap: () {
+            _selectDateRange(context);
+          },
+        ),
+        if (widget.errorMessage != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              widget.errorMessage!,
+              style: const TextStyle(color: Colors.red),
+            ),
+          ),
+      ],
     );
   }
 }
