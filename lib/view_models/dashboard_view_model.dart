@@ -112,4 +112,12 @@ class DashboardViewModel extends ChangeNotifier {
     _vacationPeriods[vacationIndex].activities.removeAt(activityIndex);
     notifyListeners();
   }
+
+  List<Activity> getActivitiesForVacation(int vacationIndex) {
+    if (vacationIndex >= 0 && vacationIndex < _vacationPeriods.length) {
+      return _vacationPeriods[vacationIndex].activities;
+    } else {
+      return [];
+    }
+  }
 }

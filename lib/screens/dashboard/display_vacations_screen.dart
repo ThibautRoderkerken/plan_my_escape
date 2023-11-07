@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plan_my_escape/screens/add_member.dart';
+import 'package:plan_my_escape/screens/calendar/activity_planner.dart';
 import 'package:provider/provider.dart';
 import '../../view_models/dashboard_view_model.dart';
 import '../add_activity_screen.dart';
@@ -137,6 +138,18 @@ class DisplayVacationsScreen extends StatelessWidget {
                                   dashboardViewModel.removeActivity(index, activityIndex);
                                 },
                               ),
+                              IconButton(
+                                icon: const Icon(Icons.schedule), // Nouvelle icône pour gérer les activités
+                                onPressed: () {
+                                  // Logique pour charger les activités de cette période
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ActivityPlanner(vacationIndex: vacation.vacationIndex),
+                                    ),
+                                  );
+                                },
+                              ),
                             ],
                           ),
                         ),
@@ -147,9 +160,6 @@ class DisplayVacationsScreen extends StatelessWidget {
               );
             },
           ),
-
-
-
         ],
       ),
     );
