@@ -22,8 +22,8 @@ class ActivityCalendarState extends State<ActivityCalendar> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
-    _selectedDateNotifier = ValueNotifier<DateTime>(DateTime.now());
+    _pageController = PageController(initialPage: 0);
+    _selectedDateNotifier = ValueNotifier<DateTime>(widget.firstDay);
   }
 
   @override
@@ -35,7 +35,6 @@ class ActivityCalendarState extends State<ActivityCalendar> {
 
   void _onDaySelected(DateTime selectedDay) {
     _selectedDateNotifier.value = selectedDay;
-    // Ici, ajustez selon le besoin pour lier avec le PageView si nécessaire
   }
 
   @override
@@ -61,14 +60,11 @@ class ActivityCalendarState extends State<ActivityCalendar> {
             itemCount: widget.lastDay.difference(widget.firstDay).inDays + 1,
             itemBuilder: (context, index) {
               return TimetableView(
-                // Assurez-vous de mettre à jour les événements pour le jour spécifique ici
                 laneEventsList: const [],
                 timetableStyle: const TimetableStyle(
                   startHour: 8,
                   endHour: 20,
-                  // ... Autres styles
                 ), onEmptySlotTap: (int laneIndex, TableEventTime start, TableEventTime end) {  }, onEventTap: (TableEvent event) {  },
-                // ... Autres callbacks
               );
             },
             onPageChanged: (index) {
