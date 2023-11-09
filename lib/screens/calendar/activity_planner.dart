@@ -32,7 +32,7 @@ class ActivityPlanner extends StatelessWidget {
                 child: IntrinsicHeight(
                   child: Column(
                     children: [
-                      ActivityPool(activities: activities),
+                      ActivityPool(viewModel: dashboardViewModel, vacationIndex: vacationIndex),
                       // Ajoutez d'autres widgets si nécessaire
                     ],
                   ),

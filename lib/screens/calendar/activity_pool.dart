@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:plan_my_escape/view_models/dashboard_view_model.dart';
 
 class ActivityPool extends StatefulWidget {
-  final List<Activity> activities;
+  final DashboardViewModel viewModel;
+  final int vacationIndex;
 
-  const ActivityPool({super.key, required this.activities});
+  const ActivityPool({super.key, required this.viewModel, required this.vacationIndex});
 
   @override
   ActivityPoolState createState() => ActivityPoolState();
 }
 
 class ActivityPoolState extends State<ActivityPool> {
-  Future<void> _selectDateTime(BuildContext context) async {
+  Future<void> _selectDateTime(BuildContext context, Activity activity) async {
     final DateTime? selectedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -26,12 +27,12 @@ class ActivityPoolState extends State<ActivityPool> {
       );
 
       if (selectedTime != null && mounted) {
-        await _selectDuration(context, selectedDate, selectedTime);
+        await _selectDuration(context, selectedDate, selectedTime, activity);
       }
     }
   }
 
-  Future<void> _selectDuration(BuildContext context, DateTime selectedDate, TimeOfDay selectedTime) async {
+  Future<void> _selectDuration(BuildContext context, DateTime selectedDate, TimeOfDay selectedTime, Activity activity) async {
     Duration? duration = await showDialog<Duration>(
       context: context,
       builder: (context) {
@@ -74,20 +75,26 @@ class ActivityPoolState extends State<ActivityPool> {
     );
 
     if (duration != null && mounted) {
-      // Ici, vous avez selectedDate, selectedTime, et duration
-      // Vous pouvez traiter ces informations comme nécessaire
+      setState(() {
+        activity.scheduledDate = selectedDate;
+        activity.scheduledTime = selectedTime;
+        activity.duration = duration;
+        widget.viewModel.updateActivity(activity);
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Activity> activities = widget.viewModel.getActivitiesForVacation(widget.vacationIndex);
     return SingleChildScrollView(
       child: Column(
-        children: widget.activities.map((activity) {
+        children: activities.map((activity) {
           return ListTile(
             title: Text(activity.name),
             leading: const Icon(Icons.event),
-            onTap: () => _selectDateTime(context),
+            onTap: () => _selectDateTime(context, activity),
+            trailing: activity.scheduledDate != null ? const Icon(Icons.check) : null,
           );
         }).toList(),
       ),
