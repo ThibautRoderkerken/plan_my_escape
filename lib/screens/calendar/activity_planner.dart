@@ -22,9 +22,26 @@ class ActivityPlanner extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ActivityPool(activities: activities),
+            flex: 3,  // 30% de l'espace
+            child: SingleChildScrollView( // Rend le contenu déroulant
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  // Définissez une hauteur minimale pour le contenu déroulant
+                  minHeight: MediaQuery.of(context).size.height * 0.3,
+                ),
+                child: IntrinsicHeight(
+                  child: Column(
+                    children: [
+                      ActivityPool(activities: activities),
+                      // Ajoutez d'autres widgets si nécessaire
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ),
           Expanded(
+            flex: 7,  // 70% de l'espace
             child: ActivityCalendar(
               firstDay: vacation.startDate,
               lastDay: vacation.endDate,

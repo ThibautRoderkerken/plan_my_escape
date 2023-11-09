@@ -8,15 +8,16 @@ class ActivityPool extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: activities.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(activities[index].name),
-          leading: const Icon(Icons.event),
-          trailing: const Icon(Icons.drag_handle),
-        );
-      },
+    return SingleChildScrollView(
+      child: Column(
+        children: activities.map((activity) {
+          return ListTile(
+            title: Text(activity.name),
+            leading: const Icon(Icons.event),
+            trailing: const Icon(Icons.drag_handle),
+          );
+        }).toList(),
+      ),
     );
   }
 }
