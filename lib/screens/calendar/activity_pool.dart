@@ -14,7 +14,6 @@ class ActivityPool extends StatelessWidget {
           return ListTile(
             title: Text(activity.name),
             leading: const Icon(Icons.event),
-            trailing: const Icon(Icons.drag_handle),
           );
         }).toList(),
       ),
