@@ -13,11 +13,17 @@ class ActivityPool extends StatefulWidget {
 
 class ActivityPoolState extends State<ActivityPool> {
   Future<void> _selectDateTime(BuildContext context, Activity activity) async {
+    // Obtenir la période de vacances actuelle
+    VacationPeriod vacation = widget.viewModel.vacationPeriods[widget.vacationIndex];
+
+    // Utiliser les dates de la période de vacances pour le sélecteur de date
     final DateTime? selectedDate = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2025),
+      initialDate: DateTime.now().isAfter(vacation.startDate) && DateTime.now().isBefore(vacation.endDate)
+          ? DateTime.now()
+          : vacation.startDate,
+      firstDate: vacation.startDate,
+      lastDate: vacation.endDate,
     );
 
     if (selectedDate != null && mounted) {
