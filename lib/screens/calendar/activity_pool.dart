@@ -84,12 +84,26 @@ class ActivityPoolState extends State<ActivityPool> {
     }
   }
 
+  List<Activity> getSortedActivities() {
+    List<Activity> activities = widget.viewModel.getActivitiesForVacation(widget.vacationIndex);
+
+    // Trier les activités en deux listes: celles sans date et celles avec date
+    List<Activity> activitiesWithoutDate = activities.where((a) => a.scheduledDate == null).toList();
+    List<Activity> activitiesWithDate = activities.where((a) => a.scheduledDate != null).toList();
+
+    // Trier les activités avec date par ordre chronologique
+    activitiesWithDate.sort((a, b) => a.scheduledDate!.compareTo(b.scheduledDate!));
+
+    // Fusionner les deux listes
+    return [...activitiesWithoutDate, ...activitiesWithDate];
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Activity> activities = widget.viewModel.getActivitiesForVacation(widget.vacationIndex);
+    List<Activity> sortedActivities = getSortedActivities();
     return SingleChildScrollView(
       child: Column(
-        children: activities.map((activity) {
+        children: sortedActivities.map((activity) {
           return ListTile(
             title: Text(activity.name),
             leading: const Icon(Icons.event),
