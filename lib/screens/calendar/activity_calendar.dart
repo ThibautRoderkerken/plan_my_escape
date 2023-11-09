@@ -1,14 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:timetable_view/timetable_view.dart';
+
+import '../../view_models/dashboard_view_model.dart';
 
 class ActivityCalendar extends StatefulWidget {
   final DateTime firstDay;
   final DateTime lastDay;
+  final int vacationIndex;
+  final DashboardViewModel viewModel;
 
   const ActivityCalendar({
     Key? key,
     required this.firstDay,
     required this.lastDay,
+    required this.vacationIndex,
+    required this.viewModel,
   }) : super(key: key);
 
   @override
@@ -18,6 +25,34 @@ class ActivityCalendar extends StatefulWidget {
 class ActivityCalendarState extends State<ActivityCalendar> {
   late PageController _pageController;
   late ValueNotifier<DateTime> _selectedDateNotifier;
+
+  bool _isSameDay(DateTime a, DateTime b) {
+    return a.year == b.year && a.month == b.month && a.day == b.day;
+  }
+
+  List<TableEvent> _getEventsForDay(DateTime day) {
+    final activities = widget.viewModel.getActivitiesForVacation(widget.vacationIndex);
+
+    List<TableEvent> events = activities.where((activity) {
+      // Vérifier si l'activité est planifiée pour le jour en question
+      bool isSameDay = activity.scheduledDate != null && _isSameDay(activity.scheduledDate!, day);
+      return isSameDay;
+    }).map((activity) {
+      // Transformer chaque activité en un TableEvent
+      return TableEvent(
+        title: activity.name,
+        startTime: TableEventTime(hour: activity.scheduledTime!.hour, minute: activity.scheduledTime!.minute),
+        endTime: TableEventTime(
+          hour: activity.scheduledTime!.hour + activity.duration!.inHours,
+          minute: (activity.scheduledTime!.minute + activity.duration!.inMinutes) % 60,
+        ), eventId: 0, laneIndex: 0,
+      );
+    }).toList();
+
+    return events;
+  }
+
+
 
   @override
   void initState() {
@@ -59,8 +94,10 @@ class ActivityCalendarState extends State<ActivityCalendar> {
             controller: _pageController,
             itemCount: widget.lastDay.difference(widget.firstDay).inDays + 1,
             itemBuilder: (context, index) {
+              DateTime day = widget.firstDay.add(Duration(days: index));
+              List<TableEvent> events = _getEventsForDay(day);
               return TimetableView(
-                laneEventsList: const [],
+                laneEventsList: [LaneEvents(lane: Lane(name: 'Activités', laneIndex: 1), events: events)], // Ajout de [
                 timetableStyle: const TimetableStyle(
                   startHour: 8,
                   endHour: 20,

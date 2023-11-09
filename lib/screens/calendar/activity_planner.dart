@@ -45,6 +45,8 @@ class ActivityPlanner extends StatelessWidget {
             child: ActivityCalendar(
               firstDay: vacation.startDate,
               lastDay: vacation.endDate,
+              vacationIndex: vacationIndex,
+              viewModel: dashboardViewModel,
             ),
           ),
         ],

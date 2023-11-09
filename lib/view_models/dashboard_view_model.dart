@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Member {
@@ -34,7 +35,7 @@ class VacationPeriod {
   final List<Member> members;
   final List<Activity> activities;
   final WeatherInfo weatherInfo;
-  final int vacationIndex;  // Ajout de vacationIndex
+  final int vacationIndex;
 
   VacationPeriod({
     required this.startDate,
@@ -43,7 +44,7 @@ class VacationPeriod {
     required this.members,
     required this.activities,
     required this.weatherInfo,
-    required this.vacationIndex, // Ajout de vacationIndex
+    required this.vacationIndex,
   });
 }
 
@@ -88,7 +89,9 @@ class DashboardViewModel extends ChangeNotifier {
     for (var period in _vacationPeriods) {
       for (var i = 0; i < period.activities.length; i++) {
         if (period.activities[i].id == updatedActivity.id) {
-          period.activities[i] = updatedActivity;
+          period.activities[i].duration = updatedActivity.duration;
+          period.activities[i].scheduledDate = updatedActivity.scheduledDate;
+          period.activities[i].scheduledTime = updatedActivity.scheduledTime;
           notifyListeners();
           break;
         }
