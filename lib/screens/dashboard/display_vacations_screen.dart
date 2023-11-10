@@ -108,15 +108,30 @@ class DisplayVacationsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text('Activités:'),
-                          IconButton(
-                            icon: const Icon(Icons.add),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => AddActivityScreen(vacationIndex: vacation.vacationIndex)),
-                              );
-                            },
-                          ),
+                          Row(
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.schedule),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ActivityPlanner(vacationIndex: vacation.vacationIndex),
+                                    ),
+                                  );
+                                },
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.add),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => AddActivityScreen(vacationIndex: vacation.vacationIndex)),
+                                  );
+                                },
+                              ),
+                            ]
+                          )
                         ],
                       ),
                       for (var activityIndex = 0; activityIndex < vacation.activities.length; activityIndex++)
@@ -136,18 +151,6 @@ class DisplayVacationsScreen extends StatelessWidget {
                                 icon: const Icon(Icons.delete),
                                 onPressed: () {
                                   dashboardViewModel.removeActivity(index, activityIndex);
-                                },
-                              ),
-                              IconButton(
-                                icon: const Icon(Icons.schedule), // Nouvelle icône pour gérer les activités
-                                onPressed: () {
-                                  // Logique pour charger les activités de cette période
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ActivityPlanner(vacationIndex: vacation.vacationIndex),
-                                    ),
-                                  );
                                 },
                               ),
                             ],
