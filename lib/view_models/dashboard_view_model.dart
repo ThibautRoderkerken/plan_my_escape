@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Member {
@@ -24,7 +23,6 @@ class WeatherInfo {
   final String description;
   final double temperature;
 
-  // Vous pouvez ajouter d'autres détails si nécessaire, comme l'humidité, la vitesse du vent, etc.
   WeatherInfo({required this.description, required this.temperature});
 }
 
