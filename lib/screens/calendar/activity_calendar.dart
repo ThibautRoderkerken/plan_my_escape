@@ -7,6 +7,7 @@ class ActivityCalendar extends StatefulWidget {
   final DateTime lastDay;
   final int vacationIndex;
   final DashboardViewModel viewModel;
+  final Function(BuildContext, Activity, Function(Activity)) onSelectDateTime;
 
   const ActivityCalendar({
     Key? key,
@@ -14,6 +15,7 @@ class ActivityCalendar extends StatefulWidget {
     required this.lastDay,
     required this.vacationIndex,
     required this.viewModel,
+    required this.onSelectDateTime,
   }) : super(key: key);
 
   @override
@@ -32,8 +34,6 @@ class ActivityCalendarState extends State<ActivityCalendar> {
 
   void updateEvents() {
     final activities = widget.viewModel.getActivitiesForVacation(widget.vacationIndex);
-
-    // _eventController.clear(); // Nettoyer les événements existants avant de les mettre à jour
 
     for (var activity in activities) {
       if (activity.scheduledDate != null && activity.scheduledTime != null) {
@@ -60,27 +60,21 @@ class ActivityCalendarState extends State<ActivityCalendar> {
 
   void _onEventTap(List<CalendarEventData> events, DateTime date) {
     if (events.isNotEmpty) {
-      // Supposons que vous souhaitiez gérer le premier événement de la liste
       final eventData = events.first;
-
-      // Logique de traitement lorsqu'un événement est cliqué
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(eventData.title),
-          content: Text(eventData.description),
-          actions: [
-            TextButton(
-              child: const Text('Fermer'),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-          ],
-        ),
+      // Trouver l'activité correspondante
+      Activity? activity = widget.viewModel.getActivitiesForVacation(widget.vacationIndex)
+          .firstWhere(
+              (a) => a.name == eventData.title && a.description == eventData.description,
       );
-    }
+
+      widget.onSelectDateTime(context, activity, (updatedActivity) {
+        setState(() {
+          widget.viewModel.updateActivity(updatedActivity);
+          updateEvents(); // Mettre à jour les événements après la modification
+        });
+      });
+        }
   }
-
-
 
   @override
   Widget build(BuildContext context) {

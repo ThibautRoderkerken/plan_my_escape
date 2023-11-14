@@ -18,11 +18,14 @@ class ActivityPlannerState extends State<ActivityPlanner> {
     final dashboardViewModel = Provider.of<DashboardViewModel>(context, listen: false);
     VacationPeriod vacation = dashboardViewModel.vacationPeriods[widget.vacationIndex];
 
+    // Utiliser la date programmée de l'activité si elle existe, sinon utiliser la logique actuelle
+    DateTime initialSelectedDate = activity.scheduledDate ??
+        (DateTime.now().isAfter(vacation.startDate) && DateTime.now().isBefore(vacation.endDate)
+            ? DateTime.now() : vacation.startDate);
+
     final DateTime? selectedDate = await showDatePicker(
       context: context,
-      initialDate: DateTime.now().isAfter(vacation.startDate) && DateTime.now().isBefore(vacation.endDate)
-          ? DateTime.now()
-          : vacation.startDate,
+      initialDate: initialSelectedDate,
       firstDate: vacation.startDate,
       lastDate: vacation.endDate,
     );
@@ -30,14 +33,14 @@ class ActivityPlannerState extends State<ActivityPlanner> {
     if (selectedDate != null && mounted) {
       final TimeOfDay? selectedTime = await showTimePicker(
         context: context,
-        initialTime: TimeOfDay.now(),
+        initialTime: activity.scheduledTime ?? TimeOfDay.now(),
       );
 
       if (selectedTime != null && mounted) {
         Duration? duration = await showDialog<Duration>(
           context: context,
           builder: (context) {
-            Duration tempDuration = const Duration(hours: 1);
+            Duration tempDuration = activity.duration ?? const Duration(hours: 1);
             return AlertDialog(
               title: const Text('Choisissez la durée'),
               content: StatefulBuilder(
@@ -107,6 +110,7 @@ class ActivityPlannerState extends State<ActivityPlanner> {
               lastDay: vacation.endDate,
               vacationIndex: widget.vacationIndex,
               viewModel: dashboardViewModel,
+              onSelectDateTime: selectActivityDateTime,
             ),
           ),
         ],
