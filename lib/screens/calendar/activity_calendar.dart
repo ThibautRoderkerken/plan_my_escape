@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar_view/calendar_view.dart';
 import '../../view_models/dashboard_view_model.dart';
@@ -34,6 +33,8 @@ class ActivityCalendarState extends State<ActivityCalendar> {
   void updateEvents() {
     final activities = widget.viewModel.getActivitiesForVacation(widget.vacationIndex);
 
+    // _eventController.clear(); // Nettoyer les événements existants avant de les mettre à jour
+
     for (var activity in activities) {
       if (activity.scheduledDate != null && activity.scheduledTime != null) {
         DateTime startDateTime = DateTime(
@@ -43,12 +44,7 @@ class ActivityCalendarState extends State<ActivityCalendar> {
           activity.scheduledTime!.hour,
           activity.scheduledTime!.minute,
         );
-        DateTime endDateTime = startDateTime.add(activity.duration ?? const Duration(hours: 1)); // Valeur par défaut si 'duration' est null
-
-        // Imprimer pour le débogage
-        if (kDebugMode) {
-          print("Activité: ${activity.name}, Début: $startDateTime, Fin: $endDateTime");
-        }
+        DateTime endDateTime = startDateTime.add(activity.duration ?? const Duration(hours: 1));
 
         _eventController.add(CalendarEventData(
           date: startDateTime,
@@ -62,14 +58,37 @@ class ActivityCalendarState extends State<ActivityCalendar> {
     }
   }
 
+  void _onEventTap(List<CalendarEventData> events, DateTime date) {
+    if (events.isNotEmpty) {
+      // Supposons que vous souhaitiez gérer le premier événement de la liste
+      final eventData = events.first;
+
+      // Logique de traitement lorsqu'un événement est cliqué
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(eventData.title),
+          content: Text(eventData.description),
+          actions: [
+            TextButton(
+              child: const Text('Fermer'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
     return CalendarControllerProvider<CalendarEventData>(
       controller: _eventController,
-      child: const DayView<CalendarEventData>(
-        // Configurez le DayView ici
-        // ...
+      child: DayView<CalendarEventData>(
+        onEventTap: _onEventTap,
+        // Autres configurations du DayView
       ),
     );
   }
