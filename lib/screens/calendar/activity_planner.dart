@@ -4,14 +4,19 @@ import 'activity_calendar.dart';
 import 'package:provider/provider.dart';
 import '../../view_models/dashboard_view_model.dart';
 
-class ActivityPlanner extends StatelessWidget {
+class ActivityPlanner extends StatefulWidget {
   final int vacationIndex;
 
   const ActivityPlanner({Key? key, required this.vacationIndex}) : super(key: key);
 
+  @override
+  ActivityPlannerState createState() => ActivityPlannerState();
+}
+
+class ActivityPlannerState extends State<ActivityPlanner> {
   Future<void> selectActivityDateTime(BuildContext context, Activity activity, Function(Activity) onUpdate) async {
     final dashboardViewModel = Provider.of<DashboardViewModel>(context, listen: false);
-    VacationPeriod vacation = dashboardViewModel.vacationPeriods[vacationIndex];
+    VacationPeriod vacation = dashboardViewModel.vacationPeriods[widget.vacationIndex];
 
     final DateTime? selectedDate = await showDatePicker(
       context: context,
@@ -22,13 +27,13 @@ class ActivityPlanner extends StatelessWidget {
       lastDate: vacation.endDate,
     );
 
-    if (selectedDate != null) {
+    if (selectedDate != null && mounted) {
       final TimeOfDay? selectedTime = await showTimePicker(
         context: context,
         initialTime: TimeOfDay.now(),
       );
 
-      if (selectedTime != null) {
+      if (selectedTime != null && mounted) {
         Duration? duration = await showDialog<Duration>(
           context: context,
           builder: (context) {
@@ -70,7 +75,7 @@ class ActivityPlanner extends StatelessWidget {
           },
         );
 
-        if (duration != null) {
+        if (duration != null && mounted) {
           activity.scheduledDate = selectedDate;
           activity.scheduledTime = selectedTime;
           activity.duration = duration;
@@ -83,7 +88,7 @@ class ActivityPlanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dashboardViewModel = Provider.of<DashboardViewModel>(context);
-    final VacationPeriod vacation = dashboardViewModel.vacationPeriods[vacationIndex];
+    final VacationPeriod vacation = dashboardViewModel.vacationPeriods[widget.vacationIndex];
 
     return Scaffold(
       appBar: AppBar(
@@ -93,14 +98,14 @@ class ActivityPlanner extends StatelessWidget {
         children: [
           Expanded(
             flex: 3, // 30% de l'espace
-            child: ActivityPool(viewModel: dashboardViewModel, vacationIndex: vacationIndex, onSelectDateTime: selectActivityDateTime),
+            child: ActivityPool(viewModel: dashboardViewModel, vacationIndex: widget.vacationIndex, onSelectDateTime: selectActivityDateTime),
           ),
           Expanded(
             flex: 7, // 70% de l'espace
             child: ActivityCalendar(
               firstDay: vacation.startDate,
               lastDay: vacation.endDate,
-              vacationIndex: vacationIndex,
+              vacationIndex: widget.vacationIndex,
               viewModel: dashboardViewModel,
             ),
           ),
