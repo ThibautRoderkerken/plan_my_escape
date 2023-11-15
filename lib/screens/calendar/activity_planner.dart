@@ -14,6 +14,16 @@ class ActivityPlanner extends StatefulWidget {
 }
 
 class ActivityPlannerState extends State<ActivityPlanner> {
+
+  UniqueKey _calendarKey = UniqueKey();
+
+  void refreshCalendar() {
+    setState(() {
+      // Générer une nouvelle clé pour forcer la reconstruction
+      _calendarKey = UniqueKey();
+    });
+  }
+
   Future<void> selectActivityDateTime(BuildContext context, Activity activity, Function(Activity) onUpdate) async {
     final dashboardViewModel = Provider.of<DashboardViewModel>(context, listen: false);
     VacationPeriod vacation = dashboardViewModel.vacationPeriods[widget.vacationIndex];
@@ -83,6 +93,7 @@ class ActivityPlannerState extends State<ActivityPlanner> {
           activity.scheduledTime = selectedTime;
           activity.duration = duration;
           onUpdate(activity);
+          refreshCalendar();
         }
       }
     }
@@ -101,16 +112,23 @@ class ActivityPlannerState extends State<ActivityPlanner> {
         children: [
           Expanded(
             flex: 3, // 30% de l'espace
-            child: ActivityPool(viewModel: dashboardViewModel, vacationIndex: widget.vacationIndex, onSelectDateTime: selectActivityDateTime),
+            child: ActivityPool(
+                viewModel: dashboardViewModel,
+                vacationIndex: widget.vacationIndex,
+                onSelectDateTime: (context, activity, onUpdate) =>
+                  selectActivityDateTime(context, activity, onUpdate).then((_) => refreshCalendar()),
+            ),
           ),
           Expanded(
             flex: 7, // 70% de l'espace
             child: ActivityCalendar(
+              key: _calendarKey,
               firstDay: vacation.startDate,
               lastDay: vacation.endDate,
               vacationIndex: widget.vacationIndex,
               viewModel: dashboardViewModel,
-              onSelectDateTime: selectActivityDateTime,
+              onSelectDateTime: (context, activity, onUpdate) =>
+                  selectActivityDateTime(context, activity, onUpdate).then((_) => refreshCalendar()),
             ),
           ),
         ],
