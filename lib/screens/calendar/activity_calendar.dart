@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:calendar_view/calendar_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../view_models/dashboard_view_model.dart';
 
 class ActivityCalendar extends StatefulWidget {
@@ -24,21 +25,31 @@ class ActivityCalendar extends StatefulWidget {
 
 class ActivityCalendarState extends State<ActivityCalendar> {
   late final EventController<CalendarEventData> _eventController;
-  CalendarViewType _currentView = CalendarViewType.day; // Par défaut en vue jour
+  CalendarViewType _currentView = CalendarViewType.day;
 
   @override
   void initState() {
     super.initState();
     _eventController = EventController<CalendarEventData>();
+    _loadViewType();
     updateEvents();
   }
 
-  void _changeToDayView() {
-    setState(() => _currentView = CalendarViewType.day);
+  void _changeViewType(CalendarViewType viewType) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('calendarViewType', viewType.index);
+    setState(() {
+      _currentView = viewType;
+    });
   }
 
-  void _changeToWeekView() {
-    setState(() => _currentView = CalendarViewType.week);
+  Future<void> _loadViewType() async {
+    final prefs = await SharedPreferences.getInstance();
+    // Utilisez une valeur par défaut si rien n'est trouvé
+    int viewTypeIndex = prefs.getInt('calendarViewType') ?? CalendarViewType.day.index;
+    setState(() {
+      _currentView = CalendarViewType.values[viewTypeIndex];
+    });
   }
 
   void updateEvents() {
@@ -91,7 +102,7 @@ class ActivityCalendarState extends State<ActivityCalendar> {
       onChanged: (CalendarViewType? newValue) {
         setState(() {
           if (newValue != null) {
-            _currentView = newValue;
+            _changeViewType(newValue);
           }
         });
       },
