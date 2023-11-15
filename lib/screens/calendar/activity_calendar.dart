@@ -24,12 +24,21 @@ class ActivityCalendar extends StatefulWidget {
 
 class ActivityCalendarState extends State<ActivityCalendar> {
   late final EventController<CalendarEventData> _eventController;
+  CalendarViewType _currentView = CalendarViewType.day; // Par défaut en vue jour
 
   @override
   void initState() {
     super.initState();
     _eventController = EventController<CalendarEventData>();
     updateEvents();
+  }
+
+  void _changeToDayView() {
+    setState(() => _currentView = CalendarViewType.day);
+  }
+
+  void _changeToWeekView() {
+    setState(() => _currentView = CalendarViewType.week);
   }
 
   void updateEvents() {
@@ -76,14 +85,71 @@ class ActivityCalendarState extends State<ActivityCalendar> {
         }
   }
 
+  Widget _buildViewSwitcher() {
+    return DropdownButton<CalendarViewType>(
+      value: _currentView,
+      onChanged: (CalendarViewType? newValue) {
+        setState(() {
+          if (newValue != null) {
+            _currentView = newValue;
+          }
+        });
+      },
+      items: CalendarViewType.values.map((CalendarViewType view) {
+        return DropdownMenuItem<CalendarViewType>(
+          value: view,
+          child: Row(
+            children: [
+              Icon(view == CalendarViewType.day ? Icons.view_day : Icons.view_week),
+              const SizedBox(width: 8),
+              Text(view == CalendarViewType.day ? 'Vue Jour' : 'Vue Semaine'),
+            ],
+          ),
+        );
+      }).toList(),
+    );
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return CalendarControllerProvider<CalendarEventData>(
       controller: _eventController,
-      child: DayView<CalendarEventData>(
-        onEventTap: _onEventTap,
-        // Autres configurations du DayView
+      child: Column(
+        children: [
+          _buildViewSwitcher(),
+          Expanded(
+            child: _buildCalendarView(),
+          ),
+        ],
       ),
     );
   }
+
+  Widget _buildCalendarView() {
+    switch (_currentView) {
+      case CalendarViewType.day:
+        return DayView<CalendarEventData>(
+          onEventTap: _onEventTap,
+          // Autres configurations du DayView
+        );
+      case CalendarViewType.week:
+        return WeekView<CalendarEventData>(
+          onEventTap: _onEventTap,
+          // Autres configurations du WeekView
+        );
+      default:
+        return DayView<CalendarEventData>(
+          onEventTap: _onEventTap,
+          // Autres configurations du DayView
+        );
+    }
+  }
+
+}
+
+enum CalendarViewType {
+  day,
+  week,
 }
