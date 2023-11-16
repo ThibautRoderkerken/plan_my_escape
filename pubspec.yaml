@@ -13,10 +13,13 @@ dependencies:
   provider: ^6.0.5
   cupertino_icons: ^1.0.2 # Icons
   calendar_view: ^1.0.4 # Calendrier
-  shared_preferences: ^2.0.8 # SAuvegarder les données
+  shared_preferences: ^2.0.8 # Sauvegarder les données
   intl: ^0.17.0 # Gérer les dates
   path_provider: ^2.0.5 # Gérer les fichiers
   share: ^2.0.4 # Partager les données
+  google_maps_flutter: ^2.0.9 # Google Maps
+  geolocator: ^10.0.0 # Gérer la localisation
+
 
 dev_dependencies:
   flutter_test:

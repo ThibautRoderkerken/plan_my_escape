@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:plan_my_escape/screens/add_member.dart';
 import 'package:plan_my_escape/screens/calendar/activity_planner.dart';
 import 'package:provider/provider.dart';
@@ -143,8 +144,40 @@ class DisplayVacationsScreen extends StatelessWidget {
                             children: [
                               IconButton(
                                 icon: const Icon(Icons.map),
-                                onPressed: () {
-                                  // Logique pour ouvrir dans Maps
+                                onPressed: () async {
+                                  bool serviceEnabled;
+                                  LocationPermission permission;
+
+                                  // Vérifie si les services de localisation sont activés
+                                  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+                                  if (!serviceEnabled) {
+                                    // Les services de localisation ne sont pas activés, ne continuez pas
+                                    // à récupérer la position et informez l'utilisateur.
+                                    print('Les services de localisation sont désactivés.');
+                                    return;
+                                  }
+
+                                  permission = await Geolocator.checkPermission();
+                                  if (permission == LocationPermission.denied) {
+                                    permission = await Geolocator.requestPermission();
+                                    if (permission == LocationPermission.denied) {
+                                      // Les permissions sont refusées, informez l'utilisateur.
+                                      print('Les permissions de localisation sont refusées');
+                                      return;
+                                    }
+                                  }
+
+                                  if (permission == LocationPermission.deniedForever) {
+                                    // Les permissions sont refusées pour toujours, les manipulations
+                                    // ne peuvent pas être effectuées.
+                                    print('Les permissions de localisation sont définitivement refusées, nous ne pouvons pas demander les permissions.');
+                                    return;
+                                  }
+
+                                  // Quand on arrive ici, les permissions sont accordées et on peut
+                                  // continuer à accéder à la position de l'appareil.
+                                  Position position = await Geolocator.getCurrentPosition();
+                                  print('Position actuelle : ${position.latitude}, ${position.longitude}');
                                 },
                               ),
                               IconButton(
