@@ -6,6 +6,7 @@ import 'package:calendar_view/calendar_view.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../models/activity.dart';
 import '../../view_models/dashboard_view_model.dart';
 
 class ActivityCalendar extends StatefulWidget {

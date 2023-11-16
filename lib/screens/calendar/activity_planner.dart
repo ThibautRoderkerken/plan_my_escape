@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../models/activity.dart';
+import '../../models/vacation_period.dart';
 import 'activity_pool.dart';
 import 'activity_calendar.dart';
 import 'package:provider/provider.dart';

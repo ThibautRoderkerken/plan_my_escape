@@ -1,52 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
-
-class Member {
-  final String id;
-  final String name;
-
-  Member({required this.id, required this.name});
-}
-
-class Activity {
-  final String id;
-  final String name;
-  final String address;
-  final String description;
-  DateTime? scheduledDate;
-  TimeOfDay? scheduledTime;
-  Duration? duration;
-
-  Activity({required this.id, required this.name, required this.address, required this.description, this.scheduledDate, this.scheduledTime, this.duration});
-}
-
-class WeatherInfo {
-  final String description;
-  final double temperature;
-
-  WeatherInfo({required this.description, required this.temperature});
-}
-
-class VacationPeriod {
-  final DateTime startDate;
-  final DateTime endDate;
-  final String destination;
-  final List<Member> members;
-  final List<Activity> activities;
-  final WeatherInfo weatherInfo;
-  final int vacationIndex;
-
-  VacationPeriod({
-    required this.startDate,
-    required this.endDate,
-    required this.destination,
-    required this.members,
-    required this.activities,
-    required this.weatherInfo,
-    required this.vacationIndex,
-  });
-}
+import '../models/activity.dart';
+import '../models/member.dart';
+import '../models/vacation_period.dart';
+import '../models/weather_info.dart';
+import '../services/calendar_export.dart';
 
 class DashboardViewModel extends ChangeNotifier {
   final List<VacationPeriod> _vacationPeriods = [
@@ -84,41 +41,6 @@ class DashboardViewModel extends ChangeNotifier {
   ];
 
   List<VacationPeriod> get vacationPeriods => _vacationPeriods;
-
-  String exportToICalendar(int vacationIndex) {
-    List<Activity> vacationActivity = getActivitiesForVacation(vacationIndex);
-
-    List<String> icsEvents = [];
-    String icsHeader = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//hacksw/handcal//NONSGML v1.0//EN";
-    String icsFooter = "END:VCALENDAR";
-
-      for (var activity in vacationActivity) {
-        if (activity.scheduledDate != null && activity.scheduledTime != null && activity.duration != null) {
-          DateTime startDateTime = DateTime(
-            activity.scheduledDate!.year,
-            activity.scheduledDate!.month,
-            activity.scheduledDate!.day,
-            activity.scheduledTime!.hour,
-            activity.scheduledTime!.minute,
-          );
-          DateTime endDateTime = startDateTime.add(activity.duration!);
-
-          String formattedStart = DateFormat("yyyyMMdd'T'HHmmss'Z'").format(startDateTime.toUtc());
-          String formattedEnd = DateFormat("yyyyMMdd'T'HHmmss'Z'").format(endDateTime.toUtc());
-
-          icsEvents.add(
-              "BEGIN:VEVENT\n"
-                  "DTSTART:$formattedStart\n"
-                  "DTEND:$formattedEnd\n"
-                  "SUMMARY:${activity.name}\n"
-                  "DESCRIPTION:${activity.description}\n"
-                  "END:VEVENT"
-          );
-        }
-      }
-
-    return "$icsHeader\n${icsEvents.join("\n")}\n$icsFooter";
-  }
 
   void updateActivity(Activity updatedActivity) {
     for (var period in _vacationPeriods) {
@@ -172,5 +94,9 @@ class DashboardViewModel extends ChangeNotifier {
     } else {
       return [];
     }
+  }
+
+  String exportToICalendar(int vacationIndex) {
+    return exportToICalendarService(getActivitiesForVacation(vacationIndex));
   }
 }

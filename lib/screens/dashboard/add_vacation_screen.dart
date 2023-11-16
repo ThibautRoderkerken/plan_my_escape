@@ -1,6 +1,8 @@
 // Fichier pour AddVacationScreen
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../models/vacation_period.dart';
+import '../../models/weather_info.dart';
 import '../../view_models/dashboard_view_model.dart';
 import '../../widgets/custom_action_button.dart';
 import '../../widgets/custom_date_selector.dart';

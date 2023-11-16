@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:plan_my_escape/view_models/dashboard_view_model.dart';
 
+import '../../models/activity.dart';
+
 class ActivityPool extends StatefulWidget {
   final DashboardViewModel viewModel;
   final int vacationIndex;
