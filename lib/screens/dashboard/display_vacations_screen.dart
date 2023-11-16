@@ -8,26 +8,40 @@ import '../../view_models/dashboard_view_model.dart';
 import '../add_activity_screen.dart';
 
 
-class DisplayVacationsScreen extends StatelessWidget {
-
+class DisplayVacationsScreen extends StatefulWidget {
   const DisplayVacationsScreen({Key? key}) : super(key: key);
 
-  void _launchGoogleMaps(String startPosition, String destination) async {
-    var encodedStartPosition = Uri.encodeComponent(startPosition);
-    var encodedDestination = Uri.encodeComponent(destination);
-    var googleMapsUrl = 'https://www.google.com/maps/dir/?api=1&origin=$encodedStartPosition&destination=$encodedDestination&travelmode=driving';
+  @override
+  DisplayVacationsScreenState createState() => DisplayVacationsScreenState();
+}
 
-    if (!await launch(googleMapsUrl)) {
-      throw 'Could not launch $googleMapsUrl';
+class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
+  bool _isLoading = false;
+
+  Future<void> _launchGoogleMaps(String startPosition, String destination) async {
+    try {
+      setState(() => _isLoading = true);
+
+      var encodedStartPosition = Uri.encodeComponent(startPosition);
+      var encodedDestination = Uri.encodeComponent(destination);
+      var googleMapsUrl = 'https://www.google.com/maps/dir/?api=1&origin=$encodedStartPosition&destination=$encodedDestination&travelmode=driving';
+      await Future.delayed(const Duration(seconds: 1));
+
+      await launch(googleMapsUrl);
+
+      // Attendre quelques secondes avant de masquer l'indicateur de chargement
+    } catch (e) {
+      // Afficher un message d'erreur si nécessaire
+    } finally {
+      setState(() => _isLoading = false);
     }
   }
 
 
 
-
   @override
   Widget build(BuildContext context) {
-    final dashboardViewModel = Provider.of<DashboardViewModel>(context); // Ici, nous obtenons l'instance du ViewModel depuis le Provider.
+    final dashboardViewModel = Provider.of<DashboardViewModel>(context);
 
     return SingleChildScrollView( // Ajouté un SingleChildScrollView ici
       child: Column(
@@ -81,6 +95,15 @@ class DisplayVacationsScreen extends StatelessWidget {
                                 icon: const Icon(Icons.chat),
                                 onPressed: () {
                                   // Logique pour accéder au tchat
+                                },
+                              ),
+                              IconButton(
+                                icon: _isLoading ? const CircularProgressIndicator() : const Icon(Icons.map),
+                                onPressed: _isLoading ? null : () async {
+                                  String address = vacation.destination;
+                                  var position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+                                  String currentPosition = "${position.latitude},${position.longitude}";
+                                  _launchGoogleMaps(currentPosition, address);
                                 },
                               ),
                             ],
@@ -158,8 +181,8 @@ class DisplayVacationsScreen extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               IconButton(
-                                icon: const Icon(Icons.map),
-                                onPressed: () async {
+                                icon: _isLoading ? const CircularProgressIndicator() : const Icon(Icons.map),
+                                onPressed: _isLoading ? null : () async {
                                   String address = vacation.activities[activityIndex].address;
                                   // Récupérer l'adresse actuelle de l'utilisateur
                                   var position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);

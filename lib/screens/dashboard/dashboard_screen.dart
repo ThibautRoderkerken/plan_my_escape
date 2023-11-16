@@ -32,7 +32,7 @@ class DashboardMainScreen extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 16),
-              const DisplayVacationsScreen(), // Removed Expanded
+              DisplayVacationsScreen(), // Removed Expanded
             ],
           ),
         ),
