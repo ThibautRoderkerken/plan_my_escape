@@ -1,5 +1,10 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar_view/calendar_view.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../view_models/dashboard_view_model.dart';
 
@@ -33,6 +38,22 @@ class ActivityCalendarState extends State<ActivityCalendar> {
     _eventController = EventController<CalendarEventData>();
     _loadViewType();
     updateEvents();
+  }
+
+  Future<void> _exportCalendar() async {
+    try {
+      String icsString = widget.viewModel.exportToICalendar(widget.vacationIndex);
+      final directory = await getApplicationDocumentsDirectory();
+      final file = File('${directory.path}/my_calendar.ics');
+      await file.writeAsString(icsString);
+
+      Share.shareFiles([file.path], text: 'Mon Agenda de Vacances');
+    } catch (e) {
+      // Gérer les erreurs ici
+      if (kDebugMode) {
+        print('Erreur lors de l\'exportation : $e');
+      }
+    }
   }
 
   void _changeViewType(CalendarViewType viewType) async {
@@ -96,31 +117,47 @@ class ActivityCalendarState extends State<ActivityCalendar> {
         }
   }
 
-  Widget _buildViewSwitcher() {
-    return DropdownButton<CalendarViewType>(
-      value: _currentView,
-      onChanged: (CalendarViewType? newValue) {
-        setState(() {
-          if (newValue != null) {
-            _changeViewType(newValue);
-          }
-        });
-      },
-      items: CalendarViewType.values.map((CalendarViewType view) {
-        return DropdownMenuItem<CalendarViewType>(
-          value: view,
-          child: Row(
-            children: [
-              Icon(view == CalendarViewType.day ? Icons.view_day : Icons.view_week),
-              const SizedBox(width: 8),
-              Text(view == CalendarViewType.day ? 'Vue Jour' : 'Vue Semaine'),
-            ],
+  Widget _buildToolbar() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // Sélecteur de vue
+          Expanded(
+            child: DropdownButton<CalendarViewType>(
+              value: _currentView,
+              isExpanded: true,
+              onChanged: (CalendarViewType? newValue) {
+                if (newValue != null) {
+                  _changeViewType(newValue);
+                }
+              },
+              items: CalendarViewType.values.map((CalendarViewType view) {
+                return DropdownMenuItem<CalendarViewType>(
+                  value: view,
+                  child: Row(
+                    children: [
+                      Icon(view == CalendarViewType.day ? Icons.view_day : Icons.view_week),
+                      const SizedBox(width: 8),
+                      Text(view == CalendarViewType.day ? 'Vue Jour' : 'Vue Semaine'),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
           ),
-        );
-      }).toList(),
+          const SizedBox(width: 20), // Ajouter de l'espace entre les éléments
+          // Bouton d'exportation
+          IconButton(
+            icon: const Icon(Icons.download),
+            onPressed: _exportCalendar,
+            tooltip: 'Exporter l\'agenda',
+          ),
+        ],
+      ),
     );
   }
-
 
 
   @override
@@ -129,7 +166,7 @@ class ActivityCalendarState extends State<ActivityCalendar> {
       controller: _eventController,
       child: Column(
         children: [
-          _buildViewSwitcher(),
+          _buildToolbar(),
           Expanded(
             child: _buildCalendarView(),
           ),
@@ -137,6 +174,7 @@ class ActivityCalendarState extends State<ActivityCalendar> {
       ),
     );
   }
+
 
   Widget _buildCalendarView() {
     switch (_currentView) {

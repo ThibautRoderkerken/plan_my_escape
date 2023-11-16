@@ -1,6 +1,8 @@
 -- Merging decision tree log ---
 application
 INJECTED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\src\main\AndroidManifest.xml:2:5-32:19
+MERGED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-19:19
+MERGED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-19:19
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.core:core:1.6.0] C:\Users\roder\.gradle\caches\transforms-3\7e9df2ac2213a6bd3cef0f2f27870d79\transformed\core-1.6.0\AndroidManifest.xml:24:5-89
@@ -17,13 +19,15 @@ INJECTED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\sr
 INJECTED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\src\main\AndroidManifest.xml:1:1-33:12
 INJECTED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\src\main\AndroidManifest.xml:1:1-33:12
 MERGED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\src\main\AndroidManifest.xml:1:1-33:12
+MERGED from [:shared_preferences_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:integration_test] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\integration_test\intermediates\merged_manifest\debug\AndroidManifest.xml:7:1-14:12
+MERGED from [:path_provider_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-21:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\ae81e06d24c799147c26814497a2a305\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.test:rules:1.2.0] C:\Users\roder\.gradle\caches\transforms-3\79da352cc0c5a097954eebf2cc6b95fd\transformed\rules-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.test.espresso:espresso-core:3.2.0] C:\Users\roder\.gradle\caches\transforms-3\a203560571784aa60e7ef3dc2062acff\transformed\espresso-core-3.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.test:runner:1.2.0] C:\Users\roder\.gradle\caches\transforms-3\3bd464e579e414bd2e9e06c4142deed0\transformed\runner-1.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.test:monitor:1.2.0] C:\Users\roder\.gradle\caches\transforms-3\56cf5aba35ddb334b91ba25cc51c4308\transformed\monitor-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\roder\.gradle\caches\transforms-3\75f94412898c7559d34d7edbbeaeb394\transformed\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\83543b509ea72d197642ff197da2edd7\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\ff65482bd388a984f10ca7f5c3c41d0d\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -35,8 +39,9 @@ MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\roder\.gradle\caches
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\roder\.gradle\caches\transforms-3\7fcad9088319f1ebd7850d62df4bcaf7\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\roder\.gradle\caches\transforms-3\c9c1416cfdc16237773b18cd0425609e\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\cda2a1ca4d3bd6aae60d8d586ec4f3ff\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\roder\.gradle\caches\transforms-3\76f856ea98086720a3c1fffee80b523a\transformed\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.test:monitor:1.2.0] C:\Users\roder\.gradle\caches\transforms-3\56cf5aba35ddb334b91ba25cc51c4308\transformed\monitor-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\roder\.gradle\caches\transforms-3\47ecd4e588b99ef3b772f04d5aa6c9b7\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\roder\.gradle\caches\transforms-3\76f856ea98086720a3c1fffee80b523a\transformed\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\roder\.gradle\caches\transforms-3\03b9b3b952540ee8cedf6c096276d934\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.test.espresso:espresso-idling-resource:3.2.0] C:\Users\roder\.gradle\caches\transforms-3\298fb0277869597153a577037b2b37e6\transformed\espresso-idling-resource-3.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\roder\.gradle\caches\transforms-3\6c0c163cc77ae6c91f9f7dfcd179c29c\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
@@ -61,8 +66,14 @@ uses-sdk
 INJECTED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\src\main\AndroidManifest.xml
+MERGED from [:shared_preferences_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:shared_preferences_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:integration_test] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\integration_test\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-12:41
 MERGED from [:integration_test] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\integration_test\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-12:41
+MERGED from [:path_provider_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:path_provider_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\ae81e06d24c799147c26814497a2a305\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\ae81e06d24c799147c26814497a2a305\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
@@ -73,8 +84,6 @@ MERGED from [androidx.test.espresso:espresso-core:3.2.0] C:\Users\roder\.gradle\
 MERGED from [androidx.test.espresso:espresso-core:3.2.0] C:\Users\roder\.gradle\caches\transforms-3\a203560571784aa60e7ef3dc2062acff\transformed\espresso-core-3.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.test:runner:1.2.0] C:\Users\roder\.gradle\caches\transforms-3\3bd464e579e414bd2e9e06c4142deed0\transformed\runner-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.test:runner:1.2.0] C:\Users\roder\.gradle\caches\transforms-3\3bd464e579e414bd2e9e06c4142deed0\transformed\runner-1.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.test:monitor:1.2.0] C:\Users\roder\.gradle\caches\transforms-3\56cf5aba35ddb334b91ba25cc51c4308\transformed\monitor-1.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.test:monitor:1.2.0] C:\Users\roder\.gradle\caches\transforms-3\56cf5aba35ddb334b91ba25cc51c4308\transformed\monitor-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\roder\.gradle\caches\transforms-3\75f94412898c7559d34d7edbbeaeb394\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\roder\.gradle\caches\transforms-3\75f94412898c7559d34d7edbbeaeb394\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\83543b509ea72d197642ff197da2edd7\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
@@ -97,10 +106,12 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\roder\.g
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\roder\.gradle\caches\transforms-3\c9c1416cfdc16237773b18cd0425609e\transformed\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\cda2a1ca4d3bd6aae60d8d586ec4f3ff\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\cda2a1ca4d3bd6aae60d8d586ec4f3ff\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\roder\.gradle\caches\transforms-3\76f856ea98086720a3c1fffee80b523a\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\roder\.gradle\caches\transforms-3\76f856ea98086720a3c1fffee80b523a\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.test:monitor:1.2.0] C:\Users\roder\.gradle\caches\transforms-3\56cf5aba35ddb334b91ba25cc51c4308\transformed\monitor-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.test:monitor:1.2.0] C:\Users\roder\.gradle\caches\transforms-3\56cf5aba35ddb334b91ba25cc51c4308\transformed\monitor-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\roder\.gradle\caches\transforms-3\47ecd4e588b99ef3b772f04d5aa6c9b7\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\roder\.gradle\caches\transforms-3\47ecd4e588b99ef3b772f04d5aa6c9b7\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\roder\.gradle\caches\transforms-3\76f856ea98086720a3c1fffee80b523a\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\roder\.gradle\caches\transforms-3\76f856ea98086720a3c1fffee80b523a\transformed\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\roder\.gradle\caches\transforms-3\03b9b3b952540ee8cedf6c096276d934\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\roder\.gradle\caches\transforms-3\03b9b3b952540ee8cedf6c096276d934\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.test.espresso:espresso-idling-resource:3.2.0] C:\Users\roder\.gradle\caches\transforms-3\298fb0277869597153a577037b2b37e6\transformed\espresso-idling-resource-3.2.0\AndroidManifest.xml:20:5-22:41
@@ -119,6 +130,22 @@ uses-permission#android.permission.INTERNET
 ADDED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\src\debug\AndroidManifest.xml:6:5-66
 	android:name
 		ADDED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\src\debug\AndroidManifest.xml:6:22-64
+provider#io.flutter.plugins.share.ShareFileProvider
+ADDED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
+	android:grantUriPermissions
+		ADDED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
+	android:authorities
+		ADDED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-74
+	android:exported
+		ADDED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+	android:name
+		ADDED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-70
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:68
+	android:resource
+		ADDED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-65
+	android:name
+		ADDED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
 uses-library#androidx.window.extensions
 ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
 	android:required

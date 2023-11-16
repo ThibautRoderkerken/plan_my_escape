@@ -164,6 +164,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "intl",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.17.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "io",
       "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/io-1.0.4",
       "packageUri": "lib/",
@@ -236,6 +242,24 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "path_provider",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider-2.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "path_provider_android",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_android-2.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "path_provider_foundation",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_foundation-2.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "path_provider_linux",
       "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_linux-2.2.1",
       "packageUri": "lib/",
@@ -288,6 +312,12 @@
       "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/pub_semver-2.1.4",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "share",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/share-2.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "shared_preferences",
@@ -500,7 +530,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-11-15T10:26:44.337670Z",
+  "generated": "2023-11-15T11:10:18.807160Z",
   "generator": "pub",
   "generatorVersion": "3.1.3"
 }
