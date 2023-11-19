@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:calendar_view/calendar_view.dart';
@@ -43,7 +42,8 @@ class ActivityCalendarState extends State<ActivityCalendar> {
 
   Future<void> _exportCalendar() async {
     try {
-      String icsString = widget.viewModel.exportToICalendar(widget.vacationIndex);
+      String icsString =
+          widget.viewModel.exportToICalendar(widget.vacationIndex);
       final directory = await getApplicationDocumentsDirectory();
       final file = File('${directory.path}/my_calendar.ics');
       await file.writeAsString(icsString);
@@ -68,14 +68,16 @@ class ActivityCalendarState extends State<ActivityCalendar> {
   Future<void> _loadViewType() async {
     final prefs = await SharedPreferences.getInstance();
     // Utilisez une valeur par défaut si rien n'est trouvé
-    int viewTypeIndex = prefs.getInt('calendarViewType') ?? CalendarViewType.day.index;
+    int viewTypeIndex =
+        prefs.getInt('calendarViewType') ?? CalendarViewType.day.index;
     setState(() {
       _currentView = CalendarViewType.values[viewTypeIndex];
     });
   }
 
   void updateEvents() {
-    final activities = widget.viewModel.getActivitiesForVacation(widget.vacationIndex);
+    final activities =
+        widget.viewModel.getActivitiesForVacation(widget.vacationIndex);
 
     for (var activity in activities) {
       if (activity.scheduledDate != null && activity.scheduledTime != null) {
@@ -86,7 +88,8 @@ class ActivityCalendarState extends State<ActivityCalendar> {
           activity.scheduledTime!.hour,
           activity.scheduledTime!.minute,
         );
-        DateTime endDateTime = startDateTime.add(activity.duration ?? const Duration(hours: 1));
+        DateTime endDateTime =
+            startDateTime.add(activity.duration ?? const Duration(hours: 1));
 
         _eventController.add(CalendarEventData(
           date: startDateTime,
@@ -104,10 +107,13 @@ class ActivityCalendarState extends State<ActivityCalendar> {
     if (events.isNotEmpty) {
       final eventData = events.first;
       // Trouver l'activité correspondante
-      Activity? activity = widget.viewModel.getActivitiesForVacation(widget.vacationIndex)
+      Activity? activity = widget.viewModel
+          .getActivitiesForVacation(widget.vacationIndex)
           .firstWhere(
-              (a) => a.name == eventData.title && a.description == eventData.description,
-      );
+            (a) =>
+                a.name == eventData.title &&
+                a.description == eventData.description,
+          );
 
       widget.onSelectDateTime(context, activity, (updatedActivity) {
         setState(() {
@@ -115,7 +121,7 @@ class ActivityCalendarState extends State<ActivityCalendar> {
           updateEvents(); // Mettre à jour les événements après la modification
         });
       });
-        }
+    }
   }
 
   Widget _buildToolbar() {
@@ -139,9 +145,13 @@ class ActivityCalendarState extends State<ActivityCalendar> {
                   value: view,
                   child: Row(
                     children: [
-                      Icon(view == CalendarViewType.day ? Icons.view_day : Icons.view_week),
+                      Icon(view == CalendarViewType.day
+                          ? Icons.view_day
+                          : Icons.view_week),
                       const SizedBox(width: 8),
-                      Text(view == CalendarViewType.day ? 'Vue Jour' : 'Vue Semaine'),
+                      Text(view == CalendarViewType.day
+                          ? 'Vue Jour'
+                          : 'Vue Semaine'),
                     ],
                   ),
                 );
@@ -160,7 +170,6 @@ class ActivityCalendarState extends State<ActivityCalendar> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return CalendarControllerProvider<CalendarEventData>(
@@ -175,7 +184,6 @@ class ActivityCalendarState extends State<ActivityCalendar> {
       ),
     );
   }
-
 
   Widget _buildCalendarView() {
     switch (_currentView) {
@@ -196,7 +204,6 @@ class ActivityCalendarState extends State<ActivityCalendar> {
         );
     }
   }
-
 }
 
 enum CalendarViewType {

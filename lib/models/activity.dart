@@ -9,5 +9,12 @@ class Activity {
   TimeOfDay? scheduledTime;
   Duration? duration;
 
-  Activity({required this.id, required this.name, required this.address, required this.description, this.scheduledDate, this.scheduledTime, this.duration});
+  Activity(
+      {required this.id,
+      required this.name,
+      required this.address,
+      required this.description,
+      this.scheduledDate,
+      this.scheduledTime,
+      this.duration});
 }

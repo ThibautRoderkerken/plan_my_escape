@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'view_models/dashboard_view_model.dart';
+import 'package:plan_my_escape/view_models/login_view_model.dart';
 import 'screens/login_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (context) => DashboardViewModel(),
+      create: (context) => LoginViewModel(),
       child: const MyApp(),
     ),
   );

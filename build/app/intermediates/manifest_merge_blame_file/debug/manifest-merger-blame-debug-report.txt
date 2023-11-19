@@ -39,107 +39,106 @@
 27-->[androidx.core:core:1.10.1] C:\Users\roder\.gradle\caches\transforms-3\c4988ff80110f75080a936fc6f044848\transformed\core-1.10.1\AndroidManifest.xml:28:18-86
 28        android:debuggable="true"
 29        android:icon="@mipmap/ic_launcher"
-30        android:label="plan_my_escape"
-31        android:testOnly="true" >
-32        <activity
-33            android:name="com.example.plan_my_escape.MainActivity"
-34            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-35            android:exported="true"
-36            android:hardwareAccelerated="true"
-37            android:launchMode="singleTop"
-38            android:theme="@style/LaunchTheme"
-39            android:windowSoftInputMode="adjustResize" >
-40
-41            <!--
-42                 Specifies an Android theme to apply to this Activity as soon as
-43                 the Android process has started. This theme is visible to the user
-44                 while the Flutter UI initializes. After that, this theme continues
-45                 to determine the Window background behind the Flutter UI.
-46            -->
-47            <meta-data
-48                android:name="io.flutter.embedding.android.NormalTheme"
-49                android:resource="@style/NormalTheme" />
-50
-51            <intent-filter>
-52                <action android:name="android.intent.action.MAIN" />
-53
-54                <category android:name="android.intent.category.LAUNCHER" />
-55            </intent-filter>
-56        </activity>
-57        <!--
-58             Don't delete the meta-data below.
-59             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-60        -->
-61        <meta-data
-62            android:name="flutterEmbedding"
-63            android:value="2" />
-64
-65        <service
-65-->[:geolocator_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:56
-66            android:name="com.baseflow.geolocator.GeolocatorLocationService"
-66-->[:geolocator_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-77
-67            android:enabled="true"
-67-->[:geolocator_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-35
-68            android:exported="false"
-68-->[:geolocator_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
-69            android:foregroundServiceType="location" />
-69-->[:geolocator_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-53
-70
-71        <activity
-71-->[:url_launcher_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-13:74
-72            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-72-->[:url_launcher_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-74
-73            android:exported="false"
-73-->[:url_launcher_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-37
-74            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-74-->[:url_launcher_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-71
-75
-76        <provider
-76-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
-77            android:name="io.flutter.plugins.share.ShareFileProvider"
-77-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-70
-78            android:authorities="com.example.plan_my_escape.flutter.share_provider"
-78-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-74
-79            android:exported="false"
-79-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
-80            android:grantUriPermissions="true" >
-80-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
-81            <meta-data
-81-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:68
-82                android:name="android.support.FILE_PROVIDER_PATHS"
-82-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
-83                android:resource="@xml/flutter_share_file_paths" />
-83-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-65
-84        </provider>
-85
-86        <uses-library
-86-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
-87            android:name="androidx.window.extensions"
-87-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
-88            android:required="false" />
-88-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
-89        <uses-library
-89-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
-90            android:name="androidx.window.sidecar"
-90-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
-91            android:required="false" />
-91-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
-92
-93        <activity
-93-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\781e5567158e59d38ee2b89930f9808b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
-94            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-94-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\781e5567158e59d38ee2b89930f9808b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:19-85
-95            android:exported="false"
-95-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\781e5567158e59d38ee2b89930f9808b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:22:19-43
-96            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-96-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\781e5567158e59d38ee2b89930f9808b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:21:19-78
-97
-98        <meta-data
-98-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\58aa1384bde170d075503b845cfcf44c\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
-99            android:name="com.google.android.gms.version"
-99-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\58aa1384bde170d075503b845cfcf44c\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
-100            android:value="@integer/google_play_services_version" />
-100-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\58aa1384bde170d075503b845cfcf44c\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
-101    </application>
-102
-103</manifest>
+30        android:label="plan_my_escape" >
+31        <activity
+32            android:name="com.example.plan_my_escape.MainActivity"
+33            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+34            android:exported="true"
+35            android:hardwareAccelerated="true"
+36            android:launchMode="singleTop"
+37            android:theme="@style/LaunchTheme"
+38            android:windowSoftInputMode="adjustResize" >
+39
+40            <!--
+41                 Specifies an Android theme to apply to this Activity as soon as
+42                 the Android process has started. This theme is visible to the user
+43                 while the Flutter UI initializes. After that, this theme continues
+44                 to determine the Window background behind the Flutter UI.
+45            -->
+46            <meta-data
+47                android:name="io.flutter.embedding.android.NormalTheme"
+48                android:resource="@style/NormalTheme" />
+49
+50            <intent-filter>
+51                <action android:name="android.intent.action.MAIN" />
+52
+53                <category android:name="android.intent.category.LAUNCHER" />
+54            </intent-filter>
+55        </activity>
+56        <!--
+57             Don't delete the meta-data below.
+58             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+59        -->
+60        <meta-data
+61            android:name="flutterEmbedding"
+62            android:value="2" />
+63
+64        <service
+64-->[:geolocator_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-14:56
+65            android:name="com.baseflow.geolocator.GeolocatorLocationService"
+65-->[:geolocator_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-77
+66            android:enabled="true"
+66-->[:geolocator_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-35
+67            android:exported="false"
+67-->[:geolocator_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+68            android:foregroundServiceType="location" />
+68-->[:geolocator_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-53
+69
+70        <activity
+70-->[:url_launcher_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-13:74
+71            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+71-->[:url_launcher_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-74
+72            android:exported="false"
+72-->[:url_launcher_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-37
+73            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+73-->[:url_launcher_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-71
+74
+75        <provider
+75-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
+76            android:name="io.flutter.plugins.share.ShareFileProvider"
+76-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-70
+77            android:authorities="com.example.plan_my_escape.flutter.share_provider"
+77-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-74
+78            android:exported="false"
+78-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+79            android:grantUriPermissions="true" >
+79-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
+80            <meta-data
+80-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:68
+81                android:name="android.support.FILE_PROVIDER_PATHS"
+81-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
+82                android:resource="@xml/flutter_share_file_paths" />
+82-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-65
+83        </provider>
+84
+85        <uses-library
+85-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+86            android:name="androidx.window.extensions"
+86-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+87            android:required="false" />
+87-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+88        <uses-library
+88-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+89            android:name="androidx.window.sidecar"
+89-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+90            android:required="false" />
+90-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\25cee5f028ac2a6b79fd6278ff5b59e2\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+91
+92        <activity
+92-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\781e5567158e59d38ee2b89930f9808b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+93            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+93-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\781e5567158e59d38ee2b89930f9808b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+94            android:exported="false"
+94-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\781e5567158e59d38ee2b89930f9808b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+95            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+95-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\781e5567158e59d38ee2b89930f9808b\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+96
+97        <meta-data
+97-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\58aa1384bde170d075503b845cfcf44c\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+98            android:name="com.google.android.gms.version"
+98-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\58aa1384bde170d075503b845cfcf44c\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+99            android:value="@integer/google_play_services_version" />
+99-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\58aa1384bde170d075503b845cfcf44c\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+100    </application>
+101
+102</manifest>
