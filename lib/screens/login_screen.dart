@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../view_models/dashboard_view_model.dart';
 import '../view_models/login_view_model.dart';
 import '../widgets/custom_action_button.dart';
 import '../widgets/custom_outlined_button.dart';
@@ -43,7 +44,10 @@ class LoginScreen extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DashboardMainScreen(),
+                        builder: (context) => ChangeNotifierProvider(
+                          create: (_) => DashboardViewModel(),
+                          child: DashboardMainScreen(),
+                        ),
                       ),
                     );
                   });

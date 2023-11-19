@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../view_models/dashboard/add_vacation_view_model.dart';
+import '../../view_models/dashboard/display_vacations_view_model.dart';
+import '../../view_models/dashboard_view_model.dart';
 import 'add_vacation_screen.dart';
 import 'display_vacations_screen.dart';
 import '../navigation_drawer_screen.dart';
+import 'package:provider/provider.dart';
 
 class DashboardMainScreen extends StatelessWidget {
   DashboardMainScreen({Key? key}) : super(key: key);
@@ -9,6 +13,8 @@ class DashboardMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dashboardViewModel = Provider.of<DashboardViewModel>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tableau de bord'),
@@ -22,17 +28,23 @@ class DashboardMainScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AddVacationScreen(
-                onVacationAdded: () {
-                  _scrollController.animateTo(
-                    _scrollController.position.maxScrollExtent,
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.fastOutSlowIn,
-                  );
-                },
+              ChangeNotifierProvider(
+                create: (_) => AddVacationViewModel(dashboardViewModel: dashboardViewModel),
+                child: AddVacationScreen(
+                  onVacationAdded: () {
+                    _scrollController.animateTo(
+                      _scrollController.position.maxScrollExtent,
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.fastOutSlowIn,
+                    );
+                  },
+                ),
               ),
               const SizedBox(height: 16),
-              const DisplayVacationsScreen(), // Removed Expanded
+              ChangeNotifierProvider(
+                create: (_) => DisplayVacationsViewModel(dashboardViewModel: dashboardViewModel),
+                child: const DisplayVacationsScreen(),
+              ),
             ],
           ),
         ),
@@ -41,4 +53,3 @@ class DashboardMainScreen extends StatelessWidget {
     );
   }
 }
-
