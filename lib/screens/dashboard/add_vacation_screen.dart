@@ -11,6 +11,7 @@ class AddVacationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Récupération de l'instance partagée du AddVacationViewModel
     final addVacationViewModel = Provider.of<AddVacationViewModel>(context);
 
     return Form(
@@ -40,6 +41,7 @@ class AddVacationScreen extends StatelessWidget {
             label: 'Ajouter',
             onPressed: () {
               if (addVacationViewModel.validateAndAddVacation()) {
+                // Appel à la fonction de rappel après l'ajout de la période de vacances
                 onVacationAdded();
               }
             },

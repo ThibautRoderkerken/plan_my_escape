@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../view_models/dashboard/add_vacation_view_model.dart';
-import '../../view_models/dashboard/display_vacations_view_model.dart';
-import '../../view_models/dashboard_view_model.dart';
+import 'package:provider/provider.dart';
 import 'add_vacation_screen.dart';
 import 'display_vacations_screen.dart';
 import '../navigation_drawer_screen.dart';
-import 'package:provider/provider.dart';
+import '../../view_models/dashboard/add_vacation_view_model.dart';
+import '../../view_models/dashboard/display_vacations_view_model.dart';
+import '../../view_models/dashboard_view_model.dart'; // Assurez-vous d'importer DashboardViewModel
 
 class DashboardMainScreen extends StatelessWidget {
   DashboardMainScreen({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class DashboardMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dashboardViewModel = Provider.of<DashboardViewModel>(context);
+    final dashboardViewModel = Provider.of<DashboardViewModel>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +41,7 @@ class DashboardMainScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              ChangeNotifierProvider(
+              Provider<DisplayVacationsViewModel>(
                 create: (_) => DisplayVacationsViewModel(dashboardViewModel: dashboardViewModel),
                 child: const DisplayVacationsScreen(),
               ),
