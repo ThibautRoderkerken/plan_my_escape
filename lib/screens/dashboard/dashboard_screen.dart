@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'add_vacation_screen.dart';
 import 'display_vacations_screen.dart';
-import '../navigation_drawer.dart';
+import '../navigation_drawer_screen.dart';
 
 class DashboardMainScreen extends StatelessWidget {
   DashboardMainScreen({Key? key}) : super(key: key);

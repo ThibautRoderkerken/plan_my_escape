@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../models/activity.dart';
 import '../../models/vacation_period.dart';
-import 'activity_pool.dart';
-import 'activity_calendar.dart';
+import 'activity_pool_screen.dart';
+import 'activity_calendar_screen.dart';
 import 'package:provider/provider.dart';
 import '../../view_models/dashboard_view_model.dart';
 
