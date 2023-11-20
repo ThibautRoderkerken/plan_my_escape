@@ -171,7 +171,15 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                                 onPressed: () {
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => AddActivityScreen(vacationIndex: vacation.vacationIndex)),
+                                    MaterialPageRoute(
+                                      builder: (context) => ChangeNotifierProvider.value(
+                                        value: dashboardViewModel,
+                                        child: AddActivityScreen(
+                                          dashboardViewModel: dashboardViewModel,
+                                          vacationIndex: vacation.vacationIndex,
+                                        ),
+                                      ),
+                                    ),
                                   );
                                 },
                               ),

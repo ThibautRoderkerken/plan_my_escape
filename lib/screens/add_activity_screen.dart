@@ -9,8 +9,9 @@ class AddActivityScreen extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();  // Contrôleur pour le nom de l'activité
   final TextEditingController addressController = TextEditingController();  // Contrôleur pour l'adresse
   final TextEditingController descriptionController = TextEditingController();  // Contrôleur pour la description
+  final DashboardViewModel dashboardViewModel;
 
-  AddActivityScreen({Key? key, required this.vacationIndex}) : super(key: key);
+  AddActivityScreen({Key? key, required this.dashboardViewModel, required this.vacationIndex}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
