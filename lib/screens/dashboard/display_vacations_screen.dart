@@ -37,8 +37,6 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     final dashboardViewModel = Provider.of<DashboardViewModel>(context);
@@ -125,7 +123,15 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => AddParticipantScreen(vacationIndex: vacation.vacationIndex)),
+                                MaterialPageRoute(
+                                  builder: (context) => ChangeNotifierProvider.value(
+                                    value: dashboardViewModel,
+                                    child: AddParticipantScreen(
+                                      dashboardViewModel: dashboardViewModel,
+                                      vacationIndex: vacation.vacationIndex,
+                                    ),
+                                  ),
+                                ),
                               );
                             },
                           ),
