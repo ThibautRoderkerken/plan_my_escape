@@ -1,4 +1,4 @@
-#Mon Nov 20 13:28:36 CET 2023
+#Tue Nov 21 10:38:03 CET 2023
 base.0=C\:\\Users\\roder\\AndroidStudioProjects\\plan_my_escape\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

@@ -1,0 +1,4 @@
+enum CalendarViewType {
+  day,
+  week,
+}

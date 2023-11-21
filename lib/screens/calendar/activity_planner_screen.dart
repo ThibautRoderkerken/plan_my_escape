@@ -129,9 +129,9 @@ class ActivityPlannerState extends State<ActivityPlanner> {
               firstDay: vacation.startDate,
               lastDay: vacation.endDate,
               vacationIndex: widget.vacationIndex,
-              viewModel: dashboardViewModel,
               onSelectDateTime: (context, activity, onUpdate) =>
                   selectActivityDateTime(context, activity, onUpdate).then((_) => refreshCalendar()),
+              dashboardViewModel: dashboardViewModel,
             ),
           ),
         ],
