@@ -102,8 +102,7 @@ class ActivityPlannerState extends State<ActivityPlanner> {
 
   @override
   Widget build(BuildContext context) {
-    final dashboardViewModel = Provider.of<DashboardViewModel>(context);
-    final VacationPeriod vacation = dashboardViewModel.vacationPeriods[widget.vacationIndex];
+    final VacationPeriod vacation = Provider.of<DashboardViewModel>(context).vacationPeriods[widget.vacationIndex];
 
     return Scaffold(
       appBar: AppBar(

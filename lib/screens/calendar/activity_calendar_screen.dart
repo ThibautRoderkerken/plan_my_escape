@@ -22,7 +22,7 @@ class ActivityCalendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dashboardViewModel = Provider.of<DashboardViewModel>(context, listen: false);
+    final dashboardViewModel = Provider.of<DashboardViewModel>(context, listen: false); // On a besoin de l'instance du DashboardViewModel pour créer ActivityCalendarViewModel
 
     return ChangeNotifierProvider(
       create: (_) => ActivityCalendarViewModel(

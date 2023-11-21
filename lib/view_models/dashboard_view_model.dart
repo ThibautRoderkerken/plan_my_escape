@@ -71,7 +71,7 @@ class DashboardViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addMember(int vacationIndex, String name, String text) {
+  void addMember(int vacationIndex, String name, String mail) {
     String newId = "m${_vacationPeriods[vacationIndex].members.length + 1}";  // Générer un nouvel ID pour le membre
     _vacationPeriods[vacationIndex].members.add(Member(id: newId, name: name));
     notifyListeners();
