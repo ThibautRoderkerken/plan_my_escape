@@ -1,49 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:plan_my_escape/view_models/dashboard_view_model.dart';
-
+import 'package:provider/provider.dart';
 import '../../models/activity.dart';
+import '../../view_models/calendar/activity_pool_view_model.dart';
+import '../../view_models/dashboard_view_model.dart';
 
-class ActivityPool extends StatefulWidget {
-  final DashboardViewModel viewModel;
+class ActivityPool extends StatelessWidget {
   final int vacationIndex;
   final Function(BuildContext, Activity, Function(Activity)) onSelectDateTime;
+  final DashboardViewModel dashboardViewModel;
 
-  const ActivityPool({Key? key, required this.viewModel, required this.vacationIndex, required this.onSelectDateTime}) : super(key: key);
-
-  @override
-  ActivityPoolState createState() => ActivityPoolState();
-}
-
-class ActivityPoolState extends State<ActivityPool> {
-  List<Activity> getSortedActivities() {
-    List<Activity> activities = widget.viewModel.getActivitiesForVacation(widget.vacationIndex);
-
-    List<Activity> activitiesWithoutDate = activities.where((a) => a.scheduledDate == null).toList();
-    List<Activity> activitiesWithDate = activities.where((a) => a.scheduledDate != null).toList();
-    activitiesWithDate.sort((a, b) => a.scheduledDate!.compareTo(b.scheduledDate!));
-
-    return [...activitiesWithoutDate, ...activitiesWithDate];
-  }
+  const ActivityPool({Key? key, required this.vacationIndex, required this.onSelectDateTime, required this.dashboardViewModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Activity> sortedActivities = getSortedActivities();
-    return SingleChildScrollView(
-      child: Column(
-        children: sortedActivities.map((activity) {
-          return ListTile(
-            title: Text(activity.name),
-            leading: const Icon(Icons.event),
-            onTap: () {
-              widget.onSelectDateTime(context, activity, (updatedActivity) {
-                setState(() {
-                  widget.viewModel.updateActivity(updatedActivity);
-                });
-              });
-            },
-            trailing: activity.scheduledDate != null ? const Icon(Icons.check) : null,
+    return ChangeNotifierProvider(
+      create: (_) => ActivityPoolViewModel(
+          vacationIndex: vacationIndex,
+          dashboardViewModel: dashboardViewModel,
+      ),
+      child: Consumer<ActivityPoolViewModel>(
+        builder: (context, viewModel, child) {
+          List<Activity> sortedActivities = viewModel.getSortedActivities();
+          return SingleChildScrollView(
+            child: Column(
+              children: sortedActivities.map((activity) {
+                return ListTile(
+                  title: Text(activity.name),
+                  leading: const Icon(Icons.event),
+                  onTap: () {
+                    onSelectDateTime(context, activity, (updatedActivity) {
+                      viewModel.updateActivity(updatedActivity);
+                    });
+                  },
+                  trailing: activity.scheduledDate != null ? const Icon(Icons.check) : null,
+                );
+              }).toList(),
+            ),
           );
-        }).toList(),
+        },
       ),
     );
   }

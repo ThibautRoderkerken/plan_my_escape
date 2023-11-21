@@ -116,10 +116,10 @@ class ActivityPlannerState extends State<ActivityPlanner> {
           Expanded(
             flex: 3, // 30% de l'espace
             child: ActivityPool(
-                viewModel: dashboardViewModel,
                 vacationIndex: widget.vacationIndex,
                 onSelectDateTime: (context, activity, onUpdate) =>
                   selectActivityDateTime(context, activity, onUpdate).then((_) => refreshCalendar()),
+                dashboardViewModel: dashboardViewModel,
             ),
           ),
           Expanded(
