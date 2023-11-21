@@ -8,9 +8,8 @@ class AddParticipantScreen extends StatelessWidget {
   final int vacationIndex;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final DashboardViewModel dashboardViewModel;
 
-  AddParticipantScreen({Key? key, required this.dashboardViewModel, required this.vacationIndex}) : super(key: key);
+  AddParticipantScreen({Key? key, required this.vacationIndex}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

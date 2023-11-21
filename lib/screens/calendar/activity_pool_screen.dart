@@ -7,12 +7,12 @@ import '../../view_models/dashboard_view_model.dart';
 class ActivityPool extends StatelessWidget {
   final int vacationIndex;
   final Function(BuildContext, Activity, Function(Activity)) onSelectDateTime;
-  final DashboardViewModel dashboardViewModel;
 
-  const ActivityPool({Key? key, required this.vacationIndex, required this.onSelectDateTime, required this.dashboardViewModel}) : super(key: key);
+  const ActivityPool({Key? key, required this.vacationIndex, required this.onSelectDateTime}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final dashboardViewModel = Provider.of<DashboardViewModel>(context, listen: false);
     return ChangeNotifierProvider(
       create: (_) => ActivityPoolViewModel(
           vacationIndex: vacationIndex,

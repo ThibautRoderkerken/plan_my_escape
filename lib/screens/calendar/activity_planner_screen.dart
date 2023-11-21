@@ -8,9 +8,7 @@ import '../../view_models/dashboard_view_model.dart';
 
 class ActivityPlanner extends StatefulWidget {
   final int vacationIndex;
-  final DashboardViewModel dashboardViewModel;
-
-  const ActivityPlanner({Key? key, required this.dashboardViewModel, required this.vacationIndex}) : super(key: key);
+  const ActivityPlanner({Key? key, required this.vacationIndex}) : super(key: key);
 
   @override
   ActivityPlannerState createState() => ActivityPlannerState();
@@ -119,7 +117,6 @@ class ActivityPlannerState extends State<ActivityPlanner> {
                 vacationIndex: widget.vacationIndex,
                 onSelectDateTime: (context, activity, onUpdate) =>
                   selectActivityDateTime(context, activity, onUpdate).then((_) => refreshCalendar()),
-                dashboardViewModel: dashboardViewModel,
             ),
           ),
           Expanded(
@@ -131,7 +128,6 @@ class ActivityPlannerState extends State<ActivityPlanner> {
               vacationIndex: widget.vacationIndex,
               onSelectDateTime: (context, activity, onUpdate) =>
                   selectActivityDateTime(context, activity, onUpdate).then((_) => refreshCalendar()),
-              dashboardViewModel: dashboardViewModel,
             ),
           ),
         ],

@@ -127,7 +127,6 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                                   builder: (context) => ChangeNotifierProvider.value(
                                     value: dashboardViewModel,
                                     child: AddParticipantScreen(
-                                      dashboardViewModel: dashboardViewModel,
                                       vacationIndex: vacation.vacationIndex,
                                     ),
                                   ),
@@ -164,7 +163,6 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                                       builder: (context) => ChangeNotifierProvider.value(
                                         value: dashboardViewModel,
                                         child: ActivityPlanner(
-                                          dashboardViewModel: dashboardViewModel,
                                           vacationIndex: vacation.vacationIndex,
                                         ),
                                       ),
@@ -181,7 +179,6 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                                       builder: (context) => ChangeNotifierProvider.value(
                                         value: dashboardViewModel,
                                         child: AddActivityScreen(
-                                          dashboardViewModel: dashboardViewModel,
                                           vacationIndex: vacation.vacationIndex,
                                         ),
                                       ),

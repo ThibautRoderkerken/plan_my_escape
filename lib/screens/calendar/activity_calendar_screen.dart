@@ -11,7 +11,6 @@ class ActivityCalendar extends StatelessWidget {
   final DateTime lastDay;
   final int vacationIndex;
   final Function(BuildContext, Activity, Function(Activity)) onSelectDateTime;
-  final DashboardViewModel dashboardViewModel;
 
   const ActivityCalendar({
     Key? key,
@@ -19,14 +18,15 @@ class ActivityCalendar extends StatelessWidget {
     required this.lastDay,
     required this.vacationIndex,
     required this.onSelectDateTime,
-    required this.dashboardViewModel,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final dashboardViewModel = Provider.of<DashboardViewModel>(context, listen: false);
+
     return ChangeNotifierProvider(
       create: (_) => ActivityCalendarViewModel(
-          vacationIndex: vacationIndex,
+        vacationIndex: vacationIndex,
         dashboardViewModel: dashboardViewModel,
       ),
       child: Consumer<ActivityCalendarViewModel>(
