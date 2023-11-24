@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/activity.dart';
 import '../../view_models/calendar/activity_pool_view_model.dart';
-import '../../view_models/dashboard_view_model.dart';
+import '../../view_models/dashboard/dashboard_view_model.dart';
 
 class ActivityPool extends StatelessWidget {
   final int vacationIndex;

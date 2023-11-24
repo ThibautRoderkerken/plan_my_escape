@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/activity.dart';
-import '../../view_models/dashboard_view_model.dart';
+import 'dashboard/dashboard_view_model.dart';
 
 class AddActivityViewModel extends ChangeNotifier {
   final int vacationIndex;

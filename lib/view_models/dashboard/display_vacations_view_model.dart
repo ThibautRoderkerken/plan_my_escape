@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/vacation_period.dart';
-import '../dashboard_view_model.dart';
+import 'dashboard_view_model.dart';
 
 class DisplayVacationsViewModel extends ChangeNotifier {
   final DashboardViewModel dashboardViewModel;

@@ -21,7 +21,7 @@ dependencies:
   # flutter_map: ^6.0.1 # Maps
   geolocator: ^10.0.0         # Gérer la localisation
   url_launcher: ^6.0.12       # Ouvrir des liens
-
+  http: ^0.13.4               # Requêtes HTTP
 
 dev_dependencies:
   flutter_test:

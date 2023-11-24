@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../view_models/add_activity_view_model.dart';
 import '../../widgets/custom_action_button.dart';
-import '../view_models/dashboard_view_model.dart';
+import '../view_models/dashboard/dashboard_view_model.dart';
 import '../widgets/custom_text_field.dart';
 
 class AddActivityScreen extends StatelessWidget {

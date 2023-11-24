@@ -4,7 +4,7 @@ import '../../models/vacation_period.dart';
 import 'activity_pool_screen.dart';
 import 'activity_calendar_screen.dart';
 import 'package:provider/provider.dart';
-import '../../view_models/dashboard_view_model.dart';
+import '../../view_models/dashboard/dashboard_view_model.dart';
 
 class ActivityPlanner extends StatefulWidget {
   final int vacationIndex;

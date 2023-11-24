@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:plan_my_escape/exceptions/internal_server_exception.dart';
+import 'package:plan_my_escape/exceptions/network_exception.dart';
+import 'package:plan_my_escape/exceptions/not_found_exception.dart';
+
+import '../exceptions/invalid_credentials_exception.dart';
+import '../services/auth_service.dart';
+import '../exceptions/bad_request_exception.dart';
 
 class LoginViewModel extends ChangeNotifier {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -6,6 +13,7 @@ class LoginViewModel extends ChangeNotifier {
   final TextEditingController passwordController = TextEditingController();
   String? errorMessage;
   bool isLoginSuccess = false;
+  final AuthService _authService = AuthService();
 
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
@@ -17,17 +25,27 @@ class LoginViewModel extends ChangeNotifier {
     return null;
   }
 
-  void validateAndLogin(Function onLoginSuccess) {
+  Future<void> validateAndLogin(Function onLoginSuccess, String email, String password) async {
     if (formKey.currentState!.validate()) {
-      // Todo: connecter a l'API
-      if (isLoginSuccess) {
-        errorMessage = null;
+      // Gestion des erreurs, on récupère chaque erreur et on mets un message d'erreur personnalisé.
+      try {
+        var response = await _authService.login(email, password);
+        // Afficher toute les donnée sde response dans le console
         onLoginSuccess();
-      } else {
-        errorMessage = 'Email ou mot de passe incorrect';
-        notifyListeners();
-        isLoginSuccess = true;
+      } on BadRequestException catch (_) {
+        errorMessage = "Requête invalide";
+      } on InvalidCredentialsException  catch (_) {
+        errorMessage = "Login ou mot de passe incorrect";
+      } on NotFoundException catch (_) {
+        errorMessage = "Ressource non trouvée";
+      } on InternalServerException catch (_) {
+        errorMessage = "Erreur interne du serveur";
+      } on NetworkException catch (_) {
+        errorMessage = "Erreur réseau";
+      } catch (e) {
+        errorMessage = "Erreur inconnue";
       }
+      notifyListeners();
     }
   }
 

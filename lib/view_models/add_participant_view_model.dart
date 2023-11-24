@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plan_my_escape/models/member.dart';
-import '../../view_models/dashboard_view_model.dart';
+import 'dashboard/dashboard_view_model.dart';
 
 class AddParticipantViewModel extends ChangeNotifier {
   final int vacationIndex;

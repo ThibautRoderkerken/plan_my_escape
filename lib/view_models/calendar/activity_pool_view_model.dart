@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plan_my_escape/view_models/dashboard_view_model.dart';
+import 'package:plan_my_escape/view_models/dashboard/dashboard_view_model.dart';
 import '../../models/activity.dart';
 
 class ActivityPoolViewModel extends ChangeNotifier {

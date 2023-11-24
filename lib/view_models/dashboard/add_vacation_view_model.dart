@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../models/vacation_period.dart';
 import '../../models/weather_info.dart';
-import '../../view_models/dashboard_view_model.dart';
+import 'dashboard_view_model.dart';
 
 class AddVacationViewModel extends ChangeNotifier {
   final DashboardViewModel dashboardViewModel;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../view_models/dashboard_view_model.dart';
+import '../view_models/dashboard/dashboard_view_model.dart';
 import '../view_models/login_view_model.dart';
 import '../widgets/custom_action_button.dart';
 import '../widgets/custom_outlined_button.dart';
@@ -32,7 +32,8 @@ class LoginScreen extends StatelessWidget {
                 validator: loginViewModel.validateEmail,
               ),
               const SizedBox(height: 16),
-              const CustomTextField(
+              CustomTextField(
+                controller: loginViewModel.passwordController,
                 label: 'Password',
                 isObscure: true,
               ),
@@ -40,6 +41,10 @@ class LoginScreen extends StatelessWidget {
               CustomActionButton(
                 label: 'Connexion',
                 onPressed: () {
+                  // Récupération des valeurs email et password
+                  String email = loginViewModel.emailController.text;
+                  String password = loginViewModel.passwordController.text;
+
                   loginViewModel.validateAndLogin(() {
                     Navigator.pushReplacement(
                       context,
@@ -50,9 +55,10 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     );
-                  });
+                  }, email, password);
                 },
               ),
+
               const SizedBox(height: 16),
               CustomOutlinedButton(
                 label: 'S\'authentifier via OAuth2',

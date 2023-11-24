@@ -5,7 +5,7 @@ import 'display_vacations_screen.dart';
 import '../navigation_drawer_screen.dart';
 import '../../view_models/dashboard/add_vacation_view_model.dart';
 import '../../view_models/dashboard/display_vacations_view_model.dart';
-import '../../view_models/dashboard_view_model.dart'; // Assurez-vous d'importer DashboardViewModel
+import '../../view_models/dashboard/dashboard_view_model.dart'; // Assurez-vous d'importer DashboardViewModel
 
 class DashboardMainScreen extends StatelessWidget {
   DashboardMainScreen({Key? key}) : super(key: key);

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../../view_models/add_participant_view_model.dart';
 import '../../widgets/custom_action_button.dart';
 import '../../widgets/custom_text_field.dart';
-import '../view_models/dashboard_view_model.dart';
+import '../view_models/dashboard/dashboard_view_model.dart';
 
 class AddParticipantScreen extends StatelessWidget {
   final int vacationIndex;

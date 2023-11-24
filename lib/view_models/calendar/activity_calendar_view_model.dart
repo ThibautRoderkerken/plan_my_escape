@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/activity.dart';
 import '../../models/enum/calendar_view_type.dart';
-import '../dashboard_view_model.dart';
+import '../dashboard/dashboard_view_model.dart';
 
 class ActivityCalendarViewModel extends ChangeNotifier {
   final int vacationIndex;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:calendar_view/calendar_view.dart';
-import 'package:plan_my_escape/view_models/dashboard_view_model.dart';
+import 'package:plan_my_escape/view_models/dashboard/dashboard_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../models/activity.dart';
 import '../../models/enum/calendar_view_type.dart';
