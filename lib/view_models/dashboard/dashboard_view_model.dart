@@ -7,37 +7,6 @@ import '../../services/calendar_export.dart';
 
 class DashboardViewModel extends ChangeNotifier {
   final List<VacationPeriod> _vacationPeriods = [
-    VacationPeriod(
-      // Ajouter un champs vacationIndex
-      vacationIndex: 0,
-      startDate: DateTime.now().subtract(const Duration(days: 5)),
-      endDate: DateTime.now().add(const Duration(days: 10)),
-      destination: 'Barcelone',
-      members: [
-        Member(id: 'm1', name: 'Alice Dupont'),
-        Member(id: 'm2', name: 'Bob Martin'),
-      ],
-      activities: [
-        Activity(id: 'a1', name: 'Visite du Parc Güell', address: "Carrer d'Olot, Barcelone, Espagne", description: 'Visite du parc et de la maison de Gaudi'),
-        Activity(id: 'a2', name: 'Dîner à El Nacional', address: 'Passeig de Gràcia, Barcelone, Espagne', description: 'Dîner dans un restaurant typique'),
-      ],
-      weatherInfo: WeatherInfo(description: 'Ensoleillé', temperature: 26.5),
-    ),
-    VacationPeriod(
-      vacationIndex: 1,
-      startDate: DateTime.now().add(const Duration(days: 20)),
-      endDate: DateTime.now().add(const Duration(days: 30)),
-      destination: 'Rome',
-      members: [
-        Member(id: 'm3', name: 'Caroline Lambert'),
-        Member(id: 'm4', name: 'David Bernard'),
-      ],
-      activities: [
-        Activity(id: 'a3', name: 'Visite du Colisée', address: 'Piazza del Colosseo, Rome, Italie', description: 'Visite du Colisée et du Forum Romain'),
-        Activity(id: 'a4', name: 'Déjeuner à la Pergola', address: 'Via Alberto Cadlolo, Rome, Italie', description: 'Déjeuner dans un restaurant étoilé'),
-      ],
-      weatherInfo: WeatherInfo(description: 'Légèrement nuageux', temperature: 23.0),
-    ),
   ];
 
   List<VacationPeriod> get vacationPeriods => _vacationPeriods;

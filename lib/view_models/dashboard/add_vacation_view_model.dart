@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import '../../models/vacation_period.dart';
 import '../../models/weather_info.dart';
+import '../../services/holiday_service.dart'; // Assurez-vous d'importer HolidayService
 import 'dashboard_view_model.dart';
 
 class AddVacationViewModel extends ChangeNotifier {
   final DashboardViewModel dashboardViewModel;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController destinationController = TextEditingController();
+  final HolidayService holidayService = HolidayService();
   DateTime? startDate;
   DateTime? endDate;
   bool isButtonPressed = false;
@@ -38,9 +40,8 @@ class AddVacationViewModel extends ChangeNotifier {
     return false;
   }
 
-  void addVacationPeriod() {
+  Future<void> addVacationPeriod() async {
     var newVacation = VacationPeriod(
-      vacationIndex: dashboardViewModel.vacationPeriods.length, // Générer l'index basé sur le nombre de périodes existantes
       startDate: startDate!,
       endDate: endDate!,
       destination: destinationController.text,
@@ -49,8 +50,16 @@ class AddVacationViewModel extends ChangeNotifier {
       weatherInfo: WeatherInfo(description: 'Inconnu', temperature: 0.0),
     );
 
-    // Ajouter la nouvelle période de vacances au DashboardViewModel
-    dashboardViewModel.addVacationPeriod(newVacation);
+    try {
+      // Appeler l'API pour ajouter la nouvelle période de vacances
+      var response = await holidayService.addVacationPeriod(newVacation);
+      // Juste récupérer l'id de la période de vacances ajoutée
+      newVacation.vacationIndex = response["id"];
+      dashboardViewModel.addVacationPeriod(newVacation);
+    } catch (e) {
+      // Gérer les erreurs ici
+      print('Erreur lors de l\'ajout de la période de vacances: $e');
+    }
 
     // Réinitialiser les champs après l'ajout
     destinationController.clear();

@@ -3,44 +3,42 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/vacation_period.dart'; // Assurez-vous que ce modèle correspond à IHoliday
 import '../exceptions/bad_request_exception.dart';
 import '../exceptions/internal_server_exception.dart';
-import '../exceptions/invalid_credentials_exception.dart';
 import '../exceptions/network_exception.dart';
 import '../exceptions/not_found_exception.dart';
 
-class AuthService {
-  final String baseUrl = "https://porthos-intra.cg.helmo.be/e180314";
+class HolidayService {
+  final String baseUrl = "https://porthos-intra.cg.helmo.be/e180314/api/Holiday";
 
-  Future<dynamic> login(String email, String password) async {
+  Future<dynamic> addVacationPeriod(VacationPeriod vacation) async {
     try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? cookie = prefs.getString('cookie');
+      print('Cookie: $cookie');
+
       final response = await http.post(
-        Uri.parse('$baseUrl/api/Auth/login'),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'email': email, 'password': password}),
+        Uri.parse(baseUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          if (cookie != null) 'Cookie': cookie, // Ajout du cookie dans les en-têtes
+        },
+        body: jsonEncode({
+          'destination': vacation.destination,
+          'start_at': vacation.startDate.toIso8601String().split('T')[0],
+          'end_at': vacation.endDate.toIso8601String().split('T')[0],
+          'activities': [],
+          // Ajoutez d'autres champs si nécessaire
+        }),
       ).timeout(const Duration(seconds: 3));
 
       if (response.statusCode == 200) {
-        // Extraire le cookie de la réponse
-        String? rawCookie = response.headers['set-cookie'];
-        if (rawCookie != null) {
-          int index = rawCookie.indexOf(';');
-          if (index != -1) {
-            rawCookie = rawCookie.substring(0, index);
-          }
-          print('Cookie: $rawCookie'); // Afficher le cookie dans la console
-
-          // Stocker le cookie sur l'appareil
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setString('cookie', rawCookie);
-        }
         return json.decode(response.body);
       } else {
         switch (response.statusCode) {
           case 400:
             throw BadRequestException('Bad request');
-          case 401:
-            throw InvalidCredentialsException('Authentication failed');
           case 404:
             throw NotFoundException('Resource not found');
           case 500:
