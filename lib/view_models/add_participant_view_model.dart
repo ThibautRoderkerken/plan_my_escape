@@ -19,5 +19,5 @@ class AddParticipantViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Member> get participants => dashboardViewModel.vacationPeriods[vacationIndex].members;
+  List<Member> get participants => dashboardViewModel.getVacationPeriodById(vacationIndex).members;
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plan_my_escape/exceptions/internal_server_exception.dart';
 import 'package:plan_my_escape/exceptions/network_exception.dart';
 import 'package:plan_my_escape/exceptions/not_found_exception.dart';
+import 'package:plan_my_escape/services/holiday_service.dart';
 
 import '../exceptions/invalid_credentials_exception.dart';
 import '../services/auth_service.dart';
@@ -29,8 +30,7 @@ class LoginViewModel extends ChangeNotifier {
     if (formKey.currentState!.validate()) {
       // Gestion des erreurs, on récupère chaque erreur et on mets un message d'erreur personnalisé.
       try {
-        var response = await _authService.login(email, password);
-        // Afficher toute les donnée sde response dans le console
+        await _authService.login(email, password);
         onLoginSuccess();
       } on BadRequestException catch (_) {
         errorMessage = "Requête invalide";

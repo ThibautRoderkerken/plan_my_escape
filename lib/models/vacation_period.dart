@@ -23,18 +23,41 @@ class VacationPeriod {
 
   static VacationPeriod fromJson(Map<String, dynamic> json) {
     print(json);
-    var membersList = (json['members'] as List)
-        .map((memberJson) => Member.fromJson(memberJson))
-        .toList();
-    var activitiesList = (json['activities'] as List)
-        .map((activityJson) => Activity.fromJson(activityJson))
-        .toList();
-    var weatherInfo = WeatherInfo.fromJson(json['weatherInfo']);
+    List<Member> membersList = [];
+    if (json['members'] != null) {
+      membersList = (json['members'] as List)
+          .map((memberJson) => Member.fromJson(memberJson as Map<String, dynamic>))
+          .toList();
+    }
+
+    List<Activity> activitiesList = [];
+    if (json['activities'] != null) {
+      activitiesList = (json['activities'] as List)
+          .map((activityJson) => Activity.fromJson(activityJson as Map<String, dynamic>))
+          .toList();
+    }
+
+    WeatherInfo weatherInfo;
+    if (json['weatherInfo'] != null) {
+      weatherInfo = WeatherInfo.fromJson(json['weatherInfo'] as Map<String, dynamic>);
+    } else {
+      weatherInfo = WeatherInfo(description: 'Inconnu', temperature: 0.0);
+    }
+
+    DateTime? parsedStartDate;
+    if (json['start_at'] != null) {
+      parsedStartDate = DateTime.parse(json['start_at'] as String);
+    }
+
+    DateTime? parsedEndDate;
+    if (json['end_at'] != null) {
+      parsedEndDate = DateTime.parse(json['end_at'] as String);
+    }
 
     return VacationPeriod(
-      startDate: DateTime.parse(json['start_at']),
-      endDate: DateTime.parse(json['end_at']),
-      destination: json['destination'],
+      startDate: parsedStartDate ?? DateTime.now(),
+      endDate: parsedEndDate ?? DateTime.now().add(const Duration(days: 1)),
+      destination: json['destination'] as String? ?? 'Inconnu',
       members: membersList,
       activities: activitiesList,
       weatherInfo: weatherInfo,

@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:plan_my_escape/services/holiday_service.dart';
 import '../../models/activity.dart';
 import '../../models/member.dart';
 import '../../models/vacation_period.dart';
-import '../../models/weather_info.dart';
 import '../../services/calendar_export.dart';
 
 class DashboardViewModel extends ChangeNotifier {
-  final List<VacationPeriod> _vacationPeriods = [
-  ];
+  final HolidayService _holidayService = HolidayService();
+  late List<VacationPeriod> _vacationPeriods = [];
+
+  DashboardViewModel() {
+    _initializeVacationPeriods();
+  }
+
+  void _initializeVacationPeriods() async {
+    try {
+      _vacationPeriods = await _holidayService.getVacationPeriods();
+      notifyListeners();
+    } catch (e) {
+      print('Erreur lors du chargement des périodes de vacances: $e');
+    }
+  }
 
   List<VacationPeriod> get vacationPeriods => _vacationPeriods;
+  
+  // Getter pour récupéréer une période de vacance sur base de son id
+  VacationPeriod getVacationPeriodById(int id) {
+    return _vacationPeriods.firstWhere((period) => period.vacationIndex == id);
+  }
 
   void updateActivity(Activity updatedActivity) {
     for (var period in _vacationPeriods) {
@@ -36,30 +54,30 @@ class DashboardViewModel extends ChangeNotifier {
   }
 
   void removeMember(int vacationIndex, int memberIndex) {
-    _vacationPeriods[vacationIndex].members.removeAt(memberIndex);
+    getVacationPeriodById(vacationIndex).members.removeAt(memberIndex);
     notifyListeners();
   }
 
   void addMember(int vacationIndex, String name, String mail) {
-    String newId = "m${_vacationPeriods[vacationIndex].members.length + 1}";  // Générer un nouvel ID pour le membre
-    _vacationPeriods[vacationIndex].members.add(Member(id: newId, name: name));
+    String newId = "m${getVacationPeriodById(vacationIndex).members.length + 1}";  // Générer un nouvel ID pour le membre
+    getVacationPeriodById(vacationIndex).members.add(Member(id: newId, name: name));
     notifyListeners();
   }
 
   void addActivity(int vacationIndex, String name, String address, String description) {
-    String newId = "a${_vacationPeriods[vacationIndex].activities.length + 1}";
-    _vacationPeriods[vacationIndex].activities.add(Activity(id: newId, name: name, address: address, description: description));
+    String newId = "a${getVacationPeriodById(vacationIndex).activities.length + 1}";
+    getVacationPeriodById(vacationIndex).activities.add(Activity(id: newId, name: name, address: address, description: description));
     notifyListeners();
   }
 
   void removeActivity(int vacationIndex, int activityIndex) {
-    _vacationPeriods[vacationIndex].activities.removeAt(activityIndex);
+    getVacationPeriodById(vacationIndex).activities.removeAt(activityIndex);
     notifyListeners();
   }
 
   List<Activity> getActivitiesForVacation(int vacationIndex) {
     if (vacationIndex >= 0 && vacationIndex < _vacationPeriods.length) {
-      return _vacationPeriods[vacationIndex].activities;
+      return getVacationPeriodById(vacationIndex).activities;
     } else {
       return [];
     }

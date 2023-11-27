@@ -56,4 +56,42 @@ class HolidayService {
       rethrow;
     }
   }
+
+  Future<List<VacationPeriod>> getVacationPeriods() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? cookie = prefs.getString('cookie');
+
+      final response = await http.get(
+        Uri.parse(baseUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          if (cookie != null) 'Cookie': cookie,
+        },
+      ).timeout(const Duration(seconds: 3));
+
+      if (response.statusCode == 200) {
+        Iterable l = json.decode(response.body);
+        return List<VacationPeriod>.from(l.map((model) => VacationPeriod.fromJson(model)));
+      } else {
+        switch (response.statusCode) {
+          case 400:
+            throw BadRequestException('Bad request');
+          case 404:
+            throw NotFoundException('Resource not found');
+          case 500:
+            throw InternalServerException('Internal server error');
+          default:
+            throw NetworkException('Unknown network error');
+        }
+      }
+    } on TimeoutException {
+      throw NetworkException('Network timeout');
+    } catch (e) {
+      if (e is! Exception) {
+        throw NetworkException('Network error: $e');
+      }
+      rethrow;
+    }
+  }
 }

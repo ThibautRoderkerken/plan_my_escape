@@ -18,5 +18,5 @@ class AddActivityViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Activity> get activities => dashboardViewModel.vacationPeriods[vacationIndex].activities;
+  List<Activity> get activities => dashboardViewModel.getVacationPeriodById(vacationIndex).activities;
 }

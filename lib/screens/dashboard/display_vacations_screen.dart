@@ -51,7 +51,9 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
-          ListView.builder(
+          dashboardViewModel.vacationPeriods.isEmpty
+              ? const Center(child: CircularProgressIndicator())
+          :ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: dashboardViewModel.vacationPeriods.length,
