@@ -58,4 +58,41 @@ class AuthService {
       rethrow;
     }
   }
+
+  Future<dynamic> signUp(String email, String password, String firstName, String lastName) async {
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl/api/Auth/signup'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'email': email,
+          'password': password,
+          'firstname': firstName,
+          'lastname': lastName,
+          'isActive': true
+        }),
+      ).timeout(const Duration(seconds: 3));
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        // Traiter la réponse en cas de succès
+        return json.decode(response.body);
+      } else {
+        switch (response.statusCode) {
+          case 400:
+            throw BadRequestException('Bad request');
+          case 500:
+            throw InternalServerException('Internal server error');
+          default:
+            throw NetworkException('Unknown network error');
+        }
+      }
+    } on TimeoutException {
+      throw NetworkException('Network timeout');
+    } catch (e) {
+      if (e is! Exception) {
+        throw NetworkException('Network error: $e');
+      }
+      rethrow;
+    }
+  }
 }

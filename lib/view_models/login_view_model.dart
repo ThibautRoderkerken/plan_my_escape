@@ -3,8 +3,11 @@ import 'package:plan_my_escape/exceptions/internal_server_exception.dart';
 import 'package:plan_my_escape/exceptions/network_exception.dart';
 import 'package:plan_my_escape/exceptions/not_found_exception.dart';
 import 'package:plan_my_escape/services/holiday_service.dart';
+import 'package:plan_my_escape/view_models/sign_up_view_model.dart';
+import 'package:provider/provider.dart';
 
 import '../exceptions/invalid_credentials_exception.dart';
+import '../screens/sign_up_screen.dart';
 import '../services/auth_service.dart';
 import '../exceptions/bad_request_exception.dart';
 
@@ -53,7 +56,15 @@ class LoginViewModel extends ChangeNotifier {
     // Todo: connecter a l'API
   }
 
-  void navigateToSignUp() {
-    // Todo: rediriger vers la page d'inscription
+  void navigateToSignUp(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ChangeNotifierProvider(
+          create: (_) => SignUpViewModel(),
+          child: const SignUpScreen(),
+        ),
+      ),
+    );
   }
 }
