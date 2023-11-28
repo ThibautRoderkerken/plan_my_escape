@@ -27,7 +27,7 @@ class ActivityPlannerState extends State<ActivityPlanner> {
 
   Future<void> selectActivityDateTime(BuildContext context, Activity activity, Function(Activity) onUpdate) async {
     final dashboardViewModel = Provider.of<DashboardViewModel>(context, listen: false);
-    VacationPeriod vacation = dashboardViewModel.vacationPeriods[widget.vacationIndex];
+    VacationPeriod vacation = dashboardViewModel.getVacationPeriodById(widget.vacationIndex);
 
     // Utiliser la date programmée de l'activité si elle existe, sinon utiliser la logique actuelle
     DateTime initialSelectedDate = activity.scheduledDate ??
@@ -90,11 +90,9 @@ class ActivityPlannerState extends State<ActivityPlanner> {
         );
 
         if (duration != null && mounted) {
-          activity.scheduledDate = selectedDate;
-          activity.scheduledTime = selectedTime;
-          activity.duration = duration;
-          onUpdate(activity);
-          refreshCalendar();
+          final dashboardViewModel = Provider.of<DashboardViewModel>(context, listen: false);
+          dashboardViewModel.updateActivityDetails(activity, selectedDate, selectedTime, duration, widget.vacationIndex);
+          // refreshCalendar();
         }
       }
     }
@@ -102,7 +100,7 @@ class ActivityPlannerState extends State<ActivityPlanner> {
 
   @override
   Widget build(BuildContext context) {
-    final VacationPeriod vacation = Provider.of<DashboardViewModel>(context).vacationPeriods[widget.vacationIndex];
+    final VacationPeriod vacation = Provider.of<DashboardViewModel>(context).getVacationPeriodById(widget.vacationIndex);
 
     return Scaffold(
       appBar: AppBar(

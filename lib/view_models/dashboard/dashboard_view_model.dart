@@ -78,7 +78,7 @@ class DashboardViewModel extends ChangeNotifier {
   }
 
   List<Activity> getActivitiesForVacation(int vacationIndex) {
-    if (vacationIndex >= 0 && vacationIndex < _vacationPeriods.length) {
+    if (vacationIndex >= 0) {
       return getVacationPeriodById(vacationIndex).activities;
     } else {
       return [];
@@ -87,5 +87,19 @@ class DashboardViewModel extends ChangeNotifier {
 
   String exportToICalendar(int vacationIndex) {
     return exportToICalendarService(getActivitiesForVacation(vacationIndex));
+  }
+
+  void updateActivityDetails(Activity activity, DateTime selectedDate, TimeOfDay selectedTime, Duration duration, int vacationIndex) async {
+    activity.scheduledDate = selectedDate;
+    activity.scheduledTime = selectedTime;
+    activity.duration = duration;
+
+    try {
+      VacationPeriod updatedVacationPeriod = getVacationPeriodById(vacationIndex);
+      await _holidayService.updateVacationPeriod(updatedVacationPeriod);
+    } catch (e) {
+      print('Erreur lors de la mise à jour de la période de vacances: $e');
+    }
+    notifyListeners();
   }
 }
