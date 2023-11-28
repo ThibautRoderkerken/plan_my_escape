@@ -141,7 +141,7 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                       ),
                       for (var memberIndex = 0; memberIndex < vacation.members.length; memberIndex++)
                         ListTile(
-                          title: Text(vacation.members[memberIndex].name),
+                          title: Text('${vacation.members[memberIndex].lastName} ${vacation.members[memberIndex].firstName}'),
                           trailing: IconButton(
                             icon: const Icon(Icons.delete),
                             onPressed: () {

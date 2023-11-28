@@ -12,7 +12,8 @@ class AddParticipantScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nameController = TextEditingController();
+    final lastName = TextEditingController();
+    final firstName = TextEditingController();
     final emailController = TextEditingController();
 
     return ChangeNotifierProvider(
@@ -38,17 +39,20 @@ class AddParticipantScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 32),
-                  CustomTextField(controller: nameController, label: 'Nom'),
+                  CustomTextField(controller: lastName, label: 'Nom'),
+                  const SizedBox(height: 16),
+                  CustomTextField(controller: firstName, label: 'Prénom'),
                   const SizedBox(height: 16),
                   CustomTextField(controller: emailController, label: 'Email'),
                   const SizedBox(height: 16),
                   CustomActionButton(
                     label: 'Ajouter',
                     onPressed: () {
-                      if (nameController.text.isNotEmpty && emailController.text.isNotEmpty) {
+                      if (lastName.text.isNotEmpty && emailController.text.isNotEmpty) {
                         viewModel.addParticipant(
-                          nameController.text,
+                          lastName.text,
                           emailController.text,
+                          firstName.text,
                         );
                       }
                     },
@@ -62,7 +66,7 @@ class AddParticipantScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final participant = viewModel.participants[index];
                         return ListTile(
-                          title: Text(participant.name),
+                          title: Text('${participant.lastName} ${participant.firstName}'),
                           trailing: IconButton(
                             icon: const Icon(Icons.delete),
                             onPressed: () => viewModel.removeParticipant(index),

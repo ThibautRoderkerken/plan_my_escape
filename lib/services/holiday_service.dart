@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -100,7 +101,7 @@ class HolidayService {
       String? cookie = prefs.getString('cookie');
 
       final response = await http.put(
-        Uri.parse('$baseUrl/${vacation.vacationIndex}'), // Utiliser l'ID de la période de vacances
+        Uri.parse('$baseUrl/${vacation.vacationIndex}'),
         headers: {
           'Content-Type': 'application/json',
           if (cookie != null) 'Cookie': cookie,
@@ -110,25 +111,23 @@ class HolidayService {
           'Destination': vacation.destination,
           'Start_at': vacation.startDate.toIso8601String().split('T')[0],
           'End_at': vacation.endDate.toIso8601String().split('T')[0],
-          'Activities': vacation.activities
-              .map((activity) => {
+          'Activities': vacation.activities.map((activity) => {
             'Name': activity.name,
             'Description': activity.description,
-            'Destination': activity.address, // Utiliser 'address' pour la destination de l'activité
-            'Start_at': activity.scheduledDate?.toIso8601String().split('T')[0],
-            'End_at': activity.scheduledDate?.add(activity.duration ?? const Duration(hours: 0)).toIso8601String().split('T')[0],
-          })
-              .toList(),
-          'Users': []  // Ajoutez des informations sur les utilisateurs si nécessaire
+            'Destination': activity.address,
+            'Start_at': _combineDateTimeAndTime(activity.scheduledDate ?? vacation.startDate, activity.scheduledTime),
+            'End_at': _combineDateTimeAndTime(activity.scheduledDate ?? vacation.startDate, activity.scheduledTime, addDuration: activity.duration),
+          }).toList(),
+          'Users': []
         }),
       ).timeout(const Duration(seconds: 3));
 
       if (response.statusCode == 200) {
-        return json.decode(response.body);
+        return response.body.isEmpty ? null : json.decode(response.body);
       } else {
         switch (response.statusCode) {
           case 400:
-            throw BadRequestException('Bad request');
+            throw BadRequestException('Bad request: ${response.body}');
           case 404:
             throw NotFoundException('Resource not found');
           case 500:
@@ -145,5 +144,11 @@ class HolidayService {
       }
       rethrow;
     }
+  }
+
+  String _combineDateTimeAndTime(DateTime? date, TimeOfDay? time, {Duration? addDuration}) {
+    final dateTime = DateTime(date?.year ?? 0, date?.month ?? 1, date?.day ?? 1, time?.hour ?? 0, time?.minute ?? 0);
+    final combinedDateTime = addDuration != null ? dateTime.add(addDuration) : dateTime;
+    return combinedDateTime.toIso8601String();
   }
 }

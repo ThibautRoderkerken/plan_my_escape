@@ -8,9 +8,9 @@ class AddParticipantViewModel extends ChangeNotifier {
 
   AddParticipantViewModel({required this.vacationIndex, required this.dashboardViewModel});
 
-  void addParticipant(String name, String email) {
+  void addParticipant(String lastName, String email, String firstName) {
     // Logique pour ajouter un participant
-    dashboardViewModel.addMember(vacationIndex, name, email);
+    dashboardViewModel.addMember(vacationIndex, lastName, email, firstName);
     notifyListeners();
   }
 

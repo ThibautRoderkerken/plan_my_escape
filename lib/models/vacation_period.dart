@@ -54,6 +54,9 @@ class VacationPeriod {
       parsedEndDate = DateTime.parse(json['end_at'] as String);
     }
 
+    // Récupérer l'ID de la période de vacances
+    int? vacationIndex = json['id'] as int?;
+
     return VacationPeriod(
       startDate: parsedStartDate ?? DateTime.now(),
       endDate: parsedEndDate ?? DateTime.now().add(const Duration(days: 1)),
@@ -61,7 +64,13 @@ class VacationPeriod {
       members: membersList,
       activities: activitiesList,
       weatherInfo: weatherInfo,
-    );
+    )..vacationIndex = vacationIndex ?? 0;
+  }
+
+  // Méthode pour afficher toute les données dans la console (uniquement pour le débogage)
+  @override
+  String toString() {
+    return 'VacationPeriod{startDate: $startDate, endDate: $endDate, destination: $destination, members: $members, activities: $activities, weatherInfo: $weatherInfo, vacationIndex: $vacationIndex}';
   }
 }
 

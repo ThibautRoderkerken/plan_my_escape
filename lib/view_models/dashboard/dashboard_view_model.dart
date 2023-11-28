@@ -58,16 +58,18 @@ class DashboardViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addMember(int vacationIndex, String name, String mail) {
+  void addMember(int vacationIndex, String lastName, String mail, String firstName) {
     String newId = "m${getVacationPeriodById(vacationIndex).members.length + 1}";  // Générer un nouvel ID pour le membre
-    getVacationPeriodById(vacationIndex).members.add(Member(id: newId, name: name));
+    getVacationPeriodById(vacationIndex).members.add(Member(id: newId, lastName: lastName, mail: mail, firstName: firstName));
     notifyListeners();
   }
 
-  void addActivity(int vacationIndex, String name, String address, String description) {
+  Activity addActivity(int vacationIndex, String name, String address, String description) {
     String newId = "a${getVacationPeriodById(vacationIndex).activities.length + 1}";
-    getVacationPeriodById(vacationIndex).activities.add(Activity(id: newId, name: name, address: address, description: description));
+    Activity newActivity = Activity(id: newId, name: name, address: address, description: description);
+    getVacationPeriodById(vacationIndex).activities.add(newActivity);
     notifyListeners();
+    return newActivity;
   }
 
   void removeActivity(int vacationIndex, int activityIndex) {
