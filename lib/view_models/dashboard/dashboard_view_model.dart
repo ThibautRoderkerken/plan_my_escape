@@ -15,12 +15,18 @@ class DashboardViewModel extends ChangeNotifier {
 
   void _initializeVacationPeriods() async {
     try {
-      _vacationPeriods = await _holidayService.getVacationPeriods();
+      List<VacationPeriod> initialVacationPeriods = await _holidayService.getVacationPeriods();
+      List<VacationPeriod> detailedVacationPeriods = [];
+      for (var period in initialVacationPeriods) {
+        detailedVacationPeriods.add(await _holidayService.getVacationPeriodDetails(period.vacationIndex));
+      }
+      _vacationPeriods = detailedVacationPeriods;
       notifyListeners();
     } catch (e) {
       print('Erreur lors du chargement des périodes de vacances: $e');
     }
   }
+
 
   List<VacationPeriod> get vacationPeriods => _vacationPeriods;
   
@@ -54,13 +60,25 @@ class DashboardViewModel extends ChangeNotifier {
   }
 
   void removeMember(int vacationIndex, int memberIndex) {
-    getVacationPeriodById(vacationIndex).members.removeAt(memberIndex);
+    // Ici c'est bien [vacationIndex] car c'est ca position dans la liste
+    _vacationPeriods[vacationIndex].members.removeAt(memberIndex);
+    _updateVacationPeriod(vacationIndex);
     notifyListeners();
+  }
+
+  Future<void> _updateVacationPeriod(int vacationIndex) async {
+    try {
+      VacationPeriod updatedVacationPeriod = _vacationPeriods[vacationIndex];
+      await _holidayService.updateVacationPeriod(updatedVacationPeriod);
+    } catch (e) {
+      print('Erreur lors de la mise à jour de la période de vacances: $e');
+    }
   }
 
   void addMember(int vacationIndex, String lastName, String mail, String firstName) {
     String newId = "m${getVacationPeriodById(vacationIndex).members.length + 1}";  // Générer un nouvel ID pour le membre
     getVacationPeriodById(vacationIndex).members.add(Member(id: newId, lastName: lastName, mail: mail, firstName: firstName));
+
     notifyListeners();
   }
 

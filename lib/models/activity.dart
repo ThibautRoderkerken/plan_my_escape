@@ -20,15 +20,26 @@ class Activity {
   });
 
   static Activity fromJson(Map<String, dynamic> activityJson) {
+    DateTime? startDate;
+    Duration? duration;
+
+    if (activityJson['start_at'] != null) {
+      startDate = DateTime.parse(activityJson['start_at']);
+    }
+
+    if (activityJson['end_at'] != null && startDate != null) {
+      DateTime endDate = DateTime.parse(activityJson['end_at']);
+      duration = endDate.difference(startDate);
+    }
+
     return Activity(
-      id: activityJson['id'],
+      id: activityJson['id'].toString(),
       name: activityJson['name'],
-      address: activityJson['address'],
+      address: activityJson['destination'],
       description: activityJson['description'],
-      // Vous devrez convertir les chaînes en DateTime et TimeOfDay si nécessaire
-      scheduledDate: activityJson['scheduledDate'] != null ? DateTime.parse(activityJson['scheduledDate']) : null,
-      scheduledTime: activityJson['scheduledTime'] != null ? TimeOfDay(hour: int.parse(activityJson['scheduledTime'].split(":")[0]), minute: int.parse(activityJson['scheduledTime'].split(":")[1])) : null,
-      duration: activityJson['duration'] != null ? Duration(minutes: int.parse(activityJson['duration'])) : null,
+      scheduledDate: startDate,
+      scheduledTime: startDate != null ? TimeOfDay(hour: startDate.hour, minute: startDate.minute) : null,
+      duration: duration,
     );
   }
 }

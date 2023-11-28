@@ -24,12 +24,11 @@ class VacationPeriod {
   static VacationPeriod fromJson(Map<String, dynamic> json) {
     print(json);
     List<Member> membersList = [];
-    if (json['members'] != null) {
-      membersList = (json['members'] as List)
+    if (json['users'] != null) {
+      membersList = (json['users'] as List)
           .map((memberJson) => Member.fromJson(memberJson as Map<String, dynamic>))
           .toList();
     }
-
     List<Activity> activitiesList = [];
     if (json['activities'] != null) {
       activitiesList = (json['activities'] as List)

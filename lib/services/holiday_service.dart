@@ -96,6 +96,8 @@ class HolidayService {
   }
 
   Future<dynamic> updateVacationPeriod(VacationPeriod vacation) async {
+    // Afficher la liste des membres dans la console
+    print('Liste des membres: ${vacation.members}');
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? cookie = prefs.getString('cookie');
@@ -118,7 +120,11 @@ class HolidayService {
             'Start_at': _combineDateTimeAndTime(activity.scheduledDate ?? vacation.startDate, activity.scheduledTime),
             'End_at': _combineDateTimeAndTime(activity.scheduledDate ?? vacation.startDate, activity.scheduledTime, addDuration: activity.duration),
           }).toList(),
-          'Users': []
+          'Users': vacation.members.map((member) => {
+            'Email': member.mail,
+            'Firstname': member.firstName,
+            'Lastname': member.lastName,
+          }).toList()
         }),
       ).timeout(const Duration(seconds: 3));
 
@@ -150,5 +156,40 @@ class HolidayService {
     final dateTime = DateTime(date?.year ?? 0, date?.month ?? 1, date?.day ?? 1, time?.hour ?? 0, time?.minute ?? 0);
     final combinedDateTime = addDuration != null ? dateTime.add(addDuration) : dateTime;
     return combinedDateTime.toIso8601String();
+  }
+
+  Future<VacationPeriod> getVacationPeriodDetails(int vacationId) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? cookie = prefs.getString('cookie');
+      final response = await http.get(
+        Uri.parse('$baseUrl/$vacationId'),
+        headers: {
+          'Content-Type': 'application/json',
+          if (cookie != null) 'Cookie': cookie,
+        },
+      ).timeout(const Duration(seconds: 3));
+
+      if (response.statusCode == 200) {
+        return VacationPeriod.fromJson(json.decode(response.body));
+      } else {
+        switch (response.statusCode) {
+          case 400:
+            throw BadRequestException('Bad request: ${response.body}');
+          case 404:
+            throw NotFoundException('Resource not found');
+          case 500:
+            throw InternalServerException('Internal server error');
+          default:
+            throw NetworkException('Unknown network error');
+        }
+      }
+    } on TimeoutException {
+      throw NetworkException('Network timeout');
+    } catch (e, stackTrace) { // Ajout de la capture de la pile d'appels
+      print('Erreur lors de la récupération des détails de la période de vacances: $e');
+      print('Stack Trace: $stackTrace'); // Imprimer la pile d'appels
+      rethrow; // Relancer l'exception
+    }
   }
 }
