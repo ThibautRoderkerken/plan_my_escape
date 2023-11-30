@@ -41,7 +41,7 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
   Widget build(BuildContext context) {
     final dashboardViewModel = Provider.of<DashboardViewModel>(context);
 
-    return SingleChildScrollView( // Ajouté un SingleChildScrollView ici
+    return SingleChildScrollView(
       child: Column(
         children: [
           const Padding(
@@ -51,9 +51,12 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
-          dashboardViewModel.vacationPeriods.isEmpty
-              ? const Center(child: CircularProgressIndicator())
-          :ListView.builder(
+          if (dashboardViewModel.isLoading)
+            const Center(child: CircularProgressIndicator())
+          else if (dashboardViewModel.vacationPeriods.isEmpty)
+            const Center(child: Text('Aucune période de vacances programmée'))
+          else
+            ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: dashboardViewModel.vacationPeriods.length,

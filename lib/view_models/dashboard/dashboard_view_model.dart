@@ -8,6 +8,7 @@ import '../../services/calendar_export.dart';
 class DashboardViewModel extends ChangeNotifier {
   final HolidayService _holidayService = HolidayService();
   late List<VacationPeriod> _vacationPeriods = [];
+  bool _isLoading = true;
 
   DashboardViewModel() {
     _initializeVacationPeriods();
@@ -15,21 +16,26 @@ class DashboardViewModel extends ChangeNotifier {
 
   void _initializeVacationPeriods() async {
     try {
+      _isLoading = true;
       List<VacationPeriod> initialVacationPeriods = await _holidayService.getVacationPeriods();
       List<VacationPeriod> detailedVacationPeriods = [];
       for (var period in initialVacationPeriods) {
         detailedVacationPeriods.add(await _holidayService.getVacationPeriodDetails(period.vacationIndex));
       }
       _vacationPeriods = detailedVacationPeriods;
+      _isLoading = false;
       notifyListeners();
     } catch (e) {
+      _isLoading = false;
+      notifyListeners();
       print('Erreur lors du chargement des périodes de vacances: $e');
     }
   }
 
 
   List<VacationPeriod> get vacationPeriods => _vacationPeriods;
-  
+  bool get isLoading => _isLoading;
+
   // Getter pour récupéréer une période de vacance sur base de son id
   VacationPeriod getVacationPeriodById(int id) {
     return _vacationPeriods.firstWhere((period) => period.vacationIndex == id);
