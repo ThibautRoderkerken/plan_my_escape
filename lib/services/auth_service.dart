@@ -62,7 +62,7 @@ class AuthService {
   Future<dynamic> signUp(String email, String password, String firstName, String lastName) async {
     try {
       final response = await http.post(
-        Uri.parse('$baseUrl/api/Auth/signup'),
+        Uri.parse('$baseUrl/api/Auth/register'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'email': email,
