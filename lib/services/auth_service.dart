@@ -21,19 +21,7 @@ class AuthService {
       ).timeout(const Duration(seconds: 3));
 
       if (response.statusCode == 200) {
-        // Extraire le cookie de la réponse
-        String? rawCookie = response.headers['set-cookie'];
-        if (rawCookie != null) {
-          int index = rawCookie.indexOf(';');
-          if (index != -1) {
-            rawCookie = rawCookie.substring(0, index);
-          }
-          print('Cookie: $rawCookie'); // Afficher le cookie dans la console
-
-          // Stocker le cookie sur l'appareil
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          await prefs.setString('cookie', rawCookie);
-        }
+        await extractCookie(response);
         return json.decode(response.body);
       } else {
         switch (response.statusCode) {
@@ -59,6 +47,22 @@ class AuthService {
     }
   }
 
+  Future<void> extractCookie(http.Response response) async {
+    // Extraire le cookie de la réponse
+    String? rawCookie = response.headers['set-cookie'];
+    if (rawCookie != null) {
+      int index = rawCookie.indexOf(';');
+      if (index != -1) {
+        rawCookie = rawCookie.substring(0, index);
+      }
+      print('Cookie: $rawCookie'); // Afficher le cookie dans la console
+
+      // Stocker le cookie sur l'appareil
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('cookie', rawCookie);
+    }
+  }
+
   Future<dynamic> signUp(String email, String password, String firstName, String lastName) async {
     try {
       final response = await http.post(
@@ -74,7 +78,7 @@ class AuthService {
       ).timeout(const Duration(seconds: 3));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        // Traiter la réponse en cas de succès
+        await extractCookie(response);
         return json.decode(response.body);
       } else {
         switch (response.statusCode) {

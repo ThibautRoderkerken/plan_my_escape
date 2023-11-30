@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../view_models/dashboard/dashboard_view_model.dart';
 import '../view_models/sign_up_view_model.dart';
 import '../widgets/custom_action_button.dart';
 import '../widgets/custom_text_field.dart';
+import 'dashboard/dashboard_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -54,9 +56,17 @@ class SignUpScreen extends StatelessWidget {
                   CustomActionButton(
                     label: 'S\'inscrire',
                     onPressed: () {
-                      if (signUpViewModel.validateAndSignUp()) {
-                        // Rediriger vers une autre page après l'inscription réussie
-                      }
+                      signUpViewModel.validateAndSignUp(() {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChangeNotifierProvider(
+                              create: (_) => DashboardViewModel(),
+                              child: DashboardMainScreen(),
+                            ),
+                          ),
+                        );
+                      });
                     },
                   ),
                   if (signUpViewModel.errorMessage != null)
