@@ -22,6 +22,8 @@ dependencies:
   geolocator: ^10.0.0         # Gérer la localisation
   url_launcher: ^6.0.12       # Ouvrir des liens
   http: ^0.13.4               # Requêtes HTTP
+  google_sign_in: ^5.0.4      # Connexion Google
+  firebase_core: ^1.6.0       # Firebase
 
 dev_dependencies:
   flutter_test:

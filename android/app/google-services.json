@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "881963593642",
+    "project_id": "planmyescape",
+    "storage_bucket": "planmyescape.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881963593642:android:d155ff968919ec0cff05d3",
+        "android_client_info": {
+          "package_name": "com.example.plan_my_escape"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRWOY3qjZXz3afXjq7rYxspwzxAY0SE-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
