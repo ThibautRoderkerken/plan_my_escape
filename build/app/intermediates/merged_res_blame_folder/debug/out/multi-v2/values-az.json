@@ -1,27 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.plan_my_escape.app-mergeDebugResources-13:/values-az/values-az.xml",
+            "outputFile": "com.example.plan_my_escape.app-mergeDebugResources-19:/values-az/values-az.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\roder\\.gradle\\caches\\transforms-3\\d12883dde0390e08dd2a1192741cec1b\\transformed\\browser-1.5.0\\res\\values-az\\values-az.xml",
+                    "source": "C:\\Users\\roder\\.gradle\\caches\\transforms-3\\fbd064d4ae61997558452b2064235643\\transformed\\core-1.10.1\\res\\values-az\\values-az.xml",
                     "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,151,255,363",
-                        "endColumns": "95,103,107,102",
-                        "endOffsets": "146,250,358,461"
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,156,258,361,465,566,671,782",
+                        "endColumns": "100,101,102,103,100,104,110,100",
+                        "endOffsets": "151,253,356,460,561,666,777,878"
                     },
                     "to": {
-                        "startLines": "27,28,29,30",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "3028,3124,3228,3336",
-                        "endColumns": "95,103,107,102",
-                        "endOffsets": "3119,3223,3331,3434"
+                        "startLines": "2,3,4,5,6,7,8,31",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,156,258,361,465,566,671,3439",
+                        "endColumns": "100,101,102,103,100,104,110,100",
+                        "endOffsets": "151,253,356,460,561,666,777,3535"
                     }
                 },
                 {
-                    "source": "C:\\Users\\roder\\.gradle\\caches\\transforms-3\\781e5567158e59d38ee2b89930f9808b\\transformed\\jetified-play-services-base-18.1.0\\res\\values-az\\values.xml",
+                    "source": "C:\\Users\\roder\\.gradle\\caches\\transforms-3\\2f422cb30a557b77672c29f82b814c81\\transformed\\jetified-play-services-base-18.1.0\\res\\values-az\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -38,7 +38,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\roder\\.gradle\\caches\\transforms-3\\58aa1384bde170d075503b845cfcf44c\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-az\\values.xml",
+                    "source": "C:\\Users\\roder\\.gradle\\caches\\transforms-3\\64c1f7147f2a7788496ae7fd24eec773\\transformed\\browser-1.5.0\\res\\values-az\\values-az.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,151,255,363",
+                        "endColumns": "95,103,107,102",
+                        "endOffsets": "146,250,358,461"
+                    },
+                    "to": {
+                        "startLines": "27,28,29,30",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "3028,3124,3228,3336",
+                        "endColumns": "95,103,107,102",
+                        "endOffsets": "3119,3223,3331,3434"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\roder\\.gradle\\caches\\transforms-3\\3163d66666aff6fce31f31a68bb19c33\\transformed\\jetified-play-services-basement-18.2.0\\res\\values-az\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -52,23 +69,6 @@
                         "startOffsets": "1794",
                         "endColumns": "161",
                         "endOffsets": "1951"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\roder\\.gradle\\caches\\transforms-3\\c4988ff80110f75080a936fc6f044848\\transformed\\core-1.10.1\\res\\values-az\\values-az.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,156,258,361,465,566,671,782",
-                        "endColumns": "100,101,102,103,100,104,110,100",
-                        "endOffsets": "151,253,356,460,561,666,777,878"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,31",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,156,258,361,465,566,671,3439",
-                        "endColumns": "100,101,102,103,100,104,110,100",
-                        "endOffsets": "151,253,356,460,561,666,777,3535"
                     }
                 }
             ]
