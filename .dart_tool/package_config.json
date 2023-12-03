@@ -98,24 +98,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "firebase_core",
-      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-1.24.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.16"
-    },
-    {
-      "name": "firebase_core_platform_interface",
-      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core_platform_interface-4.8.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "firebase_core_web",
-      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core_web-1.7.3",
-      "packageUri": "lib/",
-      "languageVersion": "2.16"
-    },
-    {
       "name": "flutter",
       "rootUri": "file:///C:/Users/roder/Desktop/flutter_windows_3.13.6-stable/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -200,10 +182,16 @@
       "languageVersion": "2.19"
     },
     {
-      "name": "google_sign_in",
-      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in-5.4.4",
+      "name": "google_identity_services_web",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/google_identity_services_web-0.2.2",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "google_sign_in",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in-6.1.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "google_sign_in_android",
@@ -225,9 +213,9 @@
     },
     {
       "name": "google_sign_in_web",
-      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in_web-0.10.2+1",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in_web-0.12.2+1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.1"
     },
     {
       "name": "http",
@@ -692,7 +680,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-12-01T18:26:54.168286Z",
+  "generated": "2023-12-03T00:21:29.937174Z",
   "generator": "pub",
   "generatorVersion": "3.1.3"
 }

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -95,6 +96,52 @@ class AuthService {
     } catch (e) {
       if (e is! Exception) {
         throw NetworkException('Network error: $e');
+      }
+      rethrow;
+    }
+  }
+
+  Future<void> signInWithGoogle() async {
+    try {
+      print("Tentative de connexion avec Google...");
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      // Afficher dans la console le nom de l'utilisateur
+      print("Utilisateur : ${googleUser?.displayName}");
+
+      // Récupération du token d'authentification
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+      // Afficher dans la console le token d'authentification
+      print("Token : ${googleAuth?.accessToken}");
+
+      if (googleAuth != null && googleAuth.accessToken != null) {
+        // Envoyer le token à votre serveur
+        final response = await http.post(
+          Uri.parse('$baseUrl/api/Auth/google-login'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({'googleToken': googleAuth.accessToken}),
+        ).timeout(const Duration(seconds: 20));
+
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          await extractCookie(response);
+          return json.decode(response.body);
+        } else {
+          switch (response.statusCode) {
+            case 400:
+              throw BadRequestException('Bad request');
+            case 500:
+              throw InternalServerException('Internal server error');
+            default:
+              throw NetworkException('Unknown network error');
+          }
+        }
+      }
+    } on TimeoutException {
+      throw NetworkException('Network timeout');
+    } catch (error) {
+      if (error is! Exception) {
+        throw NetworkException('Network error: $error');
       }
       rethrow;
     }
