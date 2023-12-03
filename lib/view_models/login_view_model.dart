@@ -53,7 +53,7 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   void authenticateWithOAuth() {
-    // Todo: connecter a l'API
+    _authService.signInWithGoogle();
   }
 
   void navigateToSignUp(BuildContext context) {
