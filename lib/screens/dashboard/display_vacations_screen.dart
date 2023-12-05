@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../view_models/dashboard/dashboard_view_model.dart';
 import '../add_activity_screen.dart';
+import '../chat_screen.dart';
 
 
 class DisplayVacationsScreen extends StatefulWidget {
@@ -97,7 +98,10 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                               IconButton(
                                 icon: const Icon(Icons.chat),
                                 onPressed: () {
-                                  // Logique pour accéder au tchat
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const ChatScreen()),
+                                  );
                                 },
                               ),
                               IconButton(

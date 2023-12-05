@@ -22,7 +22,9 @@ dependencies:
   geolocator: ^10.0.0         # Gérer la localisation
   url_launcher: ^6.0.12       # Ouvrir des liens
   http: ^0.13.4               # Requêtes HTTP
-  google_sign_in: ^6.1.6
+  google_sign_in: ^6.1.6      # Connexion Oauth 2.0 avec Google
+  flutter_chat_ui: ^1.6.10    # Gérer l'interface du chat
+  signalr_flutter: ^0.2.0
 
 dev_dependencies:
   flutter_test:
