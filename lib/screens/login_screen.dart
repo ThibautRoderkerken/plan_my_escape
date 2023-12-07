@@ -62,7 +62,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 16),
               CustomOutlinedButton(
                 label: 'S\'authentifier via OAuth2',
-                onPressed: loginViewModel.authenticateWithOAuth,
+                onPressed: () => loginViewModel.authenticateWithOAuth(context),
               ),
               if (loginViewModel.errorMessage != null)
                 Padding(
