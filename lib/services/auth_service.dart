@@ -19,7 +19,7 @@ class AuthService {
         Uri.parse('$baseUrl/api/Auth/login'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'email': email, 'password': password}),
-      ).timeout(const Duration(seconds: 3));
+      ).timeout(const Duration(seconds: 20));
 
       if (response.statusCode == 200) {
         await extractCookie(response);
@@ -76,7 +76,7 @@ class AuthService {
           'lastname': lastName,
           'isActive': true
         }),
-      ).timeout(const Duration(seconds: 3));
+      ).timeout(const Duration(seconds: 20));
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         await extractCookie(response);

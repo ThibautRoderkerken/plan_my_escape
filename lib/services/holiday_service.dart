@@ -31,7 +31,7 @@ class HolidayService {
           'activities': [],
           // Ajoutez d'autres champs si nécessaire
         }),
-      ).timeout(const Duration(seconds: 3));
+      ).timeout(const Duration(seconds: 20));
 
       if (response.statusCode == 200) {
         return json.decode(response.body);
@@ -68,7 +68,7 @@ class HolidayService {
           'Content-Type': 'application/json',
           if (cookie != null) 'Cookie': cookie,
         },
-      ).timeout(const Duration(seconds: 3));
+      ).timeout(const Duration(seconds: 20));
 
       if (response.statusCode == 200) {
         Iterable l = json.decode(response.body);
@@ -126,7 +126,7 @@ class HolidayService {
             'Lastname': member.lastName,
           }).toList()
         }),
-      ).timeout(const Duration(seconds: 3));
+      ).timeout(const Duration(seconds: 20));
 
       if (response.statusCode == 200) {
         return response.body.isEmpty ? null : json.decode(response.body);
@@ -168,7 +168,7 @@ class HolidayService {
           'Content-Type': 'application/json',
           if (cookie != null) 'Cookie': cookie,
         },
-      ).timeout(const Duration(seconds: 3));
+      ).timeout(const Duration(seconds: 20));
 
       if (response.statusCode == 200) {
         return VacationPeriod.fromJson(json.decode(response.body));
@@ -190,6 +190,42 @@ class HolidayService {
       print('Erreur lors de la récupération des détails de la période de vacances: $e');
       print('Stack Trace: $stackTrace'); // Imprimer la pile d'appels
       rethrow; // Relancer l'exception
+    }
+  }
+
+  Future deleteVacationPeriod(int id) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? cookie = prefs.getString('cookie');
+      final response = await http.delete(
+        Uri.parse('$baseUrl/$id'),
+        headers: {
+          'Content-Type': 'application/json',
+          if (cookie != null) 'Cookie': cookie,
+        },
+      ).timeout(const Duration(seconds: 20));
+
+      if (response.statusCode == 200) {
+        return json.decode(response.body);
+      } else {
+        switch (response.statusCode) {
+          case 400:
+            throw BadRequestException('Bad request: ${response.body}');
+          case 404:
+            throw NotFoundException('Resource not found');
+          case 500:
+            throw InternalServerException('Internal server error');
+          default:
+            throw NetworkException('Unknown network error');
+        }
+      }
+    } on TimeoutException {
+      throw NetworkException('Network timeout');
+    } catch (e) {
+      if (e is! Exception) {
+        throw NetworkException('Network error: $e');
+      }
+      rethrow;
     }
   }
 }

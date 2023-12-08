@@ -61,8 +61,13 @@ class DashboardViewModel extends ChangeNotifier {
   }
 
   void removeVacationPeriod(int id) {
-    _vacationPeriods.remove(_vacationPeriods[id]);
-    notifyListeners();
+    try {
+      _holidayService.deleteVacationPeriod(_vacationPeriods[id].vacationIndex);
+      _vacationPeriods.remove(_vacationPeriods[id]);
+      notifyListeners();
+    } catch (e) {
+      print('Erreur lors de la suppression de la période de vacances: $e');
+    }
   }
 
   void removeMember(int vacationIndex, int memberIndex) {

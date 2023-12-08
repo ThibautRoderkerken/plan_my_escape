@@ -23,7 +23,7 @@ class ChatService {
           'Content-Type': 'application/json',
           if (cookie != null) 'Cookie': cookie,
         },
-      ).timeout(const Duration(seconds: 3));
+      ).timeout(const Duration(seconds: 20));
 
       if (response.statusCode == 200) {
         Iterable l = json.decode(response.body);
@@ -52,7 +52,7 @@ class ChatService {
           'Content-Type': 'application/json',
           if (cookie != null) 'Cookie': cookie,
         },
-      ).timeout(const Duration(seconds: 3));
+      ).timeout(const Duration(seconds: 20));
 
       if (response.statusCode == 200) {
         return ChatRoom.fromJson(json.decode(response.body));
@@ -81,7 +81,7 @@ class ChatService {
           if (cookie != null) 'Cookie': cookie,
         },
         body: jsonEncode(message.toJson()),
-      ).timeout(const Duration(seconds: 3));
+      ).timeout(const Duration(seconds: 20));
 
       if (response.statusCode != 200) {
         throw _handleError(response.statusCode, response.body);
