@@ -86,7 +86,7 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                               IconButton(
                                 icon: const Icon(Icons.delete),
                                 onPressed: () {
-                                  // Logique pour supprimer
+                                  dashboardViewModel.removeVacationPeriod(index);
                                 },
                               ),
                               IconButton(

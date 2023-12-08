@@ -60,8 +60,8 @@ class DashboardViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeVacationPeriod(String id) {
-    _vacationPeriods.removeWhere((period) => period.destination == id);
+  void removeVacationPeriod(int id) {
+    _vacationPeriods.remove(_vacationPeriods[id]);
     notifyListeners();
   }
 
