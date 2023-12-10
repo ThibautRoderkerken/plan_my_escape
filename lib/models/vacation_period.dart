@@ -4,9 +4,9 @@ import 'activity.dart';
 import 'member.dart';
 
 class VacationPeriod {
-  final DateTime startDate;
-  final DateTime endDate;
-  final String destination;
+  DateTime startDate;
+  DateTime endDate;
+  String destination;
   final List<Member> members;
   final List<Activity> activities;
   final WeatherInfo weatherInfo;

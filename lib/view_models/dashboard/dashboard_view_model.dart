@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plan_my_escape/screens/update_vacation_screen.dart';
 import 'package:plan_my_escape/services/holiday_service.dart';
+import 'package:plan_my_escape/view_models/update_vacation_view_model.dart';
+import 'package:provider/provider.dart';
 import '../../models/activity.dart';
 import '../../models/member.dart';
 import '../../models/vacation_period.dart';
@@ -130,5 +133,30 @@ class DashboardViewModel extends ChangeNotifier {
       print('Erreur lors de la mise à jour de la période de vacances: $e');
     }
     notifyListeners();
+  }
+
+  void updateVacationPeriod(int index, BuildContext context) {
+    // Récupérer les 3 informations de la période de vacances
+    String destination = _vacationPeriods[index].destination;
+    DateTime startDate = _vacationPeriods[index].startDate;
+    DateTime endDate = _vacationPeriods[index].endDate;
+
+    // Afficher les 3 informations dans la console
+    print('Destination: $destination');
+    print('Date de début: $startDate');
+    print('Date de fin: $endDate');
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ChangeNotifierProvider(
+          create: (_) => UpdateVacationViewModel(dashboardViewModel: this),
+          child: UpdateVacationScreen(vacationIndex: index, destination: destination, startDate: startDate, endDate: endDate),
+        ),
+      ),
+    );
+  }
+
+  List<VacationPeriod> getVacationPeriod() {
+    return _vacationPeriods;
   }
 }

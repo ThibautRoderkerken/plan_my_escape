@@ -4,12 +4,16 @@ class CustomDateSelector extends StatefulWidget {
   final String label;
   final Function(DateTimeRange) onDateSelected;
   final String? errorMessage;
+  final DateTime? initialStartDate;
+  final DateTime? initialEndDate;
 
   const CustomDateSelector({
     Key? key,
     required this.label,
     required this.onDateSelected,
     this.errorMessage,
+    this.initialStartDate,
+    this.initialEndDate,
   }) : super(key: key);
 
   @override
@@ -19,11 +23,27 @@ class CustomDateSelector extends StatefulWidget {
 class CustomDateSelectorState extends State<CustomDateSelector> {
   DateTimeRange? _selectedDateRange;
 
+  @override
+  void initState() {
+    super.initState();
+    _initializeDateRange();
+  }
+
+  void _initializeDateRange() {
+    if (widget.initialStartDate != null && widget.initialEndDate != null) {
+      _selectedDateRange = DateTimeRange(
+        start: widget.initialStartDate!,
+        end: widget.initialEndDate!,
+      );
+    }
+  }
+
   Future<void> _selectDateRange(BuildContext context) async {
     DateTimeRange? pickedRange = await showDateRangePicker(
       context: context,
       firstDate: DateTime(2000),
       lastDate: DateTime(2101),
+      initialDateRange: _selectedDateRange,
     );
 
     if (pickedRange != null) {

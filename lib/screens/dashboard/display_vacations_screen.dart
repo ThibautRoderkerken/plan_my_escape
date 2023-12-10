@@ -80,7 +80,7 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                               IconButton(
                                 icon: const Icon(Icons.edit),
                                 onPressed: () {
-                                  // Logique pour éditer
+                                  dashboardViewModel.updateVacationPeriod(index, context);
                                 },
                               ),
                               IconButton(

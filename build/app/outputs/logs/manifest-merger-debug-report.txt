@@ -122,6 +122,7 @@ MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\roder\.gradle\ca
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\c25c87d6535143ba2dd3f4e4c4bd2e08\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\a76fcf37e03fc8de543937f7bae197a2\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\roder\.gradle\caches\transforms-3\7eded9c97e8dc61f428efcdd8849d9a2\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.multidex:multidex:2.0.1] C:\Users\roder\.gradle\caches\transforms-3\c9c68852c4bfb032b727bfafba5740b4\transformed\multidex-2.0.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.test.espresso:espresso-idling-resource:3.2.0] C:\Users\roder\.gradle\caches\transforms-3\39346e4f373d68ebaee8a94e346d83ea\transformed\espresso-idling-resource-3.2.0\AndroidManifest.xml:17:1-24:12
 INJECTED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\src\debug\AndroidManifest.xml:1:1-7:12
@@ -274,6 +275,8 @@ MERGED from [androidx.print:print:1.0.0] C:\Users\roder\.gradle\caches\transform
 MERGED from [androidx.print:print:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\a76fcf37e03fc8de543937f7bae197a2\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\roder\.gradle\caches\transforms-3\7eded9c97e8dc61f428efcdd8849d9a2\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\roder\.gradle\caches\transforms-3\7eded9c97e8dc61f428efcdd8849d9a2\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.multidex:multidex:2.0.1] C:\Users\roder\.gradle\caches\transforms-3\c9c68852c4bfb032b727bfafba5740b4\transformed\multidex-2.0.1\AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.1] C:\Users\roder\.gradle\caches\transforms-3\c9c68852c4bfb032b727bfafba5740b4\transformed\multidex-2.0.1\AndroidManifest.xml:20:5-43
 MERGED from [androidx.test.espresso:espresso-idling-resource:3.2.0] C:\Users\roder\.gradle\caches\transforms-3\39346e4f373d68ebaee8a94e346d83ea\transformed\espresso-idling-resource-3.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.test.espresso:espresso-idling-resource:3.2.0] C:\Users\roder\.gradle\caches\transforms-3\39346e4f373d68ebaee8a94e346d83ea\transformed\espresso-idling-resource-3.2.0\AndroidManifest.xml:20:5-22:41
 INJECTED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\src\debug\AndroidManifest.xml

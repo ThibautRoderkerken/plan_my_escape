@@ -9,8 +9,8 @@ class Member {
   static Member fromJson(Map<String, dynamic> memberJson) {
     return Member(
       id: memberJson['id'].toString(),
-      firstName: memberJson['firstname'],
-      lastName: memberJson['lastname'],
+      firstName: memberJson['firstname'] ?? memberJson['email'],
+      lastName: memberJson['lastname'] ?? '',
       mail: memberJson['email'],
     );
   }

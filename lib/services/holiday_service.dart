@@ -122,8 +122,8 @@ class HolidayService {
           }).toList(),
           'Users': vacation.members.map((member) => {
             'Email': member.mail,
-            'Firstname': member.firstName,
-            'Lastname': member.lastName,
+            'Firstname': member.firstName ?? '',
+            'Lastname': member.lastName ?? '',
           }).toList()
         }),
       ).timeout(const Duration(seconds: 20));
