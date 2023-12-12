@@ -35,6 +35,7 @@ class CustomDateSelectorState extends State<CustomDateSelector> {
         start: widget.initialStartDate!,
         end: widget.initialEndDate!,
       );
+      widget.onDateSelected(_selectedDateRange!);
     }
   }
 

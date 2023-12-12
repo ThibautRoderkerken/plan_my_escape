@@ -54,16 +54,30 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   void authenticateWithOAuth(BuildContext context) async {
-    _authService.signInWithGoogle();
-    // Navigator.pushReplacement(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => ChangeNotifierProvider(
-    //       create: (_) => DashboardViewModel(),
-    //       child: DashboardMainScreen(),
-    //     ),
-    //   ),
-    // );
+    try {
+      await _authService.signInWithGoogle();
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider(
+            create: (_) => DashboardViewModel(),
+            child: DashboardMainScreen(),
+          ),
+        ),
+      );
+    } on BadRequestException catch (_) {
+      errorMessage = "Requête invalide";
+    } on InvalidCredentialsException  catch (_) {
+      errorMessage = "Login ou mot de passe incorrect";
+    } on NotFoundException catch (_) {
+      errorMessage = "Ressource non trouvée";
+    } on InternalServerException catch (_) {
+      errorMessage = "Erreur interne du serveur";
+    } on NetworkException catch (_) {
+      errorMessage = "Erreur réseau";
+    } catch (e) {
+      errorMessage = "Erreur inconnue";
+    }
   }
 
   void navigateToSignUp(BuildContext context) {

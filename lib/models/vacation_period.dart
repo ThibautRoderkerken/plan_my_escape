@@ -22,7 +22,6 @@ class VacationPeriod {
   });
 
   static VacationPeriod fromJson(Map<String, dynamic> json) {
-    print(json);
     List<Member> membersList = [];
     if (json['users'] != null) {
       membersList = (json['users'] as List)

@@ -224,7 +224,6 @@ layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
 mipmap ic_launcher
-raw firebase_common_keep
 string call_notification_answer_action
 string call_notification_answer_video_action
 string call_notification_decline_action
@@ -254,6 +253,7 @@ string copy_toast_msg
 string fallback_menu_item_copy_link
 string fallback_menu_item_open_in_browser
 string fallback_menu_item_share_link
+string google_app_id
 string status_bar_notification_info_overflow
 style LaunchTheme
 style NormalTheme
@@ -278,5 +278,4 @@ styleable SplitPairFilter primaryActivityName secondaryActivityAction secondaryA
 styleable SplitPairRule clearTop finishPrimaryWithSecondary finishSecondaryWithPrimary splitLayoutDirection splitMinSmallestWidth splitMinWidth splitRatio
 styleable SplitPlaceholderRule placeholderActivityName splitLayoutDirection splitMinSmallestWidth splitMinWidth splitRatio
 xml flutter_share_file_paths
-xml ga_ad_services_config
 xml image_share_filepaths

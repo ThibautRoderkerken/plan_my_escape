@@ -17,18 +17,20 @@ class HolidayService {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? cookie = prefs.getString('cookie');
-
+      // Afficher dans la console si le cookie est présent
+      print('Cookie: $cookie');
       final response = await http.post(
         Uri.parse(baseUrl),
         headers: {
           'Content-Type': 'application/json',
-          if (cookie != null) 'Cookie': cookie, // Ajout du cookie dans les en-têtes
+          if (cookie != null) 'Cookie': cookie,
         },
         body: jsonEncode({
           'destination': vacation.destination,
           'start_at': vacation.startDate.toIso8601String().split('T')[0],
           'end_at': vacation.endDate.toIso8601String().split('T')[0],
           'activities': [],
+          'users': [],
           // Ajoutez d'autres champs si nécessaire
         }),
       ).timeout(const Duration(seconds: 20));
@@ -96,8 +98,6 @@ class HolidayService {
   }
 
   Future<dynamic> updateVacationPeriod(VacationPeriod vacation) async {
-    // Afficher la liste des membres dans la console
-    print('Liste des membres: ${vacation.members}');
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? cookie = prefs.getString('cookie');
@@ -187,8 +187,6 @@ class HolidayService {
     } on TimeoutException {
       throw NetworkException('Network timeout');
     } catch (e, stackTrace) { // Ajout de la capture de la pile d'appels
-      print('Erreur lors de la récupération des détails de la période de vacances: $e');
-      print('Stack Trace: $stackTrace'); // Imprimer la pile d'appels
       rethrow; // Relancer l'exception
     }
   }

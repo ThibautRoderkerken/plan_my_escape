@@ -55,8 +55,11 @@ class AuthService {
       int index = rawCookie.indexOf(';');
       if (index != -1) {
         rawCookie = rawCookie.substring(0, index);
+        // Si le cookie est présent et commence par jwt_token=, on supprimer le texte jwt_token=
+        if (rawCookie.startsWith('jwt_token=')) {
+          // rawCookie = rawCookie.substring(10);
+        }
       }
-      print('Cookie: $rawCookie'); // Afficher le cookie dans la console
 
       // Stocker le cookie sur l'appareil
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -64,7 +67,8 @@ class AuthService {
     }
   }
 
-  Future<dynamic> signUp(String email, String password, String firstName, String lastName) async {
+  Future<dynamic> signUp(String email, String password, String firstName,
+      String lastName) async {
     try {
       final response = await http.post(
         Uri.parse('$baseUrl/api/Auth/register'),
@@ -101,49 +105,47 @@ class AuthService {
     }
   }
 
-  Future<void> signInWithGoogle() async {
+  Future<dynamic> signInWithGoogle() async {
+    final GoogleSignIn _googleSignIn = GoogleSignIn(
+      scopes: [
+        'email',
+        'profile',
+        'openid',
+      ],
+      serverClientId: "384377264436-6bijb96dshv8u20finj55rsvkq1bujvh.apps.googleusercontent.com",
+    );
+
     try {
-      print("Tentative de connexion avec Google...");
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAccount? account = await _googleSignIn.signIn();
+      if (account != null) {
+        final GoogleSignInAuthentication googleAuth = await account.authentication;
 
-      // Afficher dans la console le nom de l'utilisateur
-      print("Utilisateur : ${googleUser?.displayName}");
-
-      // Récupération du token d'authentification
-      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
-      // Afficher dans la console le token d'authentification
-      print("Token : ${googleAuth?.accessToken}");
-
-      if (googleAuth != null && googleAuth.accessToken != null) {
-        // Envoyer le token à votre serveur
         final response = await http.post(
           Uri.parse('$baseUrl/api/Auth/google-login'),
           headers: {'Content-Type': 'application/json'},
-          body: jsonEncode({'googleToken': googleAuth.accessToken}),
+          body: jsonEncode({
+            'idToken': googleAuth.idToken,
+            'firstname': account.displayName?.split(' ').first,
+            'lastname': account.displayName?.split(' ').last,
+            'name': account.displayName,
+            'email': account.email,
+            'photoUrl': account.photoUrl ?? '',
+          }),
         ).timeout(const Duration(seconds: 20));
 
-        if (response.statusCode == 200 || response.statusCode == 201) {
+        if (response.statusCode == 200) {
           await extractCookie(response);
           return json.decode(response.body);
         } else {
-          switch (response.statusCode) {
-            case 400:
-              throw BadRequestException('Bad request');
-            case 500:
-              throw InternalServerException('Internal server error');
-            default:
-              throw NetworkException('Unknown network error');
-          }
+          throw NetworkException('Erreur de connexion Google: ${response.statusCode} ${response.body}');
         }
+      } else {
+        print('Connexion annulée par l\'utilisateur');
       }
-    } on TimeoutException {
-      throw NetworkException('Network timeout');
     } catch (error) {
-      if (error is! Exception) {
-        throw NetworkException('Network error: $error');
-      }
-      rethrow;
+      print('Erreur de connexion Google: $error');
+      // Gérer les exceptions ici
     }
   }
+
 }

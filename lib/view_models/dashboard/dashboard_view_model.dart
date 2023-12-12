@@ -140,11 +140,6 @@ class DashboardViewModel extends ChangeNotifier {
     String destination = _vacationPeriods[index].destination;
     DateTime startDate = _vacationPeriods[index].startDate;
     DateTime endDate = _vacationPeriods[index].endDate;
-
-    // Afficher les 3 informations dans la console
-    print('Destination: $destination');
-    print('Date de début: $startDate');
-    print('Date de fin: $endDate');
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(

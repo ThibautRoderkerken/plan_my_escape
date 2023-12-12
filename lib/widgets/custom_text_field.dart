@@ -18,11 +18,6 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('label: $label');
-    print('isObscure: $isObscure');
-    print('keyboardType: $keyboardType');
-    print('controller: $controller');
-    print('validator: $validator');
     return Material(
       child: TextFormField(
         controller: controller,

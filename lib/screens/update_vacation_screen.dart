@@ -18,7 +18,7 @@ class UpdateVacationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final updateVacationViewModel =
-        Provider.of<UpdateVacationViewModel>(context, listen: false);
+        Provider.of<UpdateVacationViewModel>(context);
 
     return Scaffold(
         appBar: AppBar(
@@ -44,12 +44,15 @@ class UpdateVacationScreen extends StatelessWidget {
                   controller: updateVacationViewModel.destinationController = TextEditingController(text: destination),
                 ),
                 const SizedBox(height: 16),
-                CustomDateSelector(
-                  label: 'Sélectionnez la période',
-                  onDateSelected: updateVacationViewModel.onDateSelected,
-                  errorMessage: updateVacationViewModel.dateErrorMessage,
-                  initialStartDate: startDate,
-                  initialEndDate: endDate,
+                Consumer<UpdateVacationViewModel>(
+                  builder: (context, model, child) {
+                    return CustomDateSelector(
+                      label: 'Sélectionnez la période',
+                      onDateSelected: model.onDateSelected,
+                      initialStartDate: startDate,
+                      initialEndDate: endDate,
+                    );
+                  },
                 ),
                 const SizedBox(height: 16),
                 CustomActionButton(

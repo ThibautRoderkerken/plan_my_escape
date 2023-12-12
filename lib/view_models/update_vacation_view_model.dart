@@ -9,7 +9,7 @@ import '../screens/dashboard/dashboard_screen.dart';
 
 class UpdateVacationViewModel extends ChangeNotifier {
   final DashboardViewModel dashboardViewModel;
-  late final TextEditingController destinationController;
+  TextEditingController destinationController = TextEditingController();
   final HolidayService holidayService = HolidayService();
   DateTime? startDate;
   DateTime? endDate;
@@ -20,21 +20,18 @@ class UpdateVacationViewModel extends ChangeNotifier {
     if (startDate == null || endDate == null) {
       return 'Les dates de début et de fin ne peuvent pas être vides';
     }
+    notifyListeners();
     return null;
   }
 
   void onDateSelected(DateTimeRange range) {
     startDate = range.start;
     endDate = range.end;
+    dateErrorMessage;
     notifyListeners();
   }
 
   bool validateAndUpdateVacation(int vacationIndex, BuildContext context) {
-    print("validateAndUpdateVacation");
-    // Afficher toutes les informations de la période de vacances
-    print("startDate: $startDate");
-    print("endDate: $endDate");
-    print("destination: ${destinationController.text}");
     if (startDate != null && endDate != null) {
       VacationPeriod updatedVacationPeriod = dashboardViewModel.getVacationPeriod()[vacationIndex];
       updatedVacationPeriod.startDate = startDate!;
