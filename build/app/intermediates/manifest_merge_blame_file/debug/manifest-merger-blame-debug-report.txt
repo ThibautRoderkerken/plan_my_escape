@@ -114,59 +114,59 @@
 85-->[:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-65
 86        </provider>
 87
-88        <uses-library
-88-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
-89            android:name="androidx.window.extensions"
-89-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
-90            android:required="false" />
-90-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
-91        <uses-library
-91-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
-92            android:name="androidx.window.sidecar"
-92-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
-93            android:required="false" />
-93-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
-94
-95        <activity
-95-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:23:9-27:75
-96            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-96-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:24:13-93
-97            android:excludeFromRecents="true"
-97-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:25:13-46
-98            android:exported="false"
-98-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:26:13-37
-99            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-99-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:27:13-72
-100        <!--
-101            Service handling Google Sign-In user revocation. For apps that do not integrate with
-102            Google Sign-In, this service will never be started.
-103        -->
-104        <service
-104-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:33:9-37:51
-105            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-105-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:34:13-89
-106            android:exported="true"
-106-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:35:13-36
-107            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-107-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:36:13-107
-108            android:visibleToInstantApps="true" />
-108-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:37:13-48
-109
-110        <activity
-110-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\15e4bf46389977a2435d7243a1688773\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
-111            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-111-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\15e4bf46389977a2435d7243a1688773\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:19-85
-112            android:exported="false"
-112-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\15e4bf46389977a2435d7243a1688773\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:22:19-43
-113            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-113-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\15e4bf46389977a2435d7243a1688773\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:21:19-78
-114
-115        <meta-data
-115-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\roder\.gradle\caches\transforms-3\6405efbd814f32a5618498394b421fcf\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
-116            android:name="com.google.android.gms.version"
-116-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\roder\.gradle\caches\transforms-3\6405efbd814f32a5618498394b421fcf\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
-117            android:value="@integer/google_play_services_version" />
-117-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\roder\.gradle\caches\transforms-3\6405efbd814f32a5618498394b421fcf\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
+88        <activity
+88-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:23:9-27:75
+89            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+89-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:24:13-93
+90            android:excludeFromRecents="true"
+90-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:25:13-46
+91            android:exported="false"
+91-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:26:13-37
+92            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+92-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:27:13-72
+93        <!--
+94            Service handling Google Sign-In user revocation. For apps that do not integrate with
+95            Google Sign-In, this service will never be started.
+96        -->
+97        <service
+97-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:33:9-37:51
+98            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+98-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:34:13-89
+99            android:exported="true"
+99-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:35:13-36
+100            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+100-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:36:13-107
+101            android:visibleToInstantApps="true" />
+101-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:37:13-48
+102
+103        <activity
+103-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\15e4bf46389977a2435d7243a1688773\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+104            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+104-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\15e4bf46389977a2435d7243a1688773\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+105            android:exported="false"
+105-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\15e4bf46389977a2435d7243a1688773\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+106            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+106-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\roder\.gradle\caches\transforms-3\15e4bf46389977a2435d7243a1688773\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+107
+108        <meta-data
+108-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\roder\.gradle\caches\transforms-3\6405efbd814f32a5618498394b421fcf\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:21:9-23:69
+109            android:name="com.google.android.gms.version"
+109-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\roder\.gradle\caches\transforms-3\6405efbd814f32a5618498394b421fcf\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
+110            android:value="@integer/google_play_services_version" />
+110-->[com.google.android.gms:play-services-basement:18.2.0] C:\Users\roder\.gradle\caches\transforms-3\6405efbd814f32a5618498394b421fcf\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
+111
+112        <uses-library
+112-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+113            android:name="androidx.window.extensions"
+113-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+114            android:required="false" />
+114-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+115        <uses-library
+115-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+116            android:name="androidx.window.sidecar"
+116-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+117            android:required="false" />
+117-->[androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
 118    </application>
 119
 120</manifest>

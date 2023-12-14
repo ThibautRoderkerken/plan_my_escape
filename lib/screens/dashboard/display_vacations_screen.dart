@@ -4,6 +4,7 @@ import 'package:plan_my_escape/screens/add_member_screen.dart';
 import 'package:plan_my_escape/screens/calendar/activity_planner_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../view_models/chat_view_model.dart';
 import '../../view_models/dashboard/dashboard_view_model.dart';
 import '../add_activity_screen.dart';
 import '../chat_screen.dart';
@@ -100,7 +101,12 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                                 onPressed: () {
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => const ChatScreen()),
+                                    MaterialPageRoute(
+                                        builder: (context) => ChangeNotifierProvider.value(
+                                          value: ChatViewModel(vacationIndex: vacation.vacationIndex, dashboardViewModel: dashboardViewModel),
+                                          child: const ChatScreen(),
+                                        ),
+                                    ),
                                   );
                                 },
                               ),

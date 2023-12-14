@@ -7,8 +7,6 @@ MERGED from [:url_launcher_android] C:\Users\roder\AndroidStudioProjects\plan_my
 MERGED from [:url_launcher_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-14:19
 MERGED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-19:19
 MERGED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-19:19
-MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
-MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
 MERGED from [com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:22:5-38:19
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\roder\.gradle\caches\transforms-3\28cf5164ff00ad3833c123a54cbdbe9b\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:7:5-20
@@ -21,6 +19,8 @@ MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\roder\.
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\roder\.gradle\caches\transforms-3\e5904c91ffc2b1d1509d28281c5d5aec\transformed\jetified-play-services-tasks-18.0.2\AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-basement:18.2.0] C:\Users\roder\.gradle\caches\transforms-3\6405efbd814f32a5618498394b421fcf\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:20:5-24:19
 MERGED from [com.google.android.gms:play-services-basement:18.2.0] C:\Users\roder\.gradle\caches\transforms-3\6405efbd814f32a5618498394b421fcf\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:20:5-24:19
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.core:core:1.10.1] C:\Users\roder\.gradle\caches\transforms-3\fff4c8fd1215e4b6652eefcd8da07c8f\transformed\core-1.10.1\AndroidManifest.xml:28:5-89
 MERGED from [androidx.core:core:1.10.1] C:\Users\roder\.gradle\caches\transforms-3\fff4c8fd1215e4b6652eefcd8da07c8f\transformed\core-1.10.1\AndroidManifest.xml:28:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\roder\.gradle\caches\transforms-3\6d4aa54b9d6b6121f5e19c0838aa9f80\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
@@ -38,13 +38,11 @@ MERGED from C:\Users\roder\AndroidStudioProjects\plan_my_escape\android\app\src\
 MERGED from [:shared_preferences_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:geolocator_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
 MERGED from [:integration_test] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\integration_test\intermediates\merged_manifest\debug\AndroidManifest.xml:7:1-14:12
-MERGED from [:signalr_flutter] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\signalr_flutter\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:url_launcher_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-16:12
 MERGED from [:path_provider_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-21:12
 MERGED from [:google_sign_in_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\google_sign_in_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\6816b281275ee09ad14ee376ea97a5b2\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
-MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.browser:browser:1.5.0] C:\Users\roder\.gradle\caches\transforms-3\6a4b0bd60eaf408ea34d20615d54d049\transformed\browser-1.5.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:17:1-40:12
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\roder\.gradle\caches\transforms-3\28cf5164ff00ad3833c123a54cbdbe9b\transformed\jetified-play-services-location-21.0.1\AndroidManifest.xml:2:1-9:12
@@ -58,6 +56,7 @@ MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\roder\.gradle\caches\tra
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\6b84f4e9644e0ffd04c62dede0b706ba\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\4a7c3ab3b7f46951e0e439ae4449ab56\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\c4700bb1116b99fe51803f083ab9e628\transformed\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\c4eaa3c18c52339d8c312a25fa62194e\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.10.1] C:\Users\roder\.gradle\caches\transforms-3\fff4c8fd1215e4b6652eefcd8da07c8f\transformed\core-1.10.1\AndroidManifest.xml:17:1-30:12
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\roder\.gradle\caches\transforms-3\e93eb4cf39764e1cd14d26ef0e3fbf76\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
@@ -111,8 +110,6 @@ MERGED from [:geolocator_android] C:\Users\roder\AndroidStudioProjects\plan_my_e
 MERGED from [:geolocator_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:integration_test] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\integration_test\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-12:41
 MERGED from [:integration_test] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\integration_test\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-12:41
-MERGED from [:signalr_flutter] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\signalr_flutter\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:signalr_flutter] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\signalr_flutter\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:url_launcher_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:url_launcher_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
@@ -123,8 +120,6 @@ MERGED from [:google_sign_in_android] C:\Users\roder\AndroidStudioProjects\plan_
 MERGED from [:google_sign_in_android] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\google_sign_in_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\6816b281275ee09ad14ee376ea97a5b2\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\6816b281275ee09ad14ee376ea97a5b2\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
-MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.browser:browser:1.5.0] C:\Users\roder\.gradle\caches\transforms-3\6a4b0bd60eaf408ea34d20615d54d049\transformed\browser-1.5.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.browser:browser:1.5.0] C:\Users\roder\.gradle\caches\transforms-3\6a4b0bd60eaf408ea34d20615d54d049\transformed\browser-1.5.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:20:5-44
@@ -151,6 +146,8 @@ MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\roder\.gradle\caches\t
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\4a7c3ab3b7f46951e0e439ae4449ab56\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\c4700bb1116b99fe51803f083ab9e628\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\c4700bb1116b99fe51803f083ab9e628\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\c4eaa3c18c52339d8c312a25fa62194e\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\roder\.gradle\caches\transforms-3\c4eaa3c18c52339d8c312a25fa62194e\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.10.1] C:\Users\roder\.gradle\caches\transforms-3\fff4c8fd1215e4b6652eefcd8da07c8f\transformed\core-1.10.1\AndroidManifest.xml:20:5-44
@@ -235,18 +232,6 @@ ADDED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\sh
 		ADDED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-65
 	android:name
 		ADDED from [:share] C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
-uses-library#androidx.window.extensions
-ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
-	android:required
-		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
-	android:name
-		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
-uses-library#androidx.window.sidecar
-ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
-	android:required
-		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
-	android:name
-		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
 activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
 ADDED from [com.google.android.gms:play-services-auth:20.7.0] C:\Users\roder\.gradle\caches\transforms-3\cbf79a97a537ffb552a36138dd985c73\transformed\jetified-play-services-auth-20.7.0\AndroidManifest.xml:23:9-27:75
 	android:excludeFromRecents
@@ -281,6 +266,18 @@ ADDED from [com.google.android.gms:play-services-basement:18.2.0] C:\Users\roder
 		ADDED from [com.google.android.gms:play-services-basement:18.2.0] C:\Users\roder\.gradle\caches\transforms-3\6405efbd814f32a5618498394b421fcf\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:23:13-66
 	android:name
 		ADDED from [com.google.android.gms:play-services-basement:18.2.0] C:\Users\roder\.gradle\caches\transforms-3\6405efbd814f32a5618498394b421fcf\transformed\jetified-play-services-basement-18.2.0\AndroidManifest.xml:22:13-58
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] C:\Users\roder\.gradle\caches\transforms-3\244c702ad4b722834a9a276d4d8ff38e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
 permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.10.1] C:\Users\roder\.gradle\caches\transforms-3\fff4c8fd1215e4b6652eefcd8da07c8f\transformed\core-1.10.1\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel

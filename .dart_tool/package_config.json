@@ -195,7 +195,7 @@
     },
     {
       "name": "geolocator_android",
-      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator_android-4.4.0",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator_android-4.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
@@ -348,6 +348,12 @@
       "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/material_color_utilities-0.5.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "message_pack_dart",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/message_pack_dart-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "meta",
@@ -554,8 +560,8 @@
       "languageVersion": "2.17"
     },
     {
-      "name": "signalr_flutter",
-      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/signalr_flutter-0.2.0",
+      "name": "signalr_netcore",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/signalr_netcore-1.3.6",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -584,10 +590,16 @@
       "languageVersion": "2.18"
     },
     {
-      "name": "sprintf",
-      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/sprintf-7.0.0",
+      "name": "sse",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/sse-4.1.2",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "sse_channel",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/sse_channel-0.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "stack_trace",
@@ -636,6 +648,12 @@
       "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/test_core-0.5.3",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "tuple",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/tuple-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
     },
     {
       "name": "typed_data",
@@ -693,9 +711,9 @@
     },
     {
       "name": "uuid",
-      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/uuid-4.2.1",
+      "rootUri": "file:///C:/Users/roder/AppData/Local/Pub/Cache/hosted/pub.dev/uuid-3.0.7",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.12"
     },
     {
       "name": "vector_math",
@@ -770,7 +788,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-12-11T13:11:28.190379Z",
+  "generated": "2023-12-14T08:48:25.928239Z",
   "generator": "pub",
   "generatorVersion": "3.1.3"
 }

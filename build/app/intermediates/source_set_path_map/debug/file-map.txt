@@ -21,5 +21,4 @@ com.example.plan_my_escape.app-packaged_res-19 C:\Users\roder\AndroidStudioProje
 com.example.plan_my_escape.app-packaged_res-20 C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\path_provider_android\intermediates\packaged_res\debug
 com.example.plan_my_escape.app-packaged_res-21 C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\share\intermediates\packaged_res\debug
 com.example.plan_my_escape.app-packaged_res-22 C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\shared_preferences_android\intermediates\packaged_res\debug
-com.example.plan_my_escape.app-packaged_res-23 C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\signalr_flutter\intermediates\packaged_res\debug
-com.example.plan_my_escape.app-packaged_res-24 C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\packaged_res\debug
+com.example.plan_my_escape.app-packaged_res-23 C:\Users\roder\AndroidStudioProjects\plan_my_escape\build\url_launcher_android\intermediates\packaged_res\debug
