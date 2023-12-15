@@ -53,7 +53,7 @@ class ChatScreenState extends State<ChatScreen> {
                     id: const Uuid().v4(),
                     text: chatMessage.text,
                   );
-                }).toList();
+                }).toList().reversed.toList();
 
                 return Chat(
                   messages: _messages,

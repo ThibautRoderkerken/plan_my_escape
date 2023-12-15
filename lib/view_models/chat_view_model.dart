@@ -28,9 +28,6 @@ class ChatViewModel with ChangeNotifier {
 
     _hubConnection = HubConnectionBuilder().withUrl(url).withAutomaticReconnect().build();
 
-
-
-
     try {
       await _hubConnection.start();
       _hubConnection.on('SendMessage', (message) {
