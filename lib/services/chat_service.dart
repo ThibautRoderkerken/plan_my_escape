@@ -42,12 +42,10 @@ class ChatService {
   }
 
   Future<ChatRoom> getChatRoomDetails(int roomId) async {
-    print("getChatRoomDetails");
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? cookie = prefs.getString('cookie');
 
-      print("getChatRoomDetails 2");
       final response = await http.get(
         Uri.parse('$baseUrl/$roomId'),
         headers: {
@@ -55,21 +53,15 @@ class ChatService {
           if (cookie != null) 'Cookie': cookie,
         },
       ).timeout(const Duration(seconds: 20));
-      print("getChatRoomDetails 3");
       if (response.statusCode == 200) {
-        print("getChatRoomDetails 4");
         return ChatRoom.fromJson(json.decode(response.body));
       } else {
-        print("getChatRoomDetails 5");
         throw _handleError(response.statusCode, response.body);
       }
     } on TimeoutException {
-      print("getChatRoomDetails 6");
       throw NetworkException('Network timeout');
     } catch (e) {
-      print("getChatRoomDetails 7");
       if (e is! Exception) {
-        print("getChatRoomDetails 8");
         throw NetworkException('Network error: $e');
       }
       rethrow;

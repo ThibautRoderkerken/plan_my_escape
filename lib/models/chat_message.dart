@@ -16,7 +16,6 @@ class ChatMessage {
   });
 
   factory ChatMessage.fromJson(Map<String, dynamic> json) {
-    print("ChatMessage.fromJson");
     ChatMessage chatMessage = ChatMessage(
       id: json['id'],
       // userId est en entier dans owner['id']
@@ -29,7 +28,6 @@ class ChatMessage {
           : null,
     );
 
-    print("ChatMessage.fromJson 2");
     return chatMessage;
   }
 

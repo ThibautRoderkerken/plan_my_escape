@@ -68,9 +68,6 @@ class ChatViewModel with ChangeNotifier {
   Future<void> fetchChatRoomDetails(int roomId) async {
     try {
       currentChatRoom = await _chatService.getChatRoomDetails(roomId);
-      // Afficher dans la console le nombre de messages récupérés
-      print(
-          'Nombre de messages récupérés : ${currentChatRoom!.messages.length}');
       notifyListeners();
     } catch (e) {
       print(e);

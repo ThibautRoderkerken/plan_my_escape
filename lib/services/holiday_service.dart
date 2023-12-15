@@ -18,7 +18,6 @@ class HolidayService {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? cookie = prefs.getString('cookie');
       // Afficher dans la console si le cookie est présent
-      print('Cookie: $cookie');
       final response = await http.post(
         Uri.parse(baseUrl),
         headers: {
