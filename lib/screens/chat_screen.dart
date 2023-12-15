@@ -5,10 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
+import '../models/chat_message.dart';
 import '../view_models/chat_view_model.dart';
 
 class ChatScreen extends StatefulWidget {
-  final Future<String> userID = SharedPreferences.getInstance().then((prefs) => prefs.getString('userID') ?? '');
   ChatScreen({super.key});
 
   @override
@@ -17,17 +17,18 @@ class ChatScreen extends StatefulWidget {
 
 class ChatScreenState extends State<ChatScreen> {
   List<types.Message> _messages = [];
-  late final types.User _user; // Déclare _user comme late
+  late final Future<types.User> _userFuture;
 
   @override
   void initState() {
     super.initState();
-    // Une fois que userId est disponible, initialisez _user
-    widget.userID.then((userId) {
-      setState(() {
-        _user = types.User(id: userId);
-      });
-    });
+    _userFuture = _getUser();
+  }
+
+  Future<types.User> _getUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    final userId = prefs.getString('userID') ?? '';
+    return types.User(id: userId);
   }
 
   @override
@@ -36,43 +37,49 @@ class ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: const Text('Chat'),
       ),
-      body: Consumer<ChatViewModel>(
-        builder: (context, viewModel, child) {
-          // Mise à jour des messages lorsque notifyListeners est appelé dans le ViewModel
-          _messages = viewModel.messages.map((chatMessage) {
-            return types.TextMessage(
-              author: chatMessage.userId.toString() == _user.id
-                  ? _user
-                  : types.User(id: chatMessage.userId.toString()),
-              createdAt: chatMessage.timestamp?.millisecondsSinceEpoch ?? DateTime.now().millisecondsSinceEpoch,
-              id: const Uuid().v4(),
-              text: chatMessage.text,
-            );
-          }).toList();
+      body: FutureBuilder<types.User>(
+        future: _userFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+            final _user = snapshot.data!;
+            return Consumer<ChatViewModel>(
+              builder: (context, viewModel, child) {
+                _messages = viewModel.messages.map((chatMessage) {
+                  return types.TextMessage(
+                    author: chatMessage.userId.toString() == _user.id
+                        ? _user
+                        : types.User(id: chatMessage.userId.toString()),
+                    createdAt: chatMessage.timestamp?.millisecondsSinceEpoch ?? DateTime.now().millisecondsSinceEpoch,
+                    id: const Uuid().v4(),
+                    text: chatMessage.text,
+                  );
+                }).toList();
 
-          return Chat(
-            messages: _messages,
-            onSendPressed: _handleSendPressed,
-            user: _user,
-          );
+                return Chat(
+                  messages: _messages,
+                  onSendPressed: (message) => _handleSendPressed(message, viewModel, _user.id),
+                  user: _user,
+                );
+              },
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
         },
       ),
     );
   }
 
-  void _handleSendPressed(types.PartialText message) {
-    // Logique pour envoyer un message
-    // ...
-    // Ajoutez le message à l'interface utilisateur
-    final textMessage = types.TextMessage(
-      author: _user,
-      createdAt: DateTime.now().millisecondsSinceEpoch,
-      id: const Uuid().v4(),
+  void _handleSendPressed(types.PartialText message, ChatViewModel viewModel, String userId) {
+    final newMessage = ChatMessage(
+      id: 0,
+      userId: int.parse(userId),
       text: message.text,
+      timestamp: DateTime.now(),
+      firstName: "",
+      lastName: "",
     );
 
-    setState(() {
-      _messages.insert(0, textMessage);
-    });
+    viewModel.sendMessage(newMessage);
   }
 }

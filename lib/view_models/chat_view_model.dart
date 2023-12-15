@@ -73,4 +73,15 @@ class ChatViewModel with ChangeNotifier {
       print(e);
     }
   }
+
+  sendMessage(ChatMessage newMessage) {
+    // On ajoute le message dans currentChatRoom
+    currentChatRoom?.messages.add(newMessage);
+
+    // On envoie le message au service
+    _chatService.sendChatMessage(currentChatRoom!);
+
+    // On notifie les listeners
+    notifyListeners();
+  }
 }

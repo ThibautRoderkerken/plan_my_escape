@@ -22,9 +22,15 @@ class ChatRoom {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'name': name,
-      'messages': messages.map((message) => message.toJson()).toList(),
+      'text': messages.last.text,
+      'owner': {
+        'id': messages.last.userId,
+      },
+      // Champs chatromm avec l'id de la chatroom et une liste de messages vide
+      'chatroom': {
+        'id': id,
+        'messages': [],
+      },
     };
   }
 }

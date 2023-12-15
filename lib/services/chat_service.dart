@@ -68,22 +68,26 @@ class ChatService {
     }
   }
 
-  Future<void> sendChatMessage(ChatMessage message) async {
+  Future<void> sendChatMessage(ChatRoom message) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? cookie = prefs.getString('cookie');
-
+      String bodyRequest = jsonEncode(message.toJson());
+      print(bodyRequest);
       final response = await http.post(
         Uri.parse(baseUrl),
         headers: {
           'Content-Type': 'application/json',
           if (cookie != null) 'Cookie': cookie,
         },
-        body: jsonEncode(message.toJson()),
+        body: bodyRequest,
       ).timeout(const Duration(seconds: 20));
 
       if (response.statusCode != 200) {
-        throw _handleError(response.statusCode, response.body);
+        // Afficher l'erreur
+        print('Erreur lors de l\'envoi du message: ${response.body}');
+        // Afficher le code d'erreur
+        print('Code d\'erreur: ${response.statusCode}');
       }
     } on TimeoutException {
       throw NetworkException('Network timeout');

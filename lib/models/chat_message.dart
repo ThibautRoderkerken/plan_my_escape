@@ -33,10 +33,13 @@ class ChatMessage {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'userId': userId,
       'text': text,
-      'timestamp': timestamp?.toIso8601String(),
+      'chatroom': {
+        'id': 0,
+      },
+      'owner': {
+        'id': userId,
+      },
     };
   }
 }
