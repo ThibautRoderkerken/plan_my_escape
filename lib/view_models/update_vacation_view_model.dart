@@ -38,7 +38,7 @@ class UpdateVacationViewModel extends ChangeNotifier {
 
       try {
         holidayService.updateVacationPeriod(updatedVacationPeriod);
-        Navigator.pushNamed(context, '/dashboard');
+        Navigator.pop(context);
       } catch (e) {
         if (kDebugMode) {
           print('Erreur lors de la mise à jour de la période de vacances: $e');
