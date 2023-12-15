@@ -71,7 +71,6 @@ class ActivityCalendarViewModel extends ChangeNotifier {
 
       Share.shareFiles([file.path], text: 'Mon Agenda de Vacances');
     } catch (e) {
-      // Todo: Changer la gestion du message d'erreur.
       print('Erreur lors de l\'exportation : $e');
     }
   }
@@ -85,9 +84,8 @@ class ActivityCalendarViewModel extends ChangeNotifier {
       );
 
       onSelectDateTime(context, activity, (updatedActivity) {
-        // Implémentez la logique de mise à jour de l'activité ici
         notifyListeners();
-        updateEvents(); // Mettre à jour les événements après la modification
+        updateEvents();
       });
     }
   }

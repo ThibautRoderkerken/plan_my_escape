@@ -26,6 +26,5 @@ class ActivityPoolViewModel extends ChangeNotifier {
       activities[index] = updatedActivity;
       notifyListeners(); // Notifier les widgets à l'écoute de ce ViewModel
     }
-    // Todo: connecter à l'api pour sauvegarder les données.
   }
 }

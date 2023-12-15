@@ -74,7 +74,9 @@ class LoginScreen extends StatelessWidget {
                 ),
               const SizedBox(height: 16),
               TextButton(
-                onPressed: () => loginViewModel.navigateToSignUp(context),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/sign_up');
+                },
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.blue,
                 ),
