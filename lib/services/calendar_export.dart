@@ -31,5 +31,7 @@ String exportToICalendarService(List<Activity> vacationActivity) {
     }
   }
 
+  // Afficher le contenu de icsEvents
+  print(icsEvents);
   return "$icsHeader\n${icsEvents.join("\n")}\n$icsFooter";
 }

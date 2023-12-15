@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/activity.dart';
 import '../../models/enum/calendar_view_type.dart';
+import '../../services/calendar_export.dart';
 import '../dashboard/dashboard_view_model.dart';
 
 class ActivityCalendarViewModel extends ChangeNotifier {
@@ -63,7 +64,7 @@ class ActivityCalendarViewModel extends ChangeNotifier {
 
   Future<void> exportCalendar() async {
     try {
-      String icsString = ''; // Vous devrez implémenter la logique d'exportation ici
+      String icsString = exportToICalendarService(dashboardViewModel.getActivitiesForVacation(vacationIndex));
       final directory = await getApplicationDocumentsDirectory();
       final file = File('${directory.path}/my_calendar.ics');
       await file.writeAsString(icsString);
