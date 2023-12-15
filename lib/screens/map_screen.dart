@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// IMPORTANT: ce fichier n'est pas utilisé dans le projet final
+
 class MapScreen extends StatelessWidget {
   final double latitude;
   final double longitude;

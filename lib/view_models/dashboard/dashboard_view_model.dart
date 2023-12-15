@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plan_my_escape/screens/update_vacation_screen.dart';
 import 'package:plan_my_escape/services/holiday_service.dart';
-import 'package:plan_my_escape/view_models/update_vacation_view_model.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/activity.dart';
 import '../../models/member.dart';
@@ -13,7 +10,8 @@ class DashboardViewModel extends ChangeNotifier {
   final HolidayService _holidayService = HolidayService();
   late List<VacationPeriod> _vacationPeriods = [];
   bool _isLoading = true;
-  final Future<String> userID = SharedPreferences.getInstance().then((prefs) => prefs.getString('userID') ?? '');
+  final Future<String> userID = SharedPreferences.getInstance()
+      .then((prefs) => prefs.getString('userID') ?? '');
 
   DashboardViewModel() {
     _initializeVacationPeriods();
@@ -22,10 +20,12 @@ class DashboardViewModel extends ChangeNotifier {
   void _initializeVacationPeriods() async {
     try {
       _isLoading = true;
-      List<VacationPeriod> initialVacationPeriods = await _holidayService.getVacationPeriods();
+      List<VacationPeriod> initialVacationPeriods =
+          await _holidayService.getVacationPeriods();
       List<VacationPeriod> detailedVacationPeriods = [];
       for (var period in initialVacationPeriods) {
-        detailedVacationPeriods.add(await _holidayService.getVacationPeriodDetails(period.vacationIndex));
+        detailedVacationPeriods.add(await _holidayService
+            .getVacationPeriodDetails(period.vacationIndex));
       }
       _vacationPeriods = detailedVacationPeriods;
       _isLoading = false;
@@ -37,8 +37,8 @@ class DashboardViewModel extends ChangeNotifier {
     }
   }
 
-
   List<VacationPeriod> get vacationPeriods => _vacationPeriods;
+
   bool get isLoading => _isLoading;
 
   // Getter pour récupéréer une période de vacance sur base de son id
@@ -91,16 +91,22 @@ class DashboardViewModel extends ChangeNotifier {
     }
   }
 
-  void addMember(int vacationIndex, String lastName, String mail, String firstName) {
-    String newId = "m${getVacationPeriodById(vacationIndex).members.length + 1}";  // Générer un nouvel ID pour le membre
-    getVacationPeriodById(vacationIndex).members.add(Member(id: newId, lastName: lastName, mail: mail, firstName: firstName));
+  void addMember(
+      int vacationIndex, String lastName, String mail, String firstName) {
+    String newId =
+        "m${getVacationPeriodById(vacationIndex).members.length + 1}"; // Générer un nouvel ID pour le membre
+    getVacationPeriodById(vacationIndex).members.add(Member(
+        id: newId, lastName: lastName, mail: mail, firstName: firstName));
 
     notifyListeners();
   }
 
-  Activity addActivity(int vacationIndex, String name, String address, String description) {
-    String newId = "a${getVacationPeriodById(vacationIndex).activities.length + 1}";
-    Activity newActivity = Activity(id: newId, name: name, address: address, description: description);
+  Activity addActivity(
+      int vacationIndex, String name, String address, String description) {
+    String newId =
+        "a${getVacationPeriodById(vacationIndex).activities.length + 1}";
+    Activity newActivity = Activity(
+        id: newId, name: name, address: address, description: description);
     getVacationPeriodById(vacationIndex).activities.add(newActivity);
     notifyListeners();
     return newActivity;
@@ -123,13 +129,15 @@ class DashboardViewModel extends ChangeNotifier {
     return exportToICalendarService(getActivitiesForVacation(vacationIndex));
   }
 
-  void updateActivityDetails(Activity activity, DateTime selectedDate, TimeOfDay selectedTime, Duration duration, int vacationIndex) async {
+  void updateActivityDetails(Activity activity, DateTime selectedDate,
+      TimeOfDay selectedTime, Duration duration, int vacationIndex) async {
     activity.scheduledDate = selectedDate;
     activity.scheduledTime = selectedTime;
     activity.duration = duration;
 
     try {
-      VacationPeriod updatedVacationPeriod = getVacationPeriodById(vacationIndex);
+      VacationPeriod updatedVacationPeriod =
+          getVacationPeriodById(vacationIndex);
       await _holidayService.updateVacationPeriod(updatedVacationPeriod);
     } catch (e) {
       print('Erreur lors de la mise à jour de la période de vacances: $e');
@@ -142,15 +150,13 @@ class DashboardViewModel extends ChangeNotifier {
     String destination = _vacationPeriods[index].destination;
     DateTime startDate = _vacationPeriods[index].startDate;
     DateTime endDate = _vacationPeriods[index].endDate;
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ChangeNotifierProvider(
-          create: (_) => UpdateVacationViewModel(dashboardViewModel: this),
-          child: UpdateVacationScreen(vacationIndex: index, destination: destination, startDate: startDate, endDate: endDate),
-        ),
-      ),
-    );
+    Navigator.pushNamed(context, '/dashboard/updateVacation', arguments: {
+      'dashboardViewModel': this,
+      'vacationIndex': index,
+      'destination': destination,
+      'startDate': startDate,
+      'endDate': endDate
+    });
   }
 
   List<VacationPeriod> getVacationPeriod() {

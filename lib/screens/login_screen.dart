@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../view_models/dashboard/dashboard_view_model.dart';
 import '../view_models/login_view_model.dart';
 import '../widgets/custom_action_button.dart';
 import '../widgets/custom_outlined_button.dart';
 import '../widgets/custom_text_field.dart';
-import 'dashboard/dashboard_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -46,15 +44,7 @@ class LoginScreen extends StatelessWidget {
                   String password = loginViewModel.passwordController.text;
 
                   loginViewModel.validateAndLogin(() {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ChangeNotifierProvider(
-                          create: (_) => DashboardViewModel(),
-                          child: DashboardMainScreen(),
-                        ),
-                      ),
-                    );
+                    Navigator.pushNamed(context, '/dashboard');
                   }, email, password);
                 },
               ),

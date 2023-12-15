@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:plan_my_escape/models/vacation_period.dart';
 import 'package:plan_my_escape/services/holiday_service.dart';
 import 'package:plan_my_escape/view_models/dashboard/dashboard_view_model.dart';
-import 'package:provider/provider.dart';
-
-import '../screens/dashboard/dashboard_screen.dart';
 
 class UpdateVacationViewModel extends ChangeNotifier {
   final DashboardViewModel dashboardViewModel;
@@ -33,22 +30,15 @@ class UpdateVacationViewModel extends ChangeNotifier {
 
   bool validateAndUpdateVacation(int vacationIndex, BuildContext context) {
     if (startDate != null && endDate != null) {
-      VacationPeriod updatedVacationPeriod = dashboardViewModel.getVacationPeriod()[vacationIndex];
+      VacationPeriod updatedVacationPeriod =
+          dashboardViewModel.getVacationPeriod()[vacationIndex];
       updatedVacationPeriod.startDate = startDate!;
       updatedVacationPeriod.endDate = endDate!;
       updatedVacationPeriod.destination = destinationController.text;
 
       try {
         holidayService.updateVacationPeriod(updatedVacationPeriod);
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ChangeNotifierProvider(
-              create: (_) => DashboardViewModel(),
-              child: DashboardMainScreen(),
-            ),
-          ),
-        );
+        Navigator.pushNamed(context, '/dashboard');
       } catch (e) {
         if (kDebugMode) {
           print('Erreur lors de la mise à jour de la période de vacances: $e');

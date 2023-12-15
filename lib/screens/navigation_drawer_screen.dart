@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// IMPORTANT: ce fichier n'est pas utilisé dans le projet final
+
 class AppNavigationDrawer extends StatelessWidget {
   const AppNavigationDrawer ({Key? key}) : super(key: key);
 

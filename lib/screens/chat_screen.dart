@@ -9,7 +9,7 @@ import '../models/chat_message.dart';
 import '../view_models/chat_view_model.dart';
 
 class ChatScreen extends StatefulWidget {
-  ChatScreen({super.key});
+  const ChatScreen({super.key});
 
   @override
   ChatScreenState createState() => ChatScreenState();
@@ -33,44 +33,47 @@ class ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chat'),
-      ),
-      body: FutureBuilder<types.User>(
+    return FutureBuilder<types.User>(
         future: _userFuture,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-            final _user = snapshot.data!;
+          if (snapshot.connectionState == ConnectionState.done &&
+              snapshot.hasData) {
+            final user = snapshot.data!;
             return Consumer<ChatViewModel>(
               builder: (context, viewModel, child) {
-                _messages = viewModel.messages.map((chatMessage) {
-                  return types.TextMessage(
-                    author: chatMessage.userId.toString() == _user.id
-                        ? _user
-                        : types.User(id: chatMessage.userId.toString()),
-                    createdAt: chatMessage.timestamp?.millisecondsSinceEpoch ?? DateTime.now().millisecondsSinceEpoch,
-                    id: const Uuid().v4(),
-                    text: chatMessage.text,
-                  );
-                }).toList().reversed.toList();
+                _messages = viewModel.messages
+                    .map((chatMessage) {
+                      return types.TextMessage(
+                        author: chatMessage.userId.toString() == user.id
+                            ? user
+                            : types.User(id: chatMessage.userId.toString()),
+                        createdAt:
+                            chatMessage.timestamp?.millisecondsSinceEpoch ??
+                                DateTime.now().millisecondsSinceEpoch,
+                        id: const Uuid().v4(),
+                        text: chatMessage.text,
+                      );
+                    })
+                    .toList()
+                    .reversed
+                    .toList();
 
                 return Chat(
                   messages: _messages,
-                  onSendPressed: (message) => _handleSendPressed(message, viewModel, _user.id),
-                  user: _user,
+                  onSendPressed: (message) =>
+                      _handleSendPressed(message, viewModel, user.id),
+                  user: user,
                 );
               },
             );
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
-        },
-      ),
-    );
+        });
   }
 
-  void _handleSendPressed(types.PartialText message, ChatViewModel viewModel, String userId) {
+  void _handleSendPressed(
+      types.PartialText message, ChatViewModel viewModel, String userId) {
     final newMessage = ChatMessage(
       id: 0,
       userId: int.parse(userId),

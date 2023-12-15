@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../view_models/dashboard/dashboard_view_model.dart';
 import '../view_models/sign_up_view_model.dart';
 import '../widgets/custom_action_button.dart';
 import '../widgets/custom_text_field.dart';
-import 'dashboard/dashboard_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -51,15 +49,7 @@ class SignUpScreen extends StatelessWidget {
                 label: 'S\'inscrire',
                 onPressed: () {
                   signUpViewModel.validateAndSignUp(() {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ChangeNotifierProvider(
-                          create: (_) => DashboardViewModel(),
-                          child: DashboardMainScreen(),
-                        ),
-                      ),
-                    );
+                    Navigator.pushNamed(context, '/dashboard');
                   });
                 },
               ),
