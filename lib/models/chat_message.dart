@@ -42,4 +42,16 @@ class ChatMessage {
       },
     };
   }
+
+  static fromMap(List<Object?>? message) {
+    print("fromMap: $message");
+    return ChatMessage(
+      id: message![0] as int,
+      userId: message[1] as int,
+      text: message[2] as String,
+      firstName: message[3] as String,
+      lastName: message[4] as String,
+      timestamp: message[5] as DateTime?,
+    );
+  }
 }

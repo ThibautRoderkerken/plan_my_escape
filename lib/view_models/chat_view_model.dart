@@ -24,14 +24,26 @@ class ChatViewModel with ChangeNotifier {
   Future<void> _initializeSignalR() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? jwtToken = prefs.getString('cookie');
-    String url =
-        "https://porthos-intra.cg.helmo.be/E180314/hub/chat/?$jwtToken";
+    String url = "https://porthos-intra.cg.helmo.be/E180314/hub/chat/?$jwtToken";
 
-    _hubConnection =
-        HubConnectionBuilder().withUrl(url).withAutomaticReconnect().build();
+    _hubConnection = HubConnectionBuilder().withUrl(url).withAutomaticReconnect().build();
+
+
+
 
     try {
       await _hubConnection.start();
+      _hubConnection.on('SendMessage', (message) {
+        print("Message reçu: $message");
+
+        // Traiter le message reçu
+        var chatMessage = ChatMessage.fromMap(message);
+
+        if (currentChatRoom != null && chatMessage.roomId == currentChatRoom!.id) {
+          currentChatRoom!.messages.add(chatMessage);
+          notifyListeners();
+        }
+      });
       print("SignalR connecté");
     } catch (e) {
       print('Erreur de connexion SignalR: $e');
