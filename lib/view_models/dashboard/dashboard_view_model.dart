@@ -3,6 +3,7 @@ import 'package:plan_my_escape/screens/update_vacation_screen.dart';
 import 'package:plan_my_escape/services/holiday_service.dart';
 import 'package:plan_my_escape/view_models/update_vacation_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/activity.dart';
 import '../../models/member.dart';
 import '../../models/vacation_period.dart';
@@ -12,6 +13,7 @@ class DashboardViewModel extends ChangeNotifier {
   final HolidayService _holidayService = HolidayService();
   late List<VacationPeriod> _vacationPeriods = [];
   bool _isLoading = true;
+  final Future<String> userID = SharedPreferences.getInstance().then((prefs) => prefs.getString('userID') ?? '');
 
   DashboardViewModel() {
     _initializeVacationPeriods();

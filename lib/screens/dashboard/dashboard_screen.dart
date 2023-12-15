@@ -43,7 +43,7 @@ class DashboardMainScreen extends StatelessWidget {
               const SizedBox(height: 16),
               Provider<DisplayVacationsViewModel>(
                 create: (_) => DisplayVacationsViewModel(dashboardViewModel: dashboardViewModel),
-                child: const DisplayVacationsScreen(),
+                child: DisplayVacationsScreen(),
               ),
             ],
           ),

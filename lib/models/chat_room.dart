@@ -8,13 +8,19 @@ class ChatRoom {
   ChatRoom({required this.id, required this.name, required this.messages});
 
   factory ChatRoom.fromJson(Map<String, dynamic> json) {
-    return ChatRoom(
-      id: json['id'] as int,
+    print("ChatRoom.fromJson");
+    // Afficher le contenu de json
+    print(json);
+    ChatRoom chatRoom =  ChatRoom(
+      id: json['id'],
       name: json['name'] as String,
       messages: (json['messages'] as List)
           .map((message) => ChatMessage.fromJson(message))
           .toList(),
     );
+    print("ChatRoom.fromJson 2");
+
+    return chatRoom;
   }
 
   Map<String, dynamic> toJson() {

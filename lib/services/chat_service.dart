@@ -2,15 +2,15 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/chat_room.dart'; // Modèle pour ChatRoom
-import '../models/chat_message.dart'; // Modèle pour ChatMessage
+import '../models/chat_room.dart';
+import '../models/chat_message.dart';
 import '../exceptions/bad_request_exception.dart';
 import '../exceptions/internal_server_exception.dart';
 import '../exceptions/network_exception.dart';
 import '../exceptions/not_found_exception.dart';
 
 class ChatService {
-  final String baseUrl = "https://porthos-intra.cg.helmo.be/e180314/api/Chat"; // URL de base de votre API
+  final String baseUrl = "https://porthos-intra.cg.helmo.be/e180314/api/Chat";
 
   Future<List<ChatRoom>> getChatRooms() async {
     try {
@@ -42,10 +42,12 @@ class ChatService {
   }
 
   Future<ChatRoom> getChatRoomDetails(int roomId) async {
+    print("getChatRoomDetails");
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? cookie = prefs.getString('cookie');
 
+      print("getChatRoomDetails 2");
       final response = await http.get(
         Uri.parse('$baseUrl/$roomId'),
         headers: {
@@ -53,16 +55,21 @@ class ChatService {
           if (cookie != null) 'Cookie': cookie,
         },
       ).timeout(const Duration(seconds: 20));
-
+      print("getChatRoomDetails 3");
       if (response.statusCode == 200) {
+        print("getChatRoomDetails 4");
         return ChatRoom.fromJson(json.decode(response.body));
       } else {
+        print("getChatRoomDetails 5");
         throw _handleError(response.statusCode, response.body);
       }
     } on TimeoutException {
+      print("getChatRoomDetails 6");
       throw NetworkException('Network timeout');
     } catch (e) {
+      print("getChatRoomDetails 7");
       if (e is! Exception) {
+        print("getChatRoomDetails 8");
         throw NetworkException('Network error: $e');
       }
       rethrow;

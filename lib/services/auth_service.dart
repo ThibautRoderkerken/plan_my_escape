@@ -65,6 +65,11 @@ class AuthService {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('cookie', rawCookie);
     }
+
+    // Maintenant, on va stocker l'id de l'utilisateur
+    String id = json.decode(response.body)['id'].toString();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userID', id);
   }
 
   Future<dynamic> signUp(String email, String password, String firstName,

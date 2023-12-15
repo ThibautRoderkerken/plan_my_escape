@@ -1,4 +1,4 @@
-#Thu Dec 14 17:35:06 CET 2023
+#Fri Dec 15 13:30:45 CET 2023
 base.0=C\:\\Users\\roder\\AndroidStudioProjects\\plan_my_escape\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\roder\\AndroidStudioProjects\\plan_my_escape\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\roder\\AndroidStudioProjects\\plan_my_escape\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
