@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import '../../models/vacation_period.dart';
-import '../../models/weather_info.dart';
-import '../../services/holiday_service.dart'; // Assurez-vous d'importer HolidayService
-import 'dashboard_view_model.dart';
+import 'package:plan_my_escape/models/country.dart';
+import 'package:plan_my_escape/models/vacation_period.dart';
+import 'package:plan_my_escape/models/weather_info.dart';
+import 'package:plan_my_escape/services/holiday_service.dart';
+import 'package:plan_my_escape/view_models/dashboard/dashboard_view_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddVacationViewModel extends ChangeNotifier {
   final DashboardViewModel dashboardViewModel;
@@ -12,8 +16,14 @@ class AddVacationViewModel extends ChangeNotifier {
   DateTime? startDate;
   DateTime? endDate;
   bool isButtonPressed = false;
+  String? selectedCountry;
 
   AddVacationViewModel({required this.dashboardViewModel});
+
+  void setSelectedCountry(String? newValue) {
+    selectedCountry = newValue;
+    notifyListeners(); // Notifie les listeners du changement
+  }
 
   String? get dateErrorMessage {
     if (isButtonPressed && (startDate == null || endDate == null)) {
@@ -30,7 +40,9 @@ class AddVacationViewModel extends ChangeNotifier {
 
   bool validateAndAddVacation() {
     isButtonPressed = true;
-    if (formKey.currentState?.validate() == true && startDate != null && endDate != null) {
+    if (formKey.currentState?.validate() == true &&
+        startDate != null &&
+        endDate != null) {
       addVacationPeriod();
       isButtonPressed = false;
       return true;
@@ -66,5 +78,17 @@ class AddVacationViewModel extends ChangeNotifier {
     startDate = null;
     endDate = null;
     notifyListeners();
+  }
+
+  Future<List<Country>> getCountriesFromPreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? countriesJson = prefs.getString('countries');
+    if (countriesJson != null) {
+      Iterable decoded = json.decode(countriesJson);
+      return List<Country>.from(
+          decoded.map((model) => Country.fromJson(model)));
+    } else {
+      return []; // Retourner une liste vide si aucun pays n'est stocké
+    }
   }
 }
