@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../view_models/update_vacation_view_model.dart';
 import '../widgets/custom_action_button.dart';
-import 'shared_components/date_selector.dart';
+import '../utils/date_selector.dart';
 import '../widgets/custom_text_field.dart';
 
 class UpdateVacationScreen extends StatelessWidget {

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:plan_my_escape/exceptions/internal_server_exception.dart';
 import 'package:plan_my_escape/exceptions/network_exception.dart';
 import 'package:plan_my_escape/exceptions/not_found_exception.dart';
+import 'package:plan_my_escape/models/country.dart';
 import 'package:plan_my_escape/services/country_service.dart';
-import 'package:plan_my_escape/services/holiday_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:plan_my_escape/utils/global_data.dart';
 
 import '../exceptions/invalid_credentials_exception.dart';
 import '../services/auth_service.dart';
@@ -74,6 +74,9 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   Future<void> _loadCountriesIfNeeded() async {
-    await _countryService.getCountries();
+    // Appeller _countryService.getCountries() et stocker le résultat dans une variable
+    List<Country> countries = await _countryService.getCountries();
+
+    GlobalData().countries = countries;
   }
 }

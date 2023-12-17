@@ -5,6 +5,7 @@ import 'package:plan_my_escape/models/country.dart';
 import 'package:plan_my_escape/models/vacation_period.dart';
 import 'package:plan_my_escape/models/weather_info.dart';
 import 'package:plan_my_escape/services/holiday_service.dart';
+import 'package:plan_my_escape/utils/global_data.dart';
 import 'package:plan_my_escape/view_models/dashboard/dashboard_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,12 +14,18 @@ class AddVacationViewModel extends ChangeNotifier {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController destinationController = TextEditingController();
   final HolidayService holidayService = HolidayService();
+  List<Country> countries = [];
+  TextEditingController countryController = TextEditingController();
   DateTime? startDate;
   DateTime? endDate;
   bool isButtonPressed = false;
   String? selectedCountry;
 
-  AddVacationViewModel({required this.dashboardViewModel});
+  AddVacationViewModel({required this.dashboardViewModel}) {
+    initCountries(); // Appel initial pour charger les pays
+  }
+
+  List<Country> get getCountries => countries;
 
   void setSelectedCountry(String? newValue) {
     selectedCountry = newValue;
@@ -80,15 +87,8 @@ class AddVacationViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<Country>> getCountriesFromPreferences() async {
-    final prefs = await SharedPreferences.getInstance();
-    final String? countriesJson = prefs.getString('countries');
-    if (countriesJson != null) {
-      Iterable decoded = json.decode(countriesJson);
-      return List<Country>.from(
-          decoded.map((model) => Country.fromJson(model)));
-    } else {
-      return []; // Retourner une liste vide si aucun pays n'est stocké
-    }
+  void initCountries() {
+    countries = GlobalData().countries;
+    notifyListeners();
   }
 }
