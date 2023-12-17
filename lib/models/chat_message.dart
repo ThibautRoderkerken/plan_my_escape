@@ -44,7 +44,6 @@ class ChatMessage {
   }
 
   static fromMap(List<Object?>? message) {
-    print("fromMap: $message");
     return ChatMessage(
       id: message![0] as int,
       userId: message[1] as int,

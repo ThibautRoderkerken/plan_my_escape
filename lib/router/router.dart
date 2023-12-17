@@ -49,11 +49,9 @@ class RouteGenerator {
         break;
       case '/dashboard/add_activity':
         final args = settings.arguments as Map<String, dynamic>;
-        final dashboardViewModel =
-            args['dashboardViewModel'] as DashboardViewModel;
         customPage = CustomPage(
           page: ChangeNotifierProvider.value(
-            value: dashboardViewModel,
+            value: args['dashboardViewModel'] as DashboardViewModel,
             child: AddActivityScreen(
               vacationIndex: args['vacationIndex'] as int,
             ),
@@ -63,11 +61,9 @@ class RouteGenerator {
         break;
       case '/dashboard/add_member':
         final args = settings.arguments as Map<String, dynamic>;
-        final dashboardViewModel =
-            args['dashboardViewModel'] as DashboardViewModel;
         customPage = CustomPage(
           page: ChangeNotifierProvider.value(
-            value: dashboardViewModel,
+            value: args['dashboardViewModel'] as DashboardViewModel,
             child: AddParticipantScreen(
               vacationIndex: args['vacationIndex'] as int,
             ),
@@ -77,13 +73,11 @@ class RouteGenerator {
         break;
       case '/dashboard/chat':
         final args = settings.arguments as Map<String, dynamic>;
-        final dashboardViewModel =
-            args['dashboardViewModel'] as DashboardViewModel;
         borderSize = 0.0;
         customPage = CustomPage(
           page: ChangeNotifierProvider.value(
             value: ChatViewModel(
-              dashboardViewModel: dashboardViewModel,
+              dashboardViewModel: args['dashboardViewModel'] as DashboardViewModel,
               vacationIndex: args['vacationIndex'] as int,
             ),
             child: const ChatScreen(),
@@ -93,12 +87,10 @@ class RouteGenerator {
         break;
       case '/dashboard/updateVacation':
         final args = settings.arguments as Map<String, dynamic>;
-        final dashboardViewModel =
-            args['dashboardViewModel'] as DashboardViewModel;
         customPage = CustomPage(
           page: ChangeNotifierProvider.value(
             value: UpdateVacationViewModel(
-              dashboardViewModel: dashboardViewModel,
+              dashboardViewModel: args['dashboardViewModel'] as DashboardViewModel,
             ),
             child: UpdateVacationScreen(
               vacationIndex: args['vacationIndex'] as int,
