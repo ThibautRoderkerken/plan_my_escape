@@ -45,17 +45,30 @@ class AddVacationScreen extends StatelessWidget {
                 label: 'Destination',
                 controller: addVacationViewModel.destinationController,
               ),
-              DropdownButton<String>(
-                value: addVacationViewModel.selectedCountry,
-                onChanged: (String? newValue) {
-                  addVacationViewModel.setSelectedCountry(newValue);
+              Autocomplete<Country>(
+                optionsBuilder: (TextEditingValue textEditingValue) {
+                  if (textEditingValue.text.isEmpty) {
+                    return const Iterable<Country>.empty();
+                  }
+                  return countries.where((Country country) {
+                    return country.name.toLowerCase()
+                        .startsWith(textEditingValue.text.toLowerCase());
+                  });
                 },
-                items: countries.map<DropdownMenuItem<String>>((Country country) {
-                  return DropdownMenuItem<String>(
-                    value: country.name,
-                    child: Text(country.name),
+                onSelected: (Country selection) {
+                  addVacationViewModel.setSelectedCountry(selection.name);
+                },
+                fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) {
+                  return TextFormField(
+                    controller: textEditingController,
+                    focusNode: focusNode,
+                    decoration: const InputDecoration(
+                      labelText: 'Tapez pour rechercher un pays',
+                      hintText: 'Commencez à taper le nom du pays',
+                    ),
                   );
-                }).toList(),
+                },
+                displayStringForOption: (Country option) => option.name,
               ),
               const SizedBox(height: 16),
               CustomDateSelector(
