@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../view_models/dashboard/add_vacation_view_model.dart';
 import '../../widgets/custom_action_button.dart';
-import '../../widgets/custom_date_selector.dart';
+import '../shared_components/date_selector.dart';
 import '../../widgets/custom_text_field.dart';
 
 class AddVacationScreen extends StatelessWidget {
