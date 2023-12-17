@@ -101,6 +101,7 @@ class RouteGenerator {
           ),
           title: 'Modifier une période de vacances',
         );
+        break;
       default:
         return _errorRoute();
     }

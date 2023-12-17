@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:plan_my_escape/models/country.dart';
 import 'package:plan_my_escape/models/vacation_period.dart';
@@ -7,12 +5,12 @@ import 'package:plan_my_escape/models/weather_info.dart';
 import 'package:plan_my_escape/services/holiday_service.dart';
 import 'package:plan_my_escape/utils/global_data.dart';
 import 'package:plan_my_escape/view_models/dashboard/dashboard_view_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AddVacationViewModel extends ChangeNotifier {
   final DashboardViewModel dashboardViewModel;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController destinationController = TextEditingController();
+  final TextEditingController adressController = TextEditingController();
   final HolidayService holidayService = HolidayService();
   List<Country> countries = [];
   TextEditingController countryController = TextEditingController();
@@ -67,6 +65,8 @@ class AddVacationViewModel extends ChangeNotifier {
       members: [],
       activities: [],
       weatherInfo: WeatherInfo(description: 'Inconnu', temperature: 0.0),
+      country: selectedCountry!,
+      address: adressController.text,
     );
 
     try {

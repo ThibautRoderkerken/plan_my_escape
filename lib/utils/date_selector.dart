@@ -6,6 +6,7 @@ class CustomDateSelector extends StatefulWidget {
   final String? errorMessage;
   final DateTime? initialStartDate;
   final DateTime? initialEndDate;
+  final String? Function(DateTimeRange?)? validator;
 
   const CustomDateSelector({
     Key? key,
@@ -14,6 +15,7 @@ class CustomDateSelector extends StatefulWidget {
     this.errorMessage,
     this.initialStartDate,
     this.initialEndDate,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -22,12 +24,16 @@ class CustomDateSelector extends StatefulWidget {
 
 class CustomDateSelectorState extends State<CustomDateSelector> {
   DateTimeRange? _selectedDateRange;
+  String? _errorMessage;
 
   @override
   void initState() {
     super.initState();
-    _initializeDateRange();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _initializeDateRange();
+    });
   }
+
 
   void _initializeDateRange() {
     if (widget.initialStartDate != null && widget.initialEndDate != null) {
@@ -36,6 +42,14 @@ class CustomDateSelectorState extends State<CustomDateSelector> {
         end: widget.initialEndDate!,
       );
       widget.onDateSelected(_selectedDateRange!);
+    }
+  }
+
+  void _validateDateRange() {
+    if (widget.validator != null) {
+      setState(() {
+        _errorMessage = widget.validator!(_selectedDateRange);
+      });
     }
   }
 
@@ -53,6 +67,8 @@ class CustomDateSelectorState extends State<CustomDateSelector> {
       });
       widget.onDateSelected(pickedRange);
     }
+
+    _validateDateRange();
   }
 
   @override
@@ -70,11 +86,11 @@ class CustomDateSelectorState extends State<CustomDateSelector> {
             _selectDateRange(context);
           },
         ),
-        if (widget.errorMessage != null)
+        if (_errorMessage != null)
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Text(
-              widget.errorMessage!,
+              _errorMessage!,
               style: const TextStyle(color: Colors.red),
             ),
           ),

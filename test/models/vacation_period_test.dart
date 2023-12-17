@@ -21,6 +21,8 @@ void main() {
         members: members,
         activities: activities,
         weatherInfo: weatherInfo,
+        country: 'France',
+        address: '1 rue de la plage',
       );
 
       expect(vacation.startDate, startDate);
@@ -35,8 +37,8 @@ void main() {
     test('VacationPeriod FromJson Test', () {
       final json = {
         'id': 123,
-        'start_at': '2023-01-01',
-        'end_at': '2023-01-08',
+        'startAt': '2023-01-01',
+        'endAt': '2023-01-08',
         'destination': 'Paris',
         'users': [
           {'id': '1', 'firstname': 'Bob', 'lastname': 'Martin', 'email': 'bob@example.com'},
@@ -74,6 +76,8 @@ void main() {
         members: members,
         activities: activities,
         weatherInfo: weatherInfo,
+        country: 'France',
+        address: '1 rue de la plage',
       );
 
       // Initialisation manuelle de vacationIndex car il est late
@@ -88,8 +92,8 @@ void main() {
     test('VacationPeriod FromJson with Default WeatherInfo Test', () {
       final json = {
         'id': 123,
-        'start_at': '2023-01-01',
-        'end_at': '2023-01-08',
+        'startAt': '2023-01-01',
+        'endAt': '2023-01-08',
         'destination': 'Paris',
         'users': [],
         'activities': [],

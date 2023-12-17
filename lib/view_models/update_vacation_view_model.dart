@@ -25,19 +25,20 @@ class UpdateVacationViewModel extends ChangeNotifier {
     startDate = range.start;
     endDate = range.end;
     dateErrorMessage;
-    notifyListeners();
+    notifyListeners(); // Notifier les listeners après la construction du widget
   }
 
   bool validateAndUpdateVacation(int vacationIndex, BuildContext context) {
     if (startDate != null && endDate != null) {
       VacationPeriod updatedVacationPeriod =
-          dashboardViewModel.getVacationPeriod()[vacationIndex];
+      dashboardViewModel.getVacationPeriod()[vacationIndex];
       updatedVacationPeriod.startDate = startDate!;
       updatedVacationPeriod.endDate = endDate!;
       updatedVacationPeriod.destination = destinationController.text;
 
       try {
         holidayService.updateVacationPeriod(updatedVacationPeriod);
+        dashboardViewModel.notifyListeners();
         Navigator.pop(context);
       } catch (e) {
         if (kDebugMode) {

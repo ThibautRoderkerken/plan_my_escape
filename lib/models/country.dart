@@ -6,7 +6,7 @@ class Country {
 
   static Country fromJson(Map<String, dynamic> json) {
     String name = json['name'] ?? 'Belgium';
-    String code = json['code'] ?? '2060';
+    String code = json['id'].toString();
 
     return Country(
       name: name,

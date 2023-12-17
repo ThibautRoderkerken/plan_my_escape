@@ -7,6 +7,7 @@ import 'package:plan_my_escape/exceptions/internal_server_exception.dart';
 import 'package:plan_my_escape/exceptions/network_exception.dart';
 import 'package:plan_my_escape/exceptions/not_found_exception.dart';
 import 'package:plan_my_escape/models/vacation_period.dart';
+import 'package:plan_my_escape/utils/global_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -17,7 +18,6 @@ class HolidayService {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? cookie = prefs.getString('cookie');
-      // Afficher dans la console si le cookie est présent
       final response = await http.post(
         Uri.parse(baseUrl),
         headers: {
@@ -25,12 +25,17 @@ class HolidayService {
           if (cookie != null) 'Cookie': cookie,
         },
         body: jsonEncode({
-          'destination': vacation.destination,
+          'name': vacation.destination,
           'start_at': vacation.startDate.toIso8601String().split('T')[0],
           'end_at': vacation.endDate.toIso8601String().split('T')[0],
           'activities': [],
           'users': [],
-          // Ajoutez d'autres champs si nécessaire
+          'address': vacation.address,
+          'country': {
+            'id': GlobalData().countries.firstWhere((country) => country.name == vacation.country).code,
+            'name': vacation.country,
+          },
+
         }),
       ).timeout(const Duration(seconds: 20));
 
@@ -109,9 +114,14 @@ class HolidayService {
         },
         body: jsonEncode({
           'Id': vacation.vacationIndex,
-          'Destination': vacation.destination,
-          'Start_at': vacation.startDate.toIso8601String().split('T')[0],
-          'End_at': vacation.endDate.toIso8601String().split('T')[0],
+          'Name': vacation.destination,
+          'Start_At': vacation.startDate.toIso8601String().split('T')[0],
+          'End_At': vacation.endDate.toIso8601String().split('T')[0],
+          'Address': vacation.address,
+          'Country': {
+            'Id': GlobalData().countries.firstWhere((country) => country.name == vacation.country).code,
+            'Name': vacation.country,
+          },
           'Activities': vacation.activities.map((activity) => {
             'Name': activity.name,
             'Description': activity.description,

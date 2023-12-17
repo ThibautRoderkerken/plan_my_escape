@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plan_my_escape/utils/date_selector.dart';
+import 'package:plan_my_escape/widgets/custom_autocomplete_field.dart';
 import 'package:provider/provider.dart';
-import 'package:plan_my_escape/models/country.dart';
 import '../../view_models/dashboard/add_vacation_view_model.dart';
 import '../../widgets/custom_action_button.dart';
 import '../../widgets/custom_text_field.dart';
@@ -14,9 +14,6 @@ class AddVacationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final addVacationViewModel = Provider.of<AddVacationViewModel>(context);
-
-    // Initialisation de la liste des pays avec une liste vide
-    List<Country> countries = addVacationViewModel.countries;
 
     return Form(
       key: addVacationViewModel.formKey,
@@ -31,40 +28,29 @@ class AddVacationScreen extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           CustomTextField(
-            label: 'Destination',
+            label: 'Nom',
             controller: addVacationViewModel.destinationController,
           ),
-          Autocomplete<Country>(
-            optionsBuilder: (TextEditingValue textEditingValue) {
-              if (textEditingValue.text.isEmpty) {
-                return const Iterable<Country>.empty();
-              }
-              return countries.where((Country country) {
-                return country.name.toLowerCase()
-                    .startsWith(textEditingValue.text.toLowerCase());
-              });
-            },
-            onSelected: (Country selection) {
-              addVacationViewModel.setSelectedCountry(selection.name);
-              addVacationViewModel.countryController.text = selection.name;
-            },
-            fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) {
-              return TextFormField(
-                controller: textEditingController,
-                focusNode: focusNode,
-                decoration: const InputDecoration(
-                  labelText: 'Tapez pour rechercher un pays',
-                  hintText: 'Commencez à taper le nom du pays',
-                ),
-              );
-            },
-            displayStringForOption: (Country option) => option.name,
+          const SizedBox(height: 16),
+          CustomTextField(
+            label: 'Adresse',
+            controller: addVacationViewModel.adressController,
+          ),
+          const SizedBox(height: 16),
+          CustomAutocomplete(
+            controller: addVacationViewModel.countryController,
+            viewModel: addVacationViewModel,
           ),
           const SizedBox(height: 16),
           CustomDateSelector(
             label: 'Sélectionnez la période',
             onDateSelected: addVacationViewModel.onDateSelected,
-            errorMessage: addVacationViewModel.dateErrorMessage,
+            validator: (DateTimeRange? range) {
+              if (range == null) {
+                return 'Veuillez sélectionner une plage de dates';
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 16),
           CustomActionButton(
