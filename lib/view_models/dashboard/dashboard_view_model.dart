@@ -7,13 +7,14 @@ import '../../models/vacation_period.dart';
 import '../../services/calendar_export.dart';
 
 class DashboardViewModel extends ChangeNotifier {
-  final HolidayService _holidayService = HolidayService();
+  final HolidayService _holidayService;
   late List<VacationPeriod> _vacationPeriods = [];
   bool _isLoading = true;
   final Future<String> userID = SharedPreferences.getInstance()
       .then((prefs) => prefs.getString('userID') ?? '');
 
-  DashboardViewModel() {
+  DashboardViewModel({HolidayService? holidayService})
+      : _holidayService = holidayService ?? HolidayService() {
     _initializeVacationPeriods();
   }
 

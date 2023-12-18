@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:plan_my_escape/router/router.dart';
 
 void main() {
   runApp(const MyApp());
+  if (!const bool.fromEnvironment('runIntegrationTest', defaultValue: false)) {
+    Geolocator.requestPermission();
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -21,4 +25,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

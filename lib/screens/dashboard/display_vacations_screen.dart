@@ -48,6 +48,7 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
             child: Text(
               'Vos périodes de vacances planifiées',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              key: Key('display_vacations_title'),
             ),
           ),
           if (dashboardViewModel.isLoading)

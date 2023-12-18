@@ -39,7 +39,7 @@ void main() {
         'id': 123,
         'startAt': '2023-01-01',
         'endAt': '2023-01-08',
-        'destination': 'Paris',
+        'name': 'Paris',
         'users': [
           {'id': '1', 'firstname': 'Bob', 'lastname': 'Martin', 'email': 'bob@example.com'},
         ],

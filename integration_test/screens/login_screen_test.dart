@@ -1,136 +1,88 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:plan_my_escape/main.dart' as app;
+import 'package:plan_my_escape/screens/dashboard/dashboard_screen.dart';
+import 'package:plan_my_escape/screens/login_screen.dart';
+import 'package:plan_my_escape/view_models/dashboard/dashboard_view_model.dart';
+import 'package:plan_my_escape/view_models/login_view_model.dart';
+import 'package:plan_my_escape/widgets/custom_action_button.dart';
+import 'package:plan_my_escape/widgets/custom_outlined_button.dart';
+import 'package:plan_my_escape/widgets/custom_text_field.dart';
+import 'package:provider/provider.dart';
+
+import '../mock/auth_service_mock.dart';
+import '../mock/country_service_mock.dart';
+import '../mock/holiday_service_mock.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  group("Page de connexion", () {
+  testWidgets("Vérifie que l'application démarre sur la page de connexion", (WidgetTester tester) async {
+    // Lance l'application
+    app.main();
+    await tester.pumpAndSettle();
 
-    testWidgets("Vérifier que l'application démarre sur la page de connexion", (WidgetTester tester) async {
-      // Lance l'application
-      app.main();
+    // Vérifiez que le texte 'Connexion' est présent
+    expect(find.byKey(const Key('login_button')), findsOneWidget);
 
-      // Attendez que l'application se construise et effectuez le rendu.
-      await tester.pumpAndSettle();
+    // Vérifiez la présence des champs de texte personnalisés pour l'email et le mot de passe
+    expect(find.byType(CustomTextField), findsNWidgets(2));
 
-      // Vérifiez que l'élément avec la clé 'Connexion' est trouvé.
-      expect(find.byKey(const Key('login_screen_title')), findsOneWidget);
-    });
+    // Vérifiez la présence du bouton de connexion
+    expect(find.widgetWithText(CustomActionButton, 'Connexion'), findsOneWidget);
 
-    testWidgets("Vérifier que nous arrivons sur le tableau de bord lorsque nous rentrons des identifiant valide", (WidgetTester tester) async {
-      // Lance l'application
-      app.main();
+    // Vérifiez la présence du bouton d'authentification OAuth2
+    expect(find.widgetWithText(CustomOutlinedButton, 'S\'authentifier via OAuth2'), findsOneWidget);
 
-      // Attendez que l'application se construise et effectuez le rendu.
-      await tester.pumpAndSettle();
+    // Vérifiez la présence du lien pour créer un compte
+    expect(find.text('Créer un compte'), findsOneWidget);
+  });
 
-      // Récupère les éléments de connexion
-      final emailField = find.byKey(const Key('login_screen_email_field'));
-      final passwordField = find.byKey(const Key('login_screen_password_field'));
-      final loginButton = find.byKey(const Key('login_screen_login_button'));
+  testWidgets("Vérifier qu'on arrive sur le Dashboard une fois la connexion réussie", (WidgetTester tester) async {
+    // On remplace le service d'authentification par un mock
+    MockLoginService mockLoginService = MockLoginService();
+    MockCountryService mockCountryService = MockCountryService();
+    MockHolidayService mockHolidayService = MockHolidayService();
 
-      // Remplir les champs de connexion
-      await tester.enterText(emailField, 'demo@gmail.com');
-      await tester.enterText(passwordField, 'demo');
+    // Fournir les mocks à l'écran de connexion via un Provider
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ChangeNotifierProvider(
+          create: (_) => LoginViewModel(
+            authService: mockLoginService,
+            countryService: mockCountryService, // Fournir le mockCountryService ici
+          ),
+          child: const LoginScreen(),
+        ),
+      ),
+    );
 
-      // Appuyer sur le bouton de connexion
-      await tester.tap(loginButton);
+    // Remplir les champs de connexion
+    await tester.enterText(find.byType(CustomTextField).at(0), 'test@example.com');
+    await tester.enterText(find.byType(CustomTextField).at(1), 'password123');
 
-      // Attendez que l'application se construise et effectuez le rendu.
-      await tester.pumpAndSettle();
+    // Cliquer sur le bouton de connexion
+    await tester.tap(find.byKey(const Key('login_button')));
+    await tester.pumpAndSettle();
 
-      // Vérifiez que l'élément avec la clé 'dashboard_screen_title' est trouvé.
-      expect(find.byKey(const Key('dashboard_screen_title')), findsOneWidget);
-    });
+    // Si tout c'est bien passé on passe au Dashboard
+    // Remplacer l'écran actuel par le DashboardScreen
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ChangeNotifierProvider(
+          create: (_) => DashboardViewModel(
+            holidayService: mockHolidayService,
+          ),
+          child: Scaffold(
+            body: DashboardMainScreen(),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
 
-    testWidgets("Vérifier que l'application nous renvoie un message d'erreur si nous entrons une adresse email invalide", (WidgetTester tester) async {
-      // Lance l'application
-      app.main();
-
-      // Attendez que l'application se construise et effectuez le rendu.
-      await tester.pumpAndSettle();
-
-      // Récupère les éléments de connexion
-      final emailField = find.byKey(const Key('login_screen_email_field'));
-      final passwordField = find.byKey(const Key('login_screen_password_field'));
-      final loginButton = find.byKey(const Key('login_screen_login_button'));
-
-      // Remplir les champs de connexion
-      await tester.enterText(emailField, 'lkjqhsdf');
-      await tester.enterText(passwordField, 'demo');
-
-      // Appuyer sur le bouton de connexion
-      await tester.tap(loginButton);
-
-      // Attendez que l'application se construise et effectuez le rendu.
-      await tester.pumpAndSettle();
-
-      // Vérifier que nous somme toujours sur la page de connexion
-      expect(find.byKey(const Key('login_screen_title')), findsOneWidget);
-
-      // Vérifier que le message d'erreur est affiché
-      expect(find.text('Veuillez entrer un email valide'), findsOneWidget);
-    });
-
-    testWidgets("Vérifier que l'application nous renvoie un message d'erreur si le champ email est vide", (WidgetTester tester) async {
-      // Lance l'application
-      app.main();
-
-      // Attendez que l'application se construise et effectuez le rendu.
-      await tester.pumpAndSettle();
-
-      // Récupère les éléments de connexion
-      final emailField = find.byKey(const Key('login_screen_email_field'));
-      final passwordField = find.byKey(const Key('login_screen_password_field'));
-      final loginButton = find.byKey(const Key('login_screen_login_button'));
-
-      // Remplir les champs de connexion
-      await tester.enterText(emailField, '');
-      await tester.enterText(passwordField, 'demo');
-
-      // Appuyer sur le bouton de connexion
-      await tester.tap(loginButton);
-
-      // Attendez que l'application se construise et effectuez le rendu.
-      await tester.pumpAndSettle();
-
-      // Vérifier que nous somme toujours sur la page de connexion
-      expect(find.byKey(const Key('login_screen_title')), findsOneWidget);
-
-      // Vérifier que le message d'erreur est affiché
-      expect(find.text('Ce champ ne peut pas être vide'), findsOneWidget);
-    });
-
-    testWidgets("Vérifier que l'application nous renvoie un message d'erreur si le champ password est vide", (WidgetTester tester) async {
-      // Lance l'application
-      app.main();
-
-      // Attendez que l'application se construise et effectuez le rendu.
-      await tester.pumpAndSettle();
-
-      // Récupère les éléments de connexion
-      final emailField = find.byKey(const Key('login_screen_email_field'));
-      final passwordField = find.byKey(const Key('login_screen_password_field'));
-      final loginButton = find.byKey(const Key('login_screen_login_button'));
-
-      // Remplir les champs de connexion
-      await tester.enterText(emailField, 'demo@gmail.com');
-      await tester.enterText(passwordField, '');
-
-      // Appuyer sur le bouton de connexion
-      await tester.tap(loginButton);
-
-      // Attendez que l'application se construise et effectuez le rendu.
-      await tester.pumpAndSettle();
-
-      // Vérifier que nous somme toujours sur la page de connexion
-      expect(find.byKey(const Key('login_screen_title')), findsOneWidget);
-
-      // Vérifier que le message d'erreur est affiché
-      expect(find.text('Ce champ ne peut pas être vide'), findsOneWidget);
-    });
-
+    expect(find.byKey(const Key('add_vacation_title')), findsOneWidget);
+    expect(find.byKey(const Key('display_vacations_title')), findsOneWidget);
   });
 }

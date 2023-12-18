@@ -25,6 +25,7 @@ class AddVacationScreen extends StatelessWidget {
           const Text(
             'Ajouter une nouvelle période de vacances',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            key: Key('add_vacation_title'),
           ),
           const SizedBox(height: 32),
           CustomTextField(

@@ -16,8 +16,12 @@ class LoginViewModel extends ChangeNotifier {
   final TextEditingController passwordController = TextEditingController();
   String? errorMessage;
   bool isLoginSuccess = false;
-  final AuthService _authService = AuthService();
-  final CountryService _countryService = CountryService();
+  final AuthService _authService;
+  final CountryService _countryService;
+
+  LoginViewModel({AuthService? authService, CountryService? countryService})
+      : _authService = authService ?? AuthService(),
+    _countryService = countryService ?? CountryService();
 
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {

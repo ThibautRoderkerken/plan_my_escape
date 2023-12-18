@@ -37,6 +37,7 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               CustomActionButton(
+                key: const Key('login_button'),
                 label: 'Connexion',
                 onPressed: () {
                   // Récupération des valeurs email et password
