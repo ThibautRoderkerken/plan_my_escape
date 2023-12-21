@@ -22,7 +22,7 @@ class AddActivityViewModel extends ChangeNotifier {
       VacationPeriod updatedVacationPeriod = dashboardViewModel.getVacationPeriodById(vacationIndex);
       await _holidayService.updateVacationPeriod(updatedVacationPeriod);
     } catch (e) {
-      print('Erreur lors de la mise à jour de la période de vacances: $e');
+      // S'il y a une erreur, la vue ne sera pas mise à jour
     }
   }
 

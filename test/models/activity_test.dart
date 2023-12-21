@@ -29,8 +29,8 @@ void main() {
         'name': 'Cinéma',
         'destination': 'Cinema City',
         'description': 'Film du soir',
-        'start_at': '2023-01-01T20:00:00',
-        'end_at': '2023-01-01T22:00:00'
+        'startAt': '2023-01-01T20:00:00',
+        'endAt': '2023-01-01T22:00:00'
       };
 
       final activity = Activity.fromJson(json);

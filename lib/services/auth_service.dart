@@ -144,12 +144,9 @@ class AuthService {
         } else {
           throw NetworkException('Erreur de connexion Google: ${response.statusCode} ${response.body}');
         }
-      } else {
-        print('Connexion annulée par l\'utilisateur');
       }
     } catch (error) {
-      print('Erreur de connexion Google: $error');
-      // Gérer les exceptions ici
+      throw NetworkException('Erreur de connexion Google');
     }
   }
 

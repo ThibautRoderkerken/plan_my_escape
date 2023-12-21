@@ -40,7 +40,6 @@ class DashboardViewModel extends ChangeNotifier {
     } catch (e) {
       _isLoading = false;
       notifyListeners();
-      print('Erreur lors du chargement des périodes de vacances: $e');
     }
   }
 
@@ -78,7 +77,7 @@ class DashboardViewModel extends ChangeNotifier {
       _vacationPeriods.remove(_vacationPeriods[id]);
       notifyListeners();
     } catch (e) {
-      print('Erreur lors de la suppression de la période de vacances: $e');
+      // S'il y a une erreur, la vue ne sera pas mise à jour
     }
   }
 
@@ -94,7 +93,7 @@ class DashboardViewModel extends ChangeNotifier {
       VacationPeriod updatedVacationPeriod = _vacationPeriods[vacationIndex];
       await _holidayService.updateVacationPeriod(updatedVacationPeriod);
     } catch (e) {
-      print('Erreur lors de la mise à jour de la période de vacances: $e');
+      // S'il y a une erreur, la vue ne sera pas mise à jour
     }
   }
 
@@ -148,7 +147,7 @@ class DashboardViewModel extends ChangeNotifier {
           getVacationPeriodById(vacationIndex);
       await _holidayService.updateVacationPeriod(updatedVacationPeriod);
     } catch (e) {
-      print('Erreur lors de la mise à jour de la période de vacances: $e');
+      // S'il y a une erreur, la vue ne sera pas mise à jour
     }
     notifyListeners();
   }

@@ -6,7 +6,7 @@ class WeatherInfo {
 
   static WeatherInfo fromJson(Map<String, dynamic> json) {
     // La description se trouve dans "current"/"condution"/"text"
-    String description = json['current']['condition']['text'] ?? 'Ensolleilé';
+    String description = json['current']['condition']['text'] ?? 'Ensoleillé';
     double temperature;
     try {
       // La température se trouve dans "current"/"temp_c"

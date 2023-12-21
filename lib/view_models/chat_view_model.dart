@@ -32,8 +32,6 @@ class ChatViewModel with ChangeNotifier {
 
     try {
       _hubConnection.on('SendMessage', (message) {
-        print("Message reçu: $message");
-
         // Traiter le message reçu
         var chatMessage = ChatMessage.fromMap(message);
 
@@ -41,9 +39,8 @@ class ChatViewModel with ChangeNotifier {
         notifyListeners();
       });
       await _hubConnection.start();
-      print("SignalR connecté");
     } catch (e) {
-      print('Erreur de connexion SignalR: $e');
+      // S'il y a une erreur, la vue ne sera pas mise à jour
     }
   }
 
@@ -80,17 +77,18 @@ class ChatViewModel with ChangeNotifier {
       await joinChatRoom(currentChatRoom!.id);
       notifyListeners();
     } catch (e) {
-      print(e);
+      // S'il y a une erreur, la vue ne sera pas mise à jour
     }
   }
 
-  sendMessage(ChatMessage newMessage) {
+  sendMessage(ChatMessage newMessage) async {
     // On ajoute le message dans currentChatRoom
     currentChatRoom?.messages.add(newMessage);
 
     // On envoie le message au service
-    _chatService.sendChatMessage(currentChatRoom!);
+    await _chatService.sendChatMessage(currentChatRoom!);
 
+    currentChatRoom?.messages.remove(newMessage);
     // On notifie les listeners
     notifyListeners();
   }
@@ -99,9 +97,8 @@ class ChatViewModel with ChangeNotifier {
   Future<void> joinChatRoom(int chatId) async {
     try {
       await _hubConnection.invoke('Join', args: <Object>[chatId.toString()]);
-      print("Rejoint le chatRoom: $chatId");
     } catch (e) {
-      print('Erreur lors de la tentative de rejoindre le chatRoom: $e');
+      // S'il y a une erreur, la vue ne sera pas mise à jour
     }
   }
 
@@ -109,9 +106,8 @@ class ChatViewModel with ChangeNotifier {
   Future<void> leaveChatRoom(int chatId) async {
     try {
       await _hubConnection.invoke('Leave', args: <Object>[chatId.toString()]);
-      print("Quitté le chatRoom: $chatId");
     } catch (e) {
-      print('Erreur lors de la tentative de quitter le chatRoom: $e');
+      // S'il y a une erreur, la vue ne sera pas mise à jour
     }
   }
 }

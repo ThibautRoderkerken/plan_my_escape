@@ -3,8 +3,8 @@ class ChatMessage {
   final int userId;
   final String text;
   final DateTime? timestamp;
-  final String firstName;
-  final String lastName;
+  String firstName;
+  String lastName;
 
   ChatMessage({
     required this.id,
@@ -62,6 +62,9 @@ class ChatMessage {
         firstName: firstElement['owner']['firstname'] as String,
         lastName: firstElement['owner']['lastname'] as String,
         text: firstElement['text'] as String,
+        timestamp: firstElement['timestamp'] != null
+            ? DateTime.parse(firstElement['timestamp'])
+            : null,
       );
     } catch (e) {
       return null;

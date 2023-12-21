@@ -16,9 +16,14 @@ void main() {
 
     // Test de fromJson avec données complètes
     test('WeatherInfo FromJson Complete Data Test', () {
+      //         'weatherInfo': {'current': {'temp_c': 15.0, 'condition': {'text': 'Nuageux'}}},
       final json = {
-        'description': 'Nuageux',
-        'temperature': 15.0,
+        'current': {
+          'temp_c': 15.0,
+          'condition': {
+            'text': 'Nuageux',
+          },
+        },
       };
 
       final weatherInfo = WeatherInfo.fromJson(json);
@@ -30,8 +35,11 @@ void main() {
     // Test de fromJson avec données manquantes ou incorrectes
     test('WeatherInfo FromJson Incomplete or Invalid Data Test', () {
       final json = {
-        // description est manquante
-        'temperature': 'non-numérique', // valeur incorrecte
+        'current': {
+          'temp_c': '15.0', // Valeur incorrecte
+          'condition': {
+          },
+        },
       };
 
       final weatherInfo = WeatherInfo.fromJson(json);

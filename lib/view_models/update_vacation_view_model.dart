@@ -41,9 +41,7 @@ class UpdateVacationViewModel extends ChangeNotifier {
         dashboardViewModel.notifyListeners();
         Navigator.pop(context);
       } catch (e) {
-        if (kDebugMode) {
-          print('Erreur lors de la mise à jour de la période de vacances: $e');
-        }
+        // S'il y a une erreur, la vue ne sera pas mise à jour
       }
       return true;
     }

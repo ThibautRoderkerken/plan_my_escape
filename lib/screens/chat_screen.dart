@@ -52,7 +52,7 @@ class ChatScreenState extends State<ChatScreen> {
                     author: author,
                     createdAt: chatMessage.timestamp?.millisecondsSinceEpoch ?? DateTime.now().millisecondsSinceEpoch,
                     id: const Uuid().v4(),
-                    text: chatMessage.text,
+                    text: "${author.lastName} ${author.firstName}:\n${chatMessage.text}",
                   );
                 }).toList().reversed.toList();
 

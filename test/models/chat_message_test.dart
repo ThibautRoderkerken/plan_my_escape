@@ -64,22 +64,26 @@ void main() {
     // Test de fromMap
     test('ChatMessage FromMap Test', () {
       final map = [
-        7,
-        8,
-        'Hey',
-        'Dave',
-        'Smith',
-        DateTime(2023, 1, 1, 12)
+        {
+          'id': 7,
+          'owner': {
+            'id': 8,
+            'firstname': 'Dave',
+            'lastname': 'Smith',
+          },
+          'text': 'Hey',
+          'timestamp': '2023-01-01T12:00:00',
+        }
       ];
 
       final chatMessage = ChatMessage.fromMap(map);
 
-      expect(chatMessage.id, 7);
-      expect(chatMessage.userId, 8);
-      expect(chatMessage.firstName, 'Dave');
-      expect(chatMessage.lastName, 'Smith');
-      expect(chatMessage.text, 'Hey');
-      expect(chatMessage.timestamp, DateTime(2023, 1, 1, 12));
+      expect(chatMessage?.id, 7);
+      expect(chatMessage?.userId, 8);
+      expect(chatMessage?.firstName, 'Dave');
+      expect(chatMessage?.lastName, 'Smith');
+      expect(chatMessage?.text, 'Hey');
+      expect(chatMessage?.timestamp, DateTime(2023, 1, 1, 12));
     });
   });
 }

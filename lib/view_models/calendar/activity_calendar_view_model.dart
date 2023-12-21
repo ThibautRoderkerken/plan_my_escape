@@ -71,7 +71,7 @@ class ActivityCalendarViewModel extends ChangeNotifier {
 
       Share.shareFiles([file.path], text: 'Mon Agenda de Vacances');
     } catch (e) {
-      print('Erreur lors de l\'exportation : $e');
+      // S'il y a une erreur, la vue ne sera pas mise à jour
     }
   }
 

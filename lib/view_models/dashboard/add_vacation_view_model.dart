@@ -78,8 +78,7 @@ class AddVacationViewModel extends ChangeNotifier {
       newVacation.vacationIndex = response["id"];
       dashboardViewModel.addVacationPeriod(newVacation);
     } catch (e) {
-      // Gérer les erreurs ici
-      print('Erreur lors de l\'ajout de la période de vacances: $e');
+      // Si la période n'est pas ajoutée, la vue ne sera pas mise à jour
     }
 
     // Réinitialiser les champs après l'ajout

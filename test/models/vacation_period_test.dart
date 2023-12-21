@@ -23,6 +23,7 @@ void main() {
         weatherInfo: weatherInfo,
         country: 'France',
         address: '1 rue de la plage',
+        city: 'Paris',
       );
 
       expect(vacation.startDate, startDate);
@@ -46,7 +47,7 @@ void main() {
         'activities': [
           {'id': '2', 'name': 'Musée', 'destination': 'Louvre', 'description': 'Visite culturelle'},
         ],
-        'weatherInfo': {'description': 'Nuageux', 'temperature': 15.0},
+        'weatherInfo': {'current': {'temp_c': 15.0, 'condition': {'text': 'Nuageux'}}},
       };
 
       final vacation = VacationPeriod.fromJson(json);
@@ -78,6 +79,7 @@ void main() {
         weatherInfo: weatherInfo,
         country: 'France',
         address: '1 rue de la plage',
+        city: 'Paris',
       );
 
       // Initialisation manuelle de vacationIndex car il est late
@@ -113,7 +115,7 @@ void main() {
         'destination': 'Paris',
         'users': [],
         'activities': [],
-        'weatherInfo': {'description': 'Nuageux', 'temperature': 15.0},
+        'weatherInfo': {'current': {'temp_c': 15.0, 'condition': {'text': 'Nuageux'}}},
         // 'start_at' et 'end_at' sont volontairement omis
       };
 

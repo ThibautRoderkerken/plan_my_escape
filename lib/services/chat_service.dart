@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/chat_room.dart';
-import '../models/chat_message.dart';
 import '../exceptions/bad_request_exception.dart';
 import '../exceptions/internal_server_exception.dart';
 import '../exceptions/network_exception.dart';
@@ -73,7 +72,6 @@ class ChatService {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? cookie = prefs.getString('cookie');
       String bodyRequest = jsonEncode(message.toJson());
-      print(bodyRequest);
       final response = await http.post(
         Uri.parse(baseUrl),
         headers: {
@@ -82,13 +80,6 @@ class ChatService {
         },
         body: bodyRequest,
       ).timeout(const Duration(seconds: 20));
-
-      if (response.statusCode != 200) {
-        // Afficher l'erreur
-        print('Erreur lors de l\'envoi du message: ${response.body}');
-        // Afficher le code d'erreur
-        print('Code d\'erreur: ${response.statusCode}');
-      }
     } on TimeoutException {
       throw NetworkException('Network timeout');
     } catch (e) {
