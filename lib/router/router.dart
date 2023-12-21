@@ -29,7 +29,7 @@ class RouteGenerator {
           title: 'Plan My Escape',
         );
         break;
-      case '/sign_up':
+      case '/account_creation':
         customPage = CustomPage(
           page: ChangeNotifierProvider(
             create: (context) => SignUpViewModel(),
@@ -47,7 +47,7 @@ class RouteGenerator {
           title: 'Tableau de bord',
         );
         break;
-      case '/dashboard/add_activity':
+      case '/dashboard/activity_new':
         final args = settings.arguments as Map<String, dynamic>;
         customPage = CustomPage(
           page: ChangeNotifierProvider.value(
@@ -59,7 +59,7 @@ class RouteGenerator {
           title: 'Ajouter une activité',
         );
         break;
-      case '/dashboard/add_member':
+      case '/dashboard/member_new':
         final args = settings.arguments as Map<String, dynamic>;
         customPage = CustomPage(
           page: ChangeNotifierProvider.value(
@@ -85,7 +85,7 @@ class RouteGenerator {
           title: 'Chat',
         );
         break;
-      case '/dashboard/updateVacation':
+      case '/dashboard/vacation_modification':
         final args = settings.arguments as Map<String, dynamic>;
         customPage = CustomPage(
           page: ChangeNotifierProvider.value(

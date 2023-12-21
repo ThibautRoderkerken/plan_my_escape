@@ -157,7 +157,7 @@ class DashboardViewModel extends ChangeNotifier {
     String destination = _vacationPeriods[index].destination;
     DateTime startDate = _vacationPeriods[index].startDate;
     DateTime endDate = _vacationPeriods[index].endDate;
-    Navigator.pushNamed(context, '/dashboard/updateVacation', arguments: {
+    Navigator.pushNamed(context, '/dashboard/vacation_modification', arguments: {
       'dashboardViewModel': this,
       'vacationIndex': index,
       'destination': destination,

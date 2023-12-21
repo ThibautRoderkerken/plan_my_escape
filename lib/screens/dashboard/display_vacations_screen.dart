@@ -151,7 +151,7 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                               icon: const Icon(Icons.add),
                               onPressed: () {
                                 Navigator.pushNamed(
-                                    context, '/dashboard/add_member',
+                                    context, '/dashboard/member_new',
                                     arguments: {
                                       'vacationIndex': vacation.vacationIndex,
                                       'dashboardViewModel': dashboardViewModel,
@@ -201,7 +201,7 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                                 icon: const Icon(Icons.add),
                                 onPressed: () {
                                   Navigator.pushNamed(
-                                      context, '/dashboard/add_activity',
+                                      context, '/dashboard/activity_new',
                                       arguments: {
                                         'vacationIndex': vacation.vacationIndex,
                                         'dashboardViewModel':
