@@ -9,7 +9,7 @@ class VacationPeriod {
   String destination;
   final List<Member> members;
   final List<Activity> activities;
-  final WeatherInfo weatherInfo;
+  WeatherInfo weatherInfo;
   late final int vacationIndex;
   final String country;
   final String address;

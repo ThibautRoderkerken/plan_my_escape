@@ -23,12 +23,12 @@ class Activity {
     DateTime? startDate;
     Duration? duration;
 
-    if (activityJson['start_at'] != null) {
-      startDate = DateTime.parse(activityJson['start_at']);
+    if (activityJson['startAt'] != null) {
+      startDate = DateTime.parse(activityJson['startAt']);
     }
 
-    if (activityJson['end_at'] != null && startDate != null) {
-      DateTime endDate = DateTime.parse(activityJson['end_at']);
+    if (activityJson['endAt'] != null && startDate != null) {
+      DateTime endDate = DateTime.parse(activityJson['endAt']);
       duration = endDate.difference(startDate);
     }
 

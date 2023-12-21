@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plan_my_escape/services/holiday_service.dart';
+import 'package:plan_my_escape/services/meteo_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/activity.dart';
 import '../../models/member.dart';
@@ -8,6 +9,7 @@ import '../../services/calendar_export.dart';
 
 class DashboardViewModel extends ChangeNotifier {
   final HolidayService _holidayService;
+  final MeteoService _meteoService = MeteoService();
   late List<VacationPeriod> _vacationPeriods = [];
   bool _isLoading = true;
   final Future<String> userID = SharedPreferences.getInstance()
@@ -27,6 +29,10 @@ class DashboardViewModel extends ChangeNotifier {
       for (var period in initialVacationPeriods) {
         detailedVacationPeriods.add(await _holidayService
             .getVacationPeriodDetails(period.vacationIndex));
+        // Pour la dernière période de vacance ajouter on mets a jours la météo
+        detailedVacationPeriods.last.weatherInfo =
+            await _meteoService.getMeteo(
+                detailedVacationPeriods.last.city); // Mettre à jour la météo
       }
       _vacationPeriods = detailedVacationPeriods;
       _isLoading = false;
@@ -114,7 +120,8 @@ class DashboardViewModel extends ChangeNotifier {
   }
 
   void removeActivity(int vacationIndex, int activityIndex) {
-    getVacationPeriodById(vacationIndex).activities.removeAt(activityIndex);
+    _vacationPeriods[vacationIndex].activities.removeAt(activityIndex);
+    _updateVacationPeriod(vacationIndex);
     notifyListeners();
   }
 

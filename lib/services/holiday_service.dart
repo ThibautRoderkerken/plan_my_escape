@@ -128,8 +128,8 @@ class HolidayService {
             'Name': activity.name,
             'Description': activity.description,
             'Destination': activity.address,
-            'Start_at': _combineDateTimeAndTime(activity.scheduledDate ?? vacation.startDate, activity.scheduledTime),
-            'End_at': _combineDateTimeAndTime(activity.scheduledDate ?? vacation.startDate, activity.scheduledTime, addDuration: activity.duration),
+            'StartAt': _combineDateTimeAndTime(activity.scheduledDate ?? vacation.startDate, activity.scheduledTime),
+            'EndAt': _combineDateTimeAndTime(activity.scheduledDate ?? vacation.startDate, activity.scheduledTime, addDuration: activity.duration),
           }).toList(),
           'Users': vacation.members.map((member) => {
             'Email': member.mail,

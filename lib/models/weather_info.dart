@@ -5,11 +5,12 @@ class WeatherInfo {
   WeatherInfo({required this.description, required this.temperature});
 
   static WeatherInfo fromJson(Map<String, dynamic> json) {
-    // Utilisation de valeurs par défaut en cas d'absence de données ou d'erreur
-    String description = json['description'] ?? 'Ensoleillé';
+    // La description se trouve dans "current"/"condution"/"text"
+    String description = json['current']['condition']['text'] ?? 'Ensolleilé';
     double temperature;
     try {
-      temperature = json['temperature'].toDouble();
+      // La température se trouve dans "current"/"temp_c"
+      temperature = json['current']['temp_c'] ?? 0.0;
     } catch (e) {
       // Valeur par défaut en cas d'erreur
       temperature = 0.0;

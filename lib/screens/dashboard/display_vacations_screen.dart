@@ -73,7 +73,11 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(vacation.destination),
+                            Text(
+                              vacation.destination.length > 10
+                                  ? '${vacation.destination.substring(0, 10)}...'
+                                  : vacation.destination,
+                            ),
                             Row(
                               children: [
                                 IconButton(
@@ -116,7 +120,8 @@ class DisplayVacationsScreenState extends State<DisplayVacationsScreen> {
                                   onPressed: _isLoading
                                       ? null
                                       : () async {
-                                          String address = vacation.destination;
+                                          String address =
+                                              '${vacation.country}, ${vacation.city}';
                                           var position = await Geolocator
                                               .getCurrentPosition(
                                                   desiredAccuracy:
