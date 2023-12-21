@@ -24,23 +24,23 @@ class ChatViewModel with ChangeNotifier {
   Future<void> _initializeSignalR() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? jwtToken = prefs.getString('cookie');
-    String url = "https://porthos-intra.cg.helmo.be/E180314/hub/chat/?$jwtToken";
+    String url =
+        "https://porthos-intra.cg.helmo.be/E180314/hub/chat/?$jwtToken";
 
-    _hubConnection = HubConnectionBuilder().withUrl(url).withAutomaticReconnect().build();
+    _hubConnection =
+        HubConnectionBuilder().withUrl(url).withAutomaticReconnect().build();
 
     try {
-      await _hubConnection.start();
       _hubConnection.on('SendMessage', (message) {
         print("Message reçu: $message");
 
         // Traiter le message reçu
         var chatMessage = ChatMessage.fromMap(message);
 
-        if (currentChatRoom != null && chatMessage.roomId == currentChatRoom!.id) {
-          currentChatRoom!.messages.add(chatMessage);
-          notifyListeners();
-        }
+        currentChatRoom!.messages.add(chatMessage!);
+        notifyListeners();
       });
+      await _hubConnection.start();
       print("SignalR connecté");
     } catch (e) {
       print('Erreur de connexion SignalR: $e');
@@ -77,6 +77,7 @@ class ChatViewModel with ChangeNotifier {
   Future<void> fetchChatRoomDetails(int roomId) async {
     try {
       currentChatRoom = await _chatService.getChatRoomDetails(roomId);
+      await joinChatRoom(currentChatRoom!.id);
       notifyListeners();
     } catch (e) {
       print(e);
@@ -92,5 +93,25 @@ class ChatViewModel with ChangeNotifier {
 
     // On notifie les listeners
     notifyListeners();
+  }
+
+  // Rejoindre un chatRoom
+  Future<void> joinChatRoom(int chatId) async {
+    try {
+      await _hubConnection.invoke('Join', args: <Object>[chatId.toString()]);
+      print("Rejoint le chatRoom: $chatId");
+    } catch (e) {
+      print('Erreur lors de la tentative de rejoindre le chatRoom: $e');
+    }
+  }
+
+  // Quitter un chatRoom
+  Future<void> leaveChatRoom(int chatId) async {
+    try {
+      await _hubConnection.invoke('Leave', args: <Object>[chatId.toString()]);
+      print("Quitté le chatRoom: $chatId");
+    } catch (e) {
+      print('Erreur lors de la tentative de quitter le chatRoom: $e');
+    }
   }
 }

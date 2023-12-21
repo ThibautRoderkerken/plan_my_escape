@@ -43,6 +43,11 @@ class AddVacationScreen extends StatelessWidget {
             viewModel: addVacationViewModel,
           ),
           const SizedBox(height: 16),
+          CustomTextField(
+            label: 'Ville',
+            controller: addVacationViewModel.cityController,
+          ),
+          const SizedBox(height: 16),
           CustomDateSelector(
             label: 'Sélectionnez la période',
             onDateSelected: addVacationViewModel.onDateSelected,

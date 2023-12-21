@@ -26,11 +26,12 @@ class HolidayService {
         },
         body: jsonEncode({
           'name': vacation.destination,
-          'start_at': vacation.startDate.toIso8601String().split('T')[0],
-          'end_at': vacation.endDate.toIso8601String().split('T')[0],
+          'startAt': vacation.startDate.toIso8601String().split('T')[0],
+          'endAt': vacation.endDate.toIso8601String().split('T')[0],
           'activities': [],
           'users': [],
           'address': vacation.address,
+          'city': vacation.city,
           'country': {
             'id': GlobalData().countries.firstWhere((country) => country.name == vacation.country).code,
             'name': vacation.country,
@@ -115,9 +116,10 @@ class HolidayService {
         body: jsonEncode({
           'Id': vacation.vacationIndex,
           'Name': vacation.destination,
-          'Start_At': vacation.startDate.toIso8601String().split('T')[0],
-          'End_At': vacation.endDate.toIso8601String().split('T')[0],
+          'StartAt': vacation.startDate.toIso8601String().split('T')[0],
+          'EndAt': vacation.endDate.toIso8601String().split('T')[0],
           'Address': vacation.address,
+          'City': vacation.city,
           'Country': {
             'Id': GlobalData().countries.firstWhere((country) => country.name == vacation.country).code,
             'Name': vacation.country,

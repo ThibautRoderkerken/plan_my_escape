@@ -13,6 +13,7 @@ class VacationPeriod {
   late final int vacationIndex;
   final String country;
   final String address;
+  final String city;
 
   VacationPeriod({
     required this.startDate,
@@ -23,6 +24,7 @@ class VacationPeriod {
     required this.weatherInfo,
     required this.country,
     required this.address,
+    required this.city,
   });
 
   static VacationPeriod fromJson(Map<String, dynamic> json) {
@@ -71,6 +73,7 @@ class VacationPeriod {
       weatherInfo: weatherInfo,
       country: json['country'] as String? ?? 'Belgium',
       address: json['address'] as String? ?? 'Inconnu',
+      city: json['city'] as String? ?? 'Paris',
     )..vacationIndex = vacationIndex ?? 0;
   }
 

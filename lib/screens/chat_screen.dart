@@ -41,22 +41,21 @@ class ChatScreenState extends State<ChatScreen> {
             final user = snapshot.data!;
             return Consumer<ChatViewModel>(
               builder: (context, viewModel, child) {
-                _messages = viewModel.messages
-                    .map((chatMessage) {
-                      return types.TextMessage(
-                        author: chatMessage.userId.toString() == user.id
-                            ? user
-                            : types.User(id: chatMessage.userId.toString()),
-                        createdAt:
-                            chatMessage.timestamp?.millisecondsSinceEpoch ??
-                                DateTime.now().millisecondsSinceEpoch,
-                        id: const Uuid().v4(),
-                        text: chatMessage.text,
-                      );
-                    })
-                    .toList()
-                    .reversed
-                    .toList();
+                _messages = viewModel.messages.map((chatMessage) {
+                  var author = types.User(
+                    id: chatMessage.userId.toString(),
+                    firstName: chatMessage.firstName,
+                    lastName: chatMessage.lastName,
+                  );
+
+                  return types.TextMessage(
+                    author: author,
+                    createdAt: chatMessage.timestamp?.millisecondsSinceEpoch ?? DateTime.now().millisecondsSinceEpoch,
+                    id: const Uuid().v4(),
+                    text: chatMessage.text,
+                  );
+                }).toList().reversed.toList();
+
 
                 return Chat(
                   messages: _messages,

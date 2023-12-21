@@ -14,6 +14,7 @@ class AddVacationViewModel extends ChangeNotifier {
   final HolidayService holidayService = HolidayService();
   List<Country> countries = [];
   TextEditingController countryController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
   DateTime? startDate;
   DateTime? endDate;
   bool isButtonPressed = false;
@@ -67,6 +68,7 @@ class AddVacationViewModel extends ChangeNotifier {
       weatherInfo: WeatherInfo(description: 'Inconnu', temperature: 0.0),
       country: selectedCountry!,
       address: adressController.text,
+      city: cityController.text,
     );
 
     try {

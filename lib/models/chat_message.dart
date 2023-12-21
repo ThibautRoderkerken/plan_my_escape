@@ -43,14 +43,29 @@ class ChatMessage {
     };
   }
 
-  static fromMap(List<Object?>? message) {
-    return ChatMessage(
-      id: message![0] as int,
-      userId: message[1] as int,
-      text: message[2] as String,
-      firstName: message[3] as String,
-      lastName: message[4] as String,
-      timestamp: message[5] as DateTime?,
-    );
+  static ChatMessage? fromMap(List<Object?>? message) {
+    if (message == null || message.isEmpty) {
+      return null;
+    }
+
+    var firstElement = message[0];
+
+    // S'assurer que le premier élément est bien un Map
+    if (firstElement is! Map) {
+      return null;
+    }
+
+    try {
+      return ChatMessage(
+        id: firstElement['id'] as int,
+        userId: firstElement['owner']['id'] as int,
+        firstName: firstElement['owner']['firstname'] as String,
+        lastName: firstElement['owner']['lastname'] as String,
+        text: firstElement['text'] as String,
+      );
+    } catch (e) {
+      return null;
+    }
   }
 }
+
